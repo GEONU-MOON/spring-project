@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,20 +16,24 @@
           <div class="form-wrapper align-items-center">
             <div class="form sign-up">
               <div class="input-group">
+                <i class="bx bx-user"></i>
+                <input type="text" placeholder="아이디" name="id" id="id" />
+              </div>
+              <div class="input-group">
                 <i class="bx bxs-user"></i>
-                <input type="text" placeholder="이름" />
+                <input type="text" placeholder="이름" name="name" id="name" />
               </div>
               <div class="input-group">
                 <i class="bx bx-mail-send"></i>
-                <input type="email" placeholder="이메일" />
+                <input type="email" placeholder="이메일" name="email" id="email" />
               </div>
               <div class="input-group">
                 <i class="bx bxs-lock-alt"></i>
-                <input type="password" placeholder="비밀번호" />
+                <input type="password" placeholder="비밀번호" name="password" id="password" />
               </div>
               <div class="input-group">
                 <i class="bx bxs-lock-alt"></i>
-                <input type="password" placeholder="비밀번호 확인" />
+                <input type="password" placeholder="비밀번호 확인" name="passwordConfirm" id="password2" />
               </div>
               <button>가입하기</button>
               <p>
@@ -46,11 +50,11 @@
             <div class="form sign-in">
               <div class="input-group">
                 <i class="bx bxs-user"></i>
-                <input type="text" placeholder="아이디" />
+                <input type="text" placeholder="아이디" name="id" id="id2" />
               </div>
               <div class="input-group">
                 <i class="bx bxs-lock-alt"></i>
-                <input type="password" placeholder="비밀번호" />
+                <input type="password" placeholder="비밀번호" name="password" id="password3" />
               </div>
               <button>로그인</button>
               <p>
