@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Blog Template" />
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!-- FontAwesome JS-->
+    <script
+            defer
+            src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
+            integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7"
+            crossorigin="anonymous"
+    ></script>
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme1.css" />
+
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <!-- include summernote css/js-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+    <!-- include summernote-ko-KR -->
+    <script src="/resources/js/summernote-ko-KR.js"></script>
+    <title>글쓰기</title>
+
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                placeholder: 'content',
+                minHeight: 370,
+                maxHeight: null,
+                focus: true,
+                lang : 'ko-KR'
+            });
+        });
+    </script>
+
+
+
+</head>
+<body>
+    <header class="header text-center" id="main-header" name="main-header">
+        <h1 class="blog-name pt-lg-4 mb-0">
+            <a href="/home">ooo's Devlog</a>
+            <!--블로그 주인 이름 -->
+        </h1>
+
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navigation"
+                    aria-controls="navigation"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="navigation" class="collapse navbar-collapse flex-column">
+                <div class="profile-section pt-3 pt-lg-0">
+                    <img
+                            class="profile-image mb-3 rounded-circle mx-auto"
+                            src="assets/images/profile.png"
+                            alt="image"
+                    />
+
+                    <div class="bio mb-3">
+                        여기에 간단히 자기소개를 해주세요.<br /><a href="/about"
+                    >나에 대해 더 알아보기</a
+                    >
+                    </div>
+                    <!--//bio-->
+                    <ul class="social-list list-inline py-3 mx-auto">
+                        <li class="list-inline-item">
+                            <!--깃허브 링크-->
+                            <a href="#"><i class="fab fa-github-alt fa-fw"></i></a>
+                        </li>
+                    </ul>
+                    <!--//social-list-->
+                    <hr />
+                </div>
+                <!--//profile-section-->
+                <ul class="navbar-nav flex-column text-left">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home"
+                        ><i class="fas fa-home fa-fw mr-2"></i>Devlog 홈
+                            <span class="sr-only">(current)</span></a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blogpost"
+                        ><i class="fas fa-bookmark fa-fw mr-2"></i>Devlog 포스트</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about"
+                        ><i class="fas fa-user fa-fw mr-2"></i>나에 대하여</a
+                        >
+                    </li>
+                </ul>
+                <div class="my-2 my-md-3">
+                    <a
+                            class="btn btn-primary"
+                            href="https://themes.3rdwavemedia.com/"
+                            target="_blank"
+                    >연락하기</a
+                    >
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main-wrapper">
+
+        <h2 style="text-align: center;">글 작성</h2><br><br><br>
+
+        <div style="width: 60%; margin: auto;">
+            <form method="post" action="/write">
+                <input type="text" name="writer" style="width: 20%;" placeholder="작성자"/><br>
+                <input type="text" name="title" style="width: 40%;" placeholder="제목"/>
+                <br><br>
+                <textarea id="summernote" name="content"></textarea>
+                <input id="subBtn" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/>
+            </form>
+        </div>
+
+    </div><!--//main-wrapper-->
+
+    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
+    <div id="config-panel" class="config-panel d-none d-lg-block">
+        <div class="panel-inner">
+            <h5 class="panel-title">Choose Colour</h5>
+            <ul id="color-options" class="list-inline mb-0">
+                <li class="theme-1 active list-inline-item">
+                    <a data-style="assets/css/theme-1.css" href="#"></a>
+                </li>
+                <li class="theme-2 list-inline-item">
+                    <a data-style="assets/css/theme-2.css" href="#"></a>
+                </li>
+                <li class="theme-3 list-inline-item">
+                    <a data-style="assets/css/theme-3.css" href="#"></a>
+                </li>
+                <li class="theme-4 list-inline-item">
+                    <a data-style="assets/css/theme-4.css" href="#"></a>
+                </li>
+                <li class="theme-5 list-inline-item">
+                    <a data-style="assets/css/theme-5.css" href="#"></a>
+                </li>
+                <li class="theme-6 list-inline-item">
+                    <a data-style="assets/css/theme-6.css" href="#"></a>
+                </li>
+                <li class="theme-7 list-inline-item">
+                    <a data-style="assets/css/theme-7.css" href="#"></a>
+                </li>
+                <li class="theme-8 list-inline-item">
+                    <a data-style="assets/css/theme-8.css" href="#"></a>
+                </li>
+            </ul>
+            <a id="config-close" class="close" href="#"
+            ><i class="fa fa-times-circle"></i
+            ></a>
+        </div>
+        <!--//panel-inner-->
+    </div>
+
+</body>
+
+</html>

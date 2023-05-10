@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en"> 
 <head>
     <title>Bootstrap 4 Blog Template For Developers</title>
@@ -24,70 +25,98 @@
 </head> 
 
 <body>
-    
-    <header class="header text-center">	    
-	    <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Anthony's Blog</a></h1>
-        
-	    <nav class="navbar navbar-expand-lg navbar-dark" >
-           
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
+
+	<header class="header text-center" id="main-header" name="main-header">
+		<h1 class="blog-name pt-lg-4 mb-0">
+			<a href="/home">ooo's Devlog</a>
+			<!--블로그 주인 이름 -->
+		</h1>
+
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<button
+					class="navbar-toggler"
+					type="button"
+					data-toggle="collapse"
+					data-target="#navigation"
+					aria-controls="navigation"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div id="navigation" class="collapse navbar-collapse flex-column" >
+			<div id="navigation" class="collapse navbar-collapse flex-column">
 				<div class="profile-section pt-3 pt-lg-0">
-				    <img class="profile-image mb-3 rounded-circle mx-auto" src="/assets/images/profile.png" alt="image" >
-					
-					<div class="bio mb-3">Hi, my name is Anthony Doe. Briefly introduce yourself here. You can also provide a link to the about page.<br><a href="about.html">Find out more about me</a></div><!--//bio-->
+					<img
+							class="profile-image mb-3 rounded-circle mx-auto"
+							src="assets/images/profile.png"
+							alt="image"
+					/>
+
+					<div class="bio mb-3">
+						여기에 간단히 자기소개를 해주세요.<br /><a href="/about"
+					>나에 대해 더 알아보기</a
+					>
+					</div>
+					<!--//bio-->
 					<ul class="social-list list-inline py-3 mx-auto">
-			            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="#"><i class="fab fa-github-alt fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="#"><i class="fab fa-stack-overflow fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="#"><i class="fab fa-codepen fa-fw"></i></a></li>
-			        </ul><!--//social-list-->
-			        <hr> 
-				</div><!--//profile-section-->
-				
+						<li class="list-inline-item">
+							<!--깃허브 링크-->
+							<a href="#"><i class="fab fa-github-alt fa-fw"></i></a>
+						</li>
+					</ul>
+					<!--//social-list-->
+					<hr />
+				</div>
+				<!--//profile-section-->
 				<ul class="navbar-nav flex-column text-left">
-					<li class="nav-item">
-					    <a class="nav-link" href="index.html"><i class="fas fa-home fa-fw mr-2"></i>Blog Home <span class="sr-only">(current)</span></a>
-					</li>
 					<li class="nav-item active">
-					    <a class="nav-link" href="blogpost.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Blog Post</a>
+						<a class="nav-link" href="/home"
+						><i class="fas fa-home fa-fw mr-2"></i>Devlog 홈
+							<span class="sr-only">(current)</span></a
+						>
 					</li>
 					<li class="nav-item">
-					    <a class="nav-link" href="about.html"><i class="fas fa-user fa-fw mr-2"></i>About Me</a>
+						<a class="nav-link" href="/blogpost"
+						><i class="fas fa-bookmark fa-fw mr-2"></i>Devlog 포스트</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/about"
+						><i class="fas fa-user fa-fw mr-2"></i>나에 대하여</a
+						>
 					</li>
 				</ul>
-				
 				<div class="my-2 my-md-3">
-					
-				    <a class="btn btn-primary" href="https://themes.3rdwavemedia.com/" target="_blank">Get in Touch</a>
-				    
+					<a
+							class="btn btn-primary"
+							href="https://themes.3rdwavemedia.com/"
+							target="_blank"
+					>연락하기</a
+					>
 				</div>
 			</div>
 		</nav>
-    </header>
+	</header>
     
     <div class="main-wrapper">
-	    
+
 	    <article class="blog-post px-3 py-5 p-md-5">
 		    <div class="container">
 			    <header class="blog-post-header">
-				    <h2 class="title mb-2">Why Every Developer Should Have A Blog</h2>
-				    <div class="meta mb-3"><span class="date">Published 3 months ago</span><span class="time">5 min read</span><span class="comment"><a href="#">4 comments</a></span></div>
+				    <h2 class="title mb-2">모든 개발자가 블로그를 가져야 하는 이유</h2>
+				    <div class="meta mb-3"><span class="date">3개월 전 발행</span><span class="time">5분 읽기</span><span class="comment"><a href="#">댓글 4개</a></span></div>
 			    </header>
-			    
+
 			    <div class="blog-post-body">
 				    <figure class="blog-banner">
 				        <a href="https://made4dev.com"><img class="img-fluid" src="/assets/images/blog/blog-post-banner.jpg" alt="image"></a>
 				        <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a></figcaption>
 				    </figure>
-				    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
-				    
-				    <h3 class="mt-5 mb-3">Code Block Example</h3>
-				    <p>You can get more info at <a href="https://highlightjs.org/" target="_blank">https://highlightjs.org/</a>. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+				    <p> 내용 포르투갈어로 대충  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+
+				    <h3 class="mt-5 mb-3">Code Block 코드블록쓰는법에 대한 예시</h3>
+				    <p>자세한 내용은 <a href="https://highlightjs.org/" target="_blank">https://highlightjs.org/</a> 에서 확인 하실수 있습니다. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
 				    <pre>
 					    <code>
 function $initHighlight(block, cls) {
@@ -106,10 +135,20 @@ function $initHighlight(block, cls) {
 
 export  $initHighlight;
 					    </code>
+코드설명 gpt
+이 코드는 JavaScript로 작성된 함수인 것 같습니다. 이 함수는 주어진 매개변수를 사용하여 하이라이트를 초기화하는 역할을 합니다.
+
+함수의 이름은 $initHighlight이고, 매개변수로 block과 cls를 받습니다. 이 함수는 다음과 같은 동작을 수행합니다.
+
+try 블록 안에서 예외를 처리합니다.
+cls 문자열이 \bno\-highlight\b 패턴을 포함하고 있는지 검사합니다. 만약 포함하고 있다면, process(block, true, 0x0F)의 결과와 class="${cls}"를 반환합니다.
+for 루프를 통해 classes 배열을 순회합니다. (classes 배열은 현재 코드에서 정의되어 있지 않아서 외부에서 정의되어 있다고 가정합니다.)
+각 반복에서 checkCondition(classes[i])의 결과가 undefined인지 확인하고, 그렇다면 콘솔에 'undefined'를 출력합니다.
+마지막으로, 이 함수는 export 문을 사용하여 외부에서 이 함수를 가져갈 수 있도록 설정되어 있는 것 같습니다.
 				    </pre>
-				    <h3 class="mt-5 mb-3">Typography</h3>
-				    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-				    <h5 class="my-3">Bullet Points:</h5>
+				    <h3 class="mt-5 mb-3">Typography 제목</h3>
+				    <p>대충 포르투갈어 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+				    <h5 class="my-3">Bullet Points: * 포인트 주는양식</h5>
 				    <ul class="mb-5">
 					  <li class="mb-2">Lorem ipsum dolor sit amet consectetuer.</li>
 					  <li class="mb-2">Aenean commodo ligula eget dolor.</li>
@@ -120,13 +159,13 @@ export  $initHighlight;
 					  <li class="mb-2">Aenean commodo ligula eget dolor.</li>
 					  <li class="mb-2">Aenean massa cum sociis natoque penatibus.</li>
 					</ol>
-					<h5 class="my-3">Quote Example:</h5>
+					<h5 class="my-3">Quote Example: 인용 예제</h5>
 					<blockquote class="blockquote m-lg-5 py-3 pl-4 px-lg-5">
 						<p class="mb-2">You might not think that programmers are artists, but programming is an extremely creative profession. It's logic-based creativity.</p>
 						<footer class="blockquote-footer">John Romero</footer>
 					</blockquote>
-					
-					<h5 class="my-3">Table Example:</h5>
+
+					<h5 class="my-3">Table Example: 테이블 예제</h5>
 					<table class="table table-striped my-5">
 						<thead>
 							<tr>
@@ -157,87 +196,101 @@ export  $initHighlight;
 							</tr>
 						</tbody>
 					</table>
-					
-					<h5 class="mb-3">Embed A Tweet:</h5>
-					
+
+					<h5 class="mb-3">Embed A Tweet: 트위터 인용예제</h5>
+
 					<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">1969:<br>-what&#39;re you doing with that 2KB of RAM?<br>-sending people to the moon<br><br>2017:<br>-what&#39;re you doing with that 1.5GB of RAM?<br>-running Slack</p>&mdash; I Am Devloper (@iamdevloper) <a href="https://twitter.com/iamdevloper/status/926458505355235328?ref_src=twsrc%5Etfw">November 3, 2017</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
-				    
-				    <h3 class="mt-5 mb-3">Video Example</h3>
+
+				    <h3 class="mt-5 mb-3">Video Example 비디오 삽입 예제</h3>
 				    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. </p>
 
 				    <div class="embed-responsive embed-responsive-16by9">
-					   <iframe width="560" height="315" src="https://www.youtube.com/embed/hnCmSXCZEpU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>					
+					   <iframe width="560" height="315" src="https://www.youtube.com/embed/hnCmSXCZEpU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					</div>
-				   
+
 			    </div>
-				    
+
 			    <nav class="blog-nav nav nav-justified my-5">
-				  <a class="nav-link-prev nav-item nav-link rounded-left" href="index.html">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-				  <a class="nav-link-next nav-item nav-link rounded-right" href="bloglist.html">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+				  <a class="nav-link-prev nav-item nav-link rounded-left" href="/index">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+				  <a class="nav-link-next nav-item nav-link rounded-right" href="/bloglist">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
 				</nav>
-				
+
 				<div class="blog-comments-section">
 					<div id="disqus_thread"></div>
 					<script>
-					    /**
-					     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT 
-					     *  THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR 
-					     *  PLATFORM OR CMS.
-					     *  
-					     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: 
-					     *  https://disqus.com/admin/universalcode/#configuration-variables
-					     */
+						/**
+						 *  권장 구성 변수: 편집 및 주석
+						 *  동적 값을 삽입하기 위한 아래 섹션
+						 *  플랫폼 또는 CMS.
+						 *
+						 *  이러한 변수를 정의하는 것이 중요한 이유를 알아보십시오:
+						 *  https://disqus.com/admin/universalcode/#configuration-variables
+						 */
 					    /*
 					    var disqus_config = function () {
 					        // Replace PAGE_URL with your page's canonical URL variable
-					        this.page.url = PAGE_URL;  
-					        
+					        this.page.url = PAGE_URL;
+
 					        // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-					        this.page.identifier = PAGE_IDENTIFIER; 
+					        this.page.identifier = PAGE_IDENTIFIER;
 					    };
 					    */
-					    
+						/*
+						* 댓글 시스템을 설정하기위한 disqus_config 함수. 웹사이트에 댓글기능을 추가하는 서비스
+						*/
+
 					    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
 					        var d = document, s = d.createElement('script');
-					        
+
 					        // IMPORTANT: Replace 3wmthemes with your forum shortname!
 					        s.src = 'https://3wmthemes.disqus.com/embed.js';
-					        
+
 					        s.setAttribute('data-timestamp', +new Date());
 					        (d.head || d.body).appendChild(s);
 					    })();
+
+						/*
+						이 코드는 Disqus 댓글 시스템을 웹페이지에 삽입하기 위한 스크립트 코드를 통해 Disqus 스크립트 파일이 동적으로 생성되고 웹페이지에 추가
+
+						코드는 즉시 실행 함수로 둘러싸여 있고, 코드 블록 내부에서 Disqus 스크립트를 동적으로 생성하고 페이지에 추가하는 과정
+						 */
+
 					</script>
 					<noscript>
-					    Please enable JavaScript to view the 
+					    Please enable JavaScript to view the
 					    <a href="https://disqus.com/?ref_noscript" rel="nofollow">
 					        comments powered by Disqus.
 					    </a>
 					</noscript>
 				</div><!--//blog-comments-section-->
-				
+
 		    </div><!--//container-->
 	    </article>
-	    
+
 	    <section class="promo-section theme-bg-light py-5 text-center">
 		    <div class="container">
-			    <h2 class="title">Promo Section Heading</h2>
+			    <h2 class="title">Promo Section Heading 대충 광고</h2>
 			    <p>You can use this section to promote your side projects etc. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
                 <figure class="promo-figure">
 			        <a href="https://made4dev.com" target="_blank"><img class="img-fluid" src="/assets/images/promo-banner.jpg" alt="image"></a>
 			    </figure>
 		    </div><!--//container-->
 	    </section><!--//promo-section-->
-	    
-	    <footer class="footer text-center py-2 theme-bg-dark">
-		   
-	        <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
-                <small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
-		   
-	    </footer>
-    
+
+		<footer class="footer text-center py-2 theme-bg-dark">
+			<!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
+			<small class="copyright"
+			>Designed with <i class="fas fa-heart" style="color: #fb866a"></i> by
+				<a href="http://themes.3rdwavemedia.com" target="_blank"
+				>Xiaoying Riley</a
+				>
+				for 세상의 모든 개발자들</small
+			>
+		</footer>
+
     </div><!--//main-wrapper-->
     
 

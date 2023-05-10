@@ -32,4 +32,8 @@ public class HomeController {
 
     @GetMapping("bloglist")
     public String bloglist(){ return "bloglist";}
+
+    @GetMapping("boardWrite")
+    public String boardWrite() {return "boardWrite";}
+
 }
