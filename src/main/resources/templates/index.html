@@ -17,23 +17,23 @@
             <div class="form sign-up">
               <div class="input-group">
                 <i class="bx bx-user"></i>
-                <input type="text" placeholder="아이디" name="id" id="id" />
+                <input type="text" placeholder="아이디" name="registerId" id="registerId" />
               </div>
               <div class="input-group">
                 <i class="bx bxs-user"></i>
-                <input type="text" placeholder="이름" name="name" id="name" />
+                <input type="text" placeholder="이름" name="registerName" id="registerName" />
               </div>
               <div class="input-group">
                 <i class="bx bx-mail-send"></i>
-                <input type="email" placeholder="이메일" name="email" id="email" />
+                <input type="email" placeholder="이메일" name="registerEmail" id="registerEmail" />
               </div>
               <div class="input-group">
                 <i class="bx bxs-lock-alt"></i>
-                <input type="password" placeholder="비밀번호" name="password" id="password" />
+                <input type="password" placeholder="비밀번호" name="registerPassword" id="registerPassword" />
               </div>
               <div class="input-group">
                 <i class="bx bxs-lock-alt"></i>
-                <input type="password" placeholder="비밀번호 확인" name="passwordConfirm" id="password2" />
+                <input type="password" placeholder="비밀번호 확인" name="passwordConfirm" id="passwordConfirm" />
               </div>
               <button>가입하기</button>
               <p>
@@ -48,13 +48,14 @@
         <div class="col align-items-center flex-col sign-in">
           <div class="form-wrapper align-items-center">
             <div class="form sign-in">
+              <form method="post" action="/home" style="display: contents;">
               <div class="input-group">
                 <i class="bx bxs-user"></i>
-                <input type="text" placeholder="아이디" name="id" id="id2" />
+                <input type="text" placeholder="아이디" name="loginId" id="loginId" />
               </div>
               <div class="input-group">
                 <i class="bx bxs-lock-alt"></i>
-                <input type="password" placeholder="비밀번호" name="password" id="password3" />
+                <input type="password" placeholder="비밀번호" name="loginPassword" id="loginPassword" />
               </div>
               <button>로그인</button>
               <p>
