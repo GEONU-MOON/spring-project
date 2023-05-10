@@ -19,20 +19,17 @@ public class HomeController {
         return "home";
     }
 
-
+    @GetMapping("blogpost")
     public String blogpost(){
-        return "blog-post";
+        return "blogpost";
     }
 
-    public String bloglist(){
-        return "blog-list";
-    }
 
     @GetMapping("about")
     public String about(){
         return "about";
     }
 
-    @PostMapping
-    public String aboutc(){ return "test";}
+    @PostMapping("bloglist")
+    public String bloglist(){ return "bloglist";}
 }
