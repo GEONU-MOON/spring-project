@@ -30,6 +30,6 @@ public class HomeController {
         return "about";
     }
 
-    @PostMapping("bloglist")
+    @GetMapping("bloglist")
     public String bloglist(){ return "bloglist";}
 }
