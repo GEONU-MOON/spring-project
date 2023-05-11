@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Setter @Getter
-public class Comment {
+public class Comments {
 
     @Id
     @GeneratedValue
@@ -22,7 +22,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
-    private Member member;
+    private Members member;
 
     private String content;
 

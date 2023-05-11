@@ -4,15 +4,13 @@ package com.springproject.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
 @Getter @Setter
-public class Member {
+public class Members {
 
     @Id
     @GeneratedValue
@@ -27,4 +25,9 @@ public class Member {
 
     private String githubLink;
 
+    @OneToMany(mappedBy = "member")
+    private List<Board> boards;
+
+    @OneToMany(mappedBy = "member")
+    private List<Comments> comments;
 }

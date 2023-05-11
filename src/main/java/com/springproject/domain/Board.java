@@ -18,7 +18,7 @@ public class Board {
 
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
-    private Member member;
+    private Members member;
 
     private String title;
 
