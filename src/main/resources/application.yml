@@ -9,20 +9,20 @@ spring:
     driver-class-name: oracle.jdbc.OracleDriver
     username: spr
     password: spr
-#
-#  jpa:
-#    hibernate:
-#      ddl-auto: create
-#    properties:
-#      hibernate:
-#        show_sql: true
-#        format_sql: true
-#
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
   thymeleaf:
     cache: false
-#
-#logging.level:
-#  org:
-#    hibernate:
-#      SQL: debug
-#      type: trace
+
+logging.level:
+  org:
+    hibernate:
+      SQL: debug
+      type: trace
