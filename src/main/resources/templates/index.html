@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome to Devlog</title>
-    <link rel="stylesheet" href="./assets/css/login.css" />
+    <link rel="stylesheet" href="/assets/css/login.css" />
   </head>
   <body>
     <div id="container" class="container">
@@ -15,13 +15,15 @@
         <div class="col align-items-center flex-col sign-up">
           <div class="form-wrapper align-items-center">
             <div class="form sign-up">
+              <form action="/register" th:object="${registerform}" th:action method="post">
               <div class="input-group">
                 <i class="bx bx-user"></i>
-                <input type="text" placeholder="아이디" name="registerId" id="registerId" />
+
+                <input type="text" placeholder="아이디" name="registerId" id="registerId"/>
               </div>
               <div class="input-group">
                 <i class="bx bxs-user"></i>
-                <input type="text" placeholder="이름" name="registerName" id="registerName" />
+                <input type="text" placeholder="이름" name="registerName" id="registerName"/>
               </div>
               <div class="input-group">
                 <i class="bx bx-mail-send"></i>
@@ -36,6 +38,7 @@
                 <input type="password" placeholder="비밀번호 확인" name="passwordConfirm" id="passwordConfirm" />
               </div>
               <button onclick="registerUser()">가입하기</button>
+              </form>
               <p>
                 <span> 이미 회원이신가요? </span>
                 <b onclick="toggle()" class="pointer"> 로그인하러 가기 </b>
@@ -91,7 +94,7 @@
       </div>
       <!-- END CONTENT SECTION -->
     </div>
-    <script src="./assets/js/login.js"></script>
+    <script src="/assets/js/login.js"></script>
     <script>
       function registerUser() {
         let registerId = document.getElementById("registerId").value;
@@ -100,38 +103,11 @@
         let registerPassword = document.getElementById("registerPassword").value;
         let passwordConfirm = document.getElementById("passwordConfirm").value;
 
-        // 입력 유효성 검사를 추가할 수 있습니다.
-        console.log(registerId);
-        // 서버로 전송
-        fetch("/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: registerId,
-            name: registerName,
-            email: registerEmail,
-            password: registerPassword,
-            passwordConfirm: passwordConfirm,
-          }),
-        })
-                .then((response) => response.json())
-                .then((data) => {
-                  if (data.success) {
-                    // 회원가입 성공 시 로직 (예: 로그인 페이지로 이동)
-                    alert("회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.");
-                    location.href = "/index";
-                  } else {
-                    // 회원가입 실패 시 로직 (예: 에러 메시지 표시)
-                    alert("회원가입에 실패했습니다: " + data.message);
-                  }
-                })
-                .catch((error) => {
-                  console.error("Error:", error);
-                  alert("회원가입 중 문제가 발생했습니다. 다시 시도해주세요.");
-                });
+
+        if(registerId == "" ){}
+          // 밸리데이션
       }
+
       </script>
       </body>
 </html>
