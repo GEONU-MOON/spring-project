@@ -20,6 +20,7 @@
 
   <!-- Theme CSS -->
   <link id="theme-style" rel="stylesheet" href="assets/css/theme1.css" />
+
 </head>
 
 <body>
@@ -87,9 +88,10 @@
       <div class="my-2 my-md-3">
         <a
                 class="btn btn-primary"
-                target="_blank"
-        >연락하기</a
-        >
+                data-toggle="tooltip"
+                data-html="true"
+                title="<p><i class='fas fa-phone'></i> 010-1234-5678</p><p><i class='fas fa-envelope'></i> honggildong@email.com</p>"
+        >연락하기</a>
       </div>
     </div>
   </nav>
@@ -285,5 +287,11 @@
 
 <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
 <script src="assets/js/demo/style-switcher.js"></script>
+<script>
+  // 툴팁 초기화
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+</script>
 </body>
 </html>
