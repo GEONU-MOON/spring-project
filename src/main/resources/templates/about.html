@@ -11,6 +11,7 @@
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media" />
     <link rel="shortcut icon" href="favicon.ico" />
 
+
     <!-- FontAwesome JS-->
     <script
       defer
@@ -21,153 +22,179 @@
 
     <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/theme1.css" />
+
+    <style>
+
+      .mypage{
+        background-color: var(--white);
+        margin: 0px 50px;
+        border-radius: 1.5rem;
+        padding: 16px 16px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        font-size: 1.3rem;
+        transform: scale(0.8);
+      }
+
+      .mypage input{
+        width: 100%;
+        padding: 1rem 3rem;
+        font-size: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 0.5rem;
+        border: 0.125rem solid var(--white);
+        outline: none;
+      }
+
+      .grp{
+        height: 150px;
+      }
+
+      .svbtn{
+        float: right;
+        cursor: pointer;
+        width: 100px;
+        padding: 0.6rem 0;
+        border-radius: 0.5rem;
+        border: none;
+        background-color: #5FCB71;
+        color: #fff;
+        font-size: 1.2rem;
+        outline: none;
+        margin-left: 5px;
+        margin-right: 150px;
+      }
+      .delbtn{
+        float: right;
+        cursor: pointer;
+        width: 100px;
+        padding: 0.6rem 0;
+        border-radius: 0.5rem;
+        border: none;
+        background-color: #5FCB71;
+        color: #fff;
+        font-size: 1.2rem;
+        outline: none;
+        margin-left: 5px;
+      }
+    </style>
+
   </head>
 
   <body>
-    <header class="header text-center">
-      <h1 class="blog-name pt-lg-4 mb-0">
-        <a href="/index">ooo's Devlog</a>
-      </h1>
+  <header class="header text-center" id="main-header" name="main-header">
+    <h1 class="blog-name pt-lg-4 mb-0">
+      <a href="/home">ooo's Devlog</a>
+      <!--블로그 주인 이름 -->
+    </h1>
 
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navigation"
-          aria-controls="navigation"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navigation"
+              aria-controls="navigation"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div id="navigation" class="collapse navbar-collapse flex-column">
-          <div class="profile-section pt-3 pt-lg-0">
-            <img
-              class="profile-image mb-3 rounded-circle mx-auto"
-              src="assets/images/profile.png"
-              alt="image"
-            />
+      <div id="navigation" class="collapse navbar-collapse flex-column">
+        <div class="profile-section pt-3 pt-lg-0">
+          <img
+                  class="profile-image mb-3 rounded-circle mx-auto"
+                  src="assets/images/profile.png"
+                  alt="image"
+          />
 
-            <div class="bio mb-3">여기에 간단히 자기소개를 해주세요.</div>
-            <!--//bio-->
-            <ul class="social-list list-inline py-3 mx-auto">
-              <li class="list-inline-item">
-                <!--깃허브 링크-->
-                <a href="#"><i class="fab fa-github-alt fa-fw"></i></a>
-              </li>
-            </ul>
-            <!--//social-list-->
-            <hr />
+          <div class="bio mb-3">
+            여기에 간단히 자기소개를 해주세요.<br />
           </div>
-          <!--//profile-section-->
-          <ul class="navbar-nav flex-column text-left">
-            <li class="nav-item active">
-              <a class="nav-link" href="/home"
-                ><i class="fas fa-home fa-fw mr-2"></i>Devlog 홈</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/blogpost"
-                ><i class="fas fa-bookmark fa-fw mr-2"></i>Devlog 포스트</a
-              >
+          <!--//bio-->
+          <ul class="social-list list-inline py-3 mx-auto">
+            <li class="list-inline-item">
+              <!--깃허브 링크-->
+              <a href="#"><i class="fab fa-github-alt fa-fw"></i></a>
             </li>
           </ul>
-          <div class="my-2 my-md-3">
-            <a
-              class="btn btn-primary"
-              href="https://themes.3rdwavemedia.com/"
-              target="_blank"
-              >연락하기</a
-            >
-          </div>
+          <!--//social-list-->
+          <hr />
         </div>
-      </nav>
-    </header>
+        <!--//profile-section-->
+        <ul class="navbar-nav flex-column text-left">
+          <li class="nav-item">
+            <a class="nav-link" href="/home"
+            ><i class="fas fa-home fa-fw mr-2"></i>Devlog 홈
+              <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blogpost"
+            ><i class="fas fa-bookmark fa-fw mr-2"></i>Devlog 포스트</a
+            >
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/about"
+            ><i class="fas fa-user fa-fw mr-2"></i>나에 대하여</a
+            >
+          </li>
+        </ul>
+        <div class="my-2 my-md-3">
+          <a
+                  class="btn btn-primary"
+                  href="https://themes.3rdwavemedia.com/"
+                  target="_blank"
+          >연락하기</a
+          >
+        </div>
+        <div class="my-2 my-md-3">
+          <a
+                  class="btn btn-primary"
+                  href="/boardWrite"
+          >작성하기</a
+          >
+        </div>
+      </div>
+    </nav>
+  </header>
 
     <div class="main-wrapper">
-      <article class="about-section py-5">
-        <div class="container">
-          <h2 class="title mb-3">나에 대하여</h2>
-
-          <p>
-            나는
-            000입니다.어쩌구저쩌구~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~나는
-            000입니다.어쩌구저쩌구~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~나는
-            000입니다.어쩌구저쩌구~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~나는
-            000입니다.어쩌구저쩌구~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~나는
-            000입니다.어쩌구저쩌구~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-          </p>
-          <figure>
-            <img
-              class="img-fluid"
-              src="assets/images/about-me.jpg"
-              alt="image"
-            />
-          </figure>
-          <h5 class="mt-5">블로그에 대하여</h5>
-          <p>
-            이 블로그는 나의 개발블로그 입니다. 어쩌구저쩌구~~~~~~~이 블로그는
-            나의 개발블로그 입니다. 어쩌구저쩌구~~~~~~~이 블로그는 나의
-            개발블로그 입니다. 어쩌구저쩌구~~~~~~~이 블로그는 나의 개발블로그
-            입니다. 어쩌구저쩌구~~~~~~~이 블로그는 나의 개발블로그 입니다.
-            어쩌구저쩌구~~~~~~~이 블로그는 나의 개발블로그 입니다.
-            어쩌구저쩌구~~~~~~~이 블로그는 나의 개발블로그 입니다.
-            어쩌구저쩌구~~~~~~~이 블로그는 나의 개발블로그 입니다.
-            어쩌구저쩌구~~~~~~~
-          </p>
-          <h5 class="mt-5">나의 스킬들과 경험</h5>
-          <p>
-            나는 자바도 초보고 dbms도 초보고 jsp도 초보고 스프링도 초보입니다.
-          </p>
-          <h5 class="mt-5">사이드 프로젝트</h5>
-          <p>
-            나는 어떤어떤 프로젝트를 했습니다.(대충 프로젝트 설명) 나는 어떤어떤
-            프로젝트를 했습니다.(대충 프로젝트 설명) 나는 어떤어떤 프로젝트를
-            했습니다.(대충 프로젝트 설명) 나는 어떤어떤 프로젝트를
-            했습니다.(대충 프로젝트 설명) 나는 어떤어떤 프로젝트를
-            했습니다.(대충 프로젝트 설명) 나는 어떤어떤 프로젝트를
-            했습니다.(대충 프로젝트 설명) 나는 어떤어떤 프로젝트를
-            했습니다.(대충 프로젝트 설명) 나는 어떤어떤 프로젝트를
-            했습니다.(대충 프로젝트 설명)
-          </p>
-
-          <figure>
-            <a href="https://made4dev.com"
-              ><img
-                class="img-fluid"
-                src="assets/images/promo-banner.jpg"
-                alt="image"
-            /></a>
-          </figure>
+      <div class="mypage">
+        <div class="grp">
+          <label for="name">이름:</label>
+          <input type="text" id="name" placeholder="이름"/><br/>
         </div>
-      </article>
-      <!--//about-section-->
 
-      <section class="cta-section theme-bg-light py-5">
-        <div class="container text-center">
-          <h2 class="heading">뉴스레터</h2>
-          <div class="intro">
-            내 블로그에 오신 것을 환영합니다. 내 최신 블로그 게시물을 구독하고
-            받아보세요.
-          </div>
-          <form class="signup-form form-inline justify-content-center pt-3">
-            <div class="form-group">
-              <label class="sr-only" for="semail">Your email</label>
-              <input
-                type="email"
-                id="semail"
-                name="semail1"
-                class="form-control mr-md-1 semail"
-                placeholder="이메일을 입력해주세요!"
-              />
-            </div>
-            <button type="submit" class="btn btn-primary">구독하기</button>
-          </form>
+        <div class="grp">
+          <label for="email">이메일:</label>
+          <input type="email" id="email" placeholder="이메일" /><br/>
         </div>
-        <!--//container-->
-      </section>
+
+        <div class="grp">
+          <label for="password">기존 비밀번호:</label>
+          <input type="password" id="password" placeholder="기존 비밀번호"/><br/>
+        </div>
+        <div class="grp">
+          <label for="password">새 비밀번호:</label>
+          <input type="password" id="newpassword" placeholder="새 비밀번호" /><br/>
+        </div>
+
+        <div class="grp">
+          <label for="password">새 비밀번호 확인:</label>
+          <input type="password" id="newpasswordck" placeholder="새 비밀번호 확인" /><br/>
+        </div>
+
+        <div class="grp">
+          <label for="githublink">깃허브 링크:</label>
+          <input type="github" id="githublink" placeholder="깃허브 링크"/><br/>
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" class="svbtn">저장</button>
+        <button type="submit" class="delbtn">회원 탈퇴</button>
+      </div>
 
       <footer class="footer text-center py-2 theme-bg-dark">
         <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
