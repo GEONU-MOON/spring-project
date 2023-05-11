@@ -20,6 +20,38 @@
     
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="/assets/css/theme1.css">
+
+	<style>
+		.comment-form {
+			width: 765px;
+			margin: 0 auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+
+		.comment-form input[type="text"],
+		.comment-form textarea {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 10px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+
+		.comment-form input[type="submit"] {
+			background-color: #5FCB71;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		.comment-form input[type="submit"]:hover {
+			background-color: #45a049;
+		}
+	</style>
     
 
 </head> 
@@ -55,7 +87,7 @@
 
 					<div class="bio mb-3">
 						여기에 간단히 자기소개를 해주세요.<br /><a href="/about"
-					>나에 대해 더 알아보기</a
+					>회원정보 수정하기</a
 					>
 					</div>
 					<!--//bio-->
@@ -81,25 +113,20 @@
 						><i class="fas fa-bookmark fa-fw mr-2"></i>Devlog 포스트</a
 						>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/about"
-						><i class="fas fa-user fa-fw mr-2"></i>나에 대하여</a
-						>
-					</li>
 				</ul>
 				<div class="my-2 my-md-3">
 					<a
 							class="btn btn-primary"
-							href="https://themes.3rdwavemedia.com/"
-							target="_blank"
-					>연락하기</a
-					>
+							data-toggle="tooltip"
+							data-html="true"
+							title="<p><i class='fas fa-phone'></i> 010-1234-5678</p><p><i class='fas fa-envelope'></i> honggildong@email.com</p>"
+					>연락하기</a>
 				</div>
 				<div class="my-2 my-md-3">
 					<a
 							class="btn btn-primary"
 							href="/boardWrite"
-					>글 작성하기</a
+					>작성하기</a
 					>
 				</div>
 			</div>
@@ -113,6 +140,9 @@
 			    <header class="blog-post-header">
 				    <h2 class="title mb-2">모든 개발자가 블로그를 가져야 하는 이유</h2>
 				    <div class="meta mb-3"><span class="date">3개월 전 발행</span><span class="time">5분 읽기</span><span class="comment"><a href="#">댓글 4개</a></span></div>
+					<div class="my-2 my-md-3" style="text-align: right;">
+						<a class="btn btn-primary" href="/boardupdate">수정하기</a>
+					</div>
 			    </header>
 
 			    <div class="blog-post-body">
@@ -221,9 +251,25 @@ for 루프를 통해 classes 배열을 순회합니다. (classes 배열은 현�
 			    </div>
 
 			    <nav class="blog-nav nav nav-justified my-5">
-				  <a class="nav-link-prev nav-item nav-link rounded-left" href="/index">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-				  <a class="nav-link-next nav-item nav-link rounded-right" href="/bloglist">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+				  <a class="nav-link-prev nav-item nav-link rounded-left" href="/index">이전 게시글<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+				  <a class="nav-link-next nav-item nav-link rounded-right" href="/bloglist">다음 게시글<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
 				</nav>
+
+				<div class="comment-form">
+					<h2>댓글 작성</h2>
+					<form>
+						<label for="name">이름:</label>
+						<input type="text" id="name" name="name" placeholder="이름을 입력해 주세요." required>
+
+						<label for="email">이메일:</label>
+						<input type="text" id="email" name="email" placeholder="이메일을 입력해 주세요." required>
+
+						<label for="comment">댓글:</label>
+						<textarea id="comment" name="comment" rows="4" placeholder="댓글을 입력해 주세요." required></textarea>
+
+						<input type="submit" value="댓글 작성">
+					</form>
+				</div>
 
 				<div class="blog-comments-section">
 					<div id="disqus_thread"></div>
@@ -236,42 +282,28 @@ for 루프를 통해 classes 배열을 순회합니다. (classes 배열은 현�
 						 *  이러한 변수를 정의하는 것이 중요한 이유를 알아보십시오:
 						 *  https://disqus.com/admin/universalcode/#configuration-variables
 						 */
-					    /*
-					    var disqus_config = function () {
-					        // Replace PAGE_URL with your page's canonical URL variable
-					        this.page.url = PAGE_URL;
-
-					        // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-					        this.page.identifier = PAGE_IDENTIFIER;
-					    };
-					    */
+						/*
+                        var disqus_config = function () {
+                        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                        };
+                        */
 						/*
 						* 댓글 시스템을 설정하기위한 disqus_config 함수. 웹사이트에 댓글기능을 추가하는 서비스
 						*/
-
-					    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
-					        var d = document, s = d.createElement('script');
-
-					        // IMPORTANT: Replace 3wmthemes with your forum shortname!
-					        s.src = 'https://3wmthemes.disqus.com/embed.js';
-
-					        s.setAttribute('data-timestamp', +new Date());
-					        (d.head || d.body).appendChild(s);
-					    })();
-
+						(function() { // DON'T EDIT BELOW THIS LINE
+							var d = document, s = d.createElement('script');
+							s.src = 'https://my-site-gvcahrtak4.disqus.com/embed.js';
+							s.setAttribute('data-timestamp', +new Date());
+							(d.head || d.body).appendChild(s);
+						})();
 						/*
 						이 코드는 Disqus 댓글 시스템을 웹페이지에 삽입하기 위한 스크립트 코드를 통해 Disqus 스크립트 파일이 동적으로 생성되고 웹페이지에 추가
 
 						코드는 즉시 실행 함수로 둘러싸여 있고, 코드 블록 내부에서 Disqus 스크립트를 동적으로 생성하고 페이지에 추가하는 과정
 						 */
-
 					</script>
-					<noscript>
-					    Please enable JavaScript to view the
-					    <a href="https://disqus.com/?ref_noscript" rel="nofollow">
-					        comments powered by Disqus.
-					    </a>
-					</noscript>
+					<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 				</div><!--//blog-comments-section-->
 
 		    </div><!--//container-->
@@ -336,6 +368,12 @@ for 루프를 통해 classes 배열을 순회합니다. (classes 배열은 현�
     <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
     <script src="/assets/js/demo/style-switcher.js"></script>
 
+	<script>
+		// 툴팁 초기화
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip();
+		});
+	</script>
 
 </body>
 </html> 

@@ -39,6 +39,9 @@ public class HomeController {
     @GetMapping("boardWrite")
     public String boardWrite() {return "boardWrite";}
 
+    @GetMapping("boardupdate")
+    public String boardupdate() {return "boardupdate";}
+
     @PostMapping("/home")
     public String Login() {
         return "home";
