@@ -15,7 +15,18 @@ public class MembersRepository {
     @Autowired
     private final EntityManager em;
 
-    public void save(Members members) {
-        em.persist(members);
+
+    public void save(Members member){
+
+        if( member.getId() == null){
+            em.persist(member);
+        }else{
+            System.out.println("이미 존재하는 멤버입니다.");
+            return;
+        }
+    }
+
+    public Members findByUserId(String userid){
+        return em.createQuery("select m from Members m where m.userid=:userid", Members.class).getSingleResult();
     }
 }

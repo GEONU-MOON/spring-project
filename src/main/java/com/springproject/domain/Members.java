@@ -14,9 +14,10 @@ public class Members {
 
     @Id
     @GeneratedValue
-    @Column(name = "member_id")
     private Long id;
 
+    @Column(name = "member_id")
+    private String userid;
     private String name;
 
     private String email;

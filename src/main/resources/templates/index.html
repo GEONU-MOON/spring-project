@@ -15,29 +15,33 @@
         <div class="col align-items-center flex-col sign-up">
           <div class="form-wrapper align-items-center">
             <div class="form sign-up">
-              <form action="/register" th:object="${registerform}" th:action method="post" onsubmit="return validateRegistrationForm();">
+              <form action="/register" th:object="${registerForm}" th:action method="post" >
               <div class="input-group">
                 <i class="bx bx-user"></i>
 
-                <input type="text" placeholder="아이디" name="registerId" id="registerId"/>
+                <input type="text" placeholder="아이디" name="registerId" id="registerId" th:field="*{userid}"/>
               </div>
               <div class="input-group">
                 <i class="bx bxs-user"></i>
-                <input type="text" placeholder="이름" name="registerName" id="registerName"/>
+                <input type="text" placeholder="이름" name="registerName" id="registerName" th:field="*{name}"/>
               </div>
               <div class="input-group">
                 <i class="bx bx-mail-send"></i>
-                <input type="email" placeholder="이메일" name="registerEmail" id="registerEmail" />
+                <input type="email" placeholder="이메일" name="registerEmail" id="registerEmail" th:field="*{email}"/>
               </div>
               <div class="input-group">
                 <i class="bx bxs-lock-alt"></i>
-                <input type="password" placeholder="비밀번호" name="registerPassword" id="registerPassword" />
+                <input type="password" placeholder="비밀번호" name="registerPassword" id="registerPassword" th:field="*{password}"/>
               </div>
               <div class="input-group">
                 <i class="bx bxs-lock-alt"></i>
-                <input type="password" placeholder="비밀번호 확인" name="passwordConfirm" id="passwordConfirm" />
+                <input type="password" placeholder="비밀번호 확인" name="passwordConfirm" id="passwordConfirm"/>
               </div>
-              <button>가입하기</button>
+              <div class="input-group">
+                <i class="bx bxs-lock-alt"></i>
+                <input type="email" placeholder="깃허브 링크" th:field="*{githubLink}"/>
+              </div>
+              <button type="submit">가입하기</button>
               </form>
               <p>
                 <span> 이미 회원이신가요? </span>
@@ -51,16 +55,16 @@
         <div class="col align-items-center flex-col sign-in">
           <div class="form-wrapper align-items-center">
             <div class="form sign-in">
-              <form method="post" action="/home" style="display: contents;">
+              <form method="post" th:object="${LoginForm}" action="/home" style="display: contents;">
               <div class="input-group">
                 <i class="bx bxs-user"></i>
-                <input type="text" placeholder="아이디" name="loginId" id="loginId" />
+                <input type="text" placeholder="아이디" th:field="*{userid}" name="loginId" id="loginId" />
               </div>
               <div class="input-group">
                 <i class="bx bxs-lock-alt"></i>
-                <input type="password" placeholder="비밀번호" name="loginPassword" id="loginPassword" />
+                <input type="password" placeholder="비밀번호" th:field="*{password}" name="loginPassword" id="loginPassword" />
               </div>
-              <button>로그인</button>
+              <button type="submit">로그인</button>
               <p>
                 <span> 아직 회원이 아니신가요? </span>
                 <b onclick="toggle()" class="pointer"> 회원가입하러 가기 </b>

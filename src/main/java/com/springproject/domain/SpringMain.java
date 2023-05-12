@@ -17,11 +17,6 @@ public class SpringMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
             try {
-
-
-
-
-
                 tx.commit();
             } catch (Exception e) {
             tx.rollback();
