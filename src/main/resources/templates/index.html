@@ -54,7 +54,7 @@
         <div class="col align-items-center flex-col sign-in">
           <div class="form-wrapper align-items-center">
             <div class="form sign-in">
-              <form method="post" th:object="${LoginForm}" action="/home" style="display: contents;">
+              <form method="post" th:object="${LoginForm}" action="/home" style="display: contents;" onsubmit="return validateLoginForm()">
               <div class="input-group">
                 <i class="bx bxs-user"></i>
                 <input type="text" placeholder="아이디" th:field="*{userid}" name="loginId" id="loginId" />
@@ -99,5 +99,6 @@
     </div>
     <script src="/assets/js/login.js"></script>
     <script src="/assets/js/validationCheck.js"></script>
+    <script src="/assets/js/validateLogin.js"></script>
       </body>
 </html>
