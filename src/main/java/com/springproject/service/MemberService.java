@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -19,9 +21,15 @@ public class MemberService {
         memberrepository.save(member);
     }
 
-    public Members login(LoginDTO loginMember){
-        return memberrepository.findByUserId(loginMember.getUserid());
+    public Members login(String id, String pw){
+        Members requestMember = memberrepository.findByID(id);
+
+        if(requestMember == null){
+            return null;
+        }else if(!requestMember.getPassword().equals(pw)){
+            return null;
+        }else{
+            return requestMember;
+        }
     }
-
-
 }

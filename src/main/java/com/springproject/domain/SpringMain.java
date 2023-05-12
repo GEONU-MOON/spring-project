@@ -15,6 +15,7 @@ public class SpringMain {
         EntityManager em = emf.createEntityManager();
 
         EntityTransaction tx = em.getTransaction();
+
         tx.begin();
             try {
                 tx.commit();

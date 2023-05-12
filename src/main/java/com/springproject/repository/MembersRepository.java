@@ -15,7 +15,6 @@ public class MembersRepository {
     @Autowired
     private final EntityManager em;
 
-
     public void save(Members member){
 
         if( member.getId() == null){
@@ -26,7 +25,7 @@ public class MembersRepository {
         }
     }
 
-    public Members findByUserId(String userid){
-        return em.createQuery("select m from Members m where m.userid=:userid", Members.class).getSingleResult();
+    public Members findByID(String userid){
+        return em.createQuery("select m from Members m where m.userid=:userid", Members.class).setParameter("userid", userid).getSingleResult();
     }
 }

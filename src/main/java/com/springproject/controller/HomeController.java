@@ -2,6 +2,8 @@ package com.springproject.controller;
 
 import com.springproject.DTO.LoginDTO;
 import com.springproject.DTO.RegisterDTO;
+import com.springproject.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
     @GetMapping("/")
     public String index(Model model) {

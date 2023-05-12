@@ -16,12 +16,13 @@ public class Members {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "member_id")
+    @Column(name = "member_id", nullable = false)
     private String userid;
+    @Column(nullable = false)
     private String name;
-
+    @Column(nullable = false)
     private String email;
-
+    @Column(nullable = false)
     private String password;
 
     private String githubLink;
