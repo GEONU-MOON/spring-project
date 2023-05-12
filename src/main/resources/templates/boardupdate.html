@@ -77,7 +77,9 @@
 <body>
     <header class="header text-center" id="main-header" name="main-header">
         <h1 class="blog-name pt-lg-4 mb-0">
-            <a href="/home">ooo's Devlog</a>
+            <a href="/home" th:href="@{/home}">
+                <span th:text="${session.Member.name}"></span>'s Devlog
+            </a>
             <!--블로그 주인 이름 -->
         </h1>
 
@@ -130,11 +132,6 @@
                         ><i class="fas fa-bookmark fa-fw mr-2"></i>Devlog 포스트</a
                         >
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about"
-                        ><i class="fas fa-user fa-fw mr-2"></i>나에 대하여</a
-                        >
-                    </li>
                 </ul>
                 <div class="my-2 my-md-3">
                     <a
@@ -162,8 +159,13 @@
                     <hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid rgb(0,0,0,0.1)"/>
 
                     <textarea id="summernote" name="content" required></textarea>
+                    <br>
+                    <form action="" method="post" enctype="multipart/form-data" name="">
+                        <input type="file" name="FileName">
+                    </form>
+
                     <div style="display: flex; justify-content: center;">
-                        <input class="button btnFade btnBlueGreen" id="subBtn" type="button" value="글 작성" style="float: right;  margin-top: 40px; border-top: 0px; border-left: 0px; border-bottom: 0px; border-right: 0px; border-radius: 4px; width: 100px; height: 40px;" onclick="goWrite(this.form)"/>
+                        <input class="button btnFade btnBlueGreen" id="subBtn" type="button" value="글 수정" style="float: right;  margin-top: 40px; border-top: 0px; border-left: 0px; border-bottom: 0px; border-right: 0px; border-radius: 4px; width: 100px; height: 40px;" onclick="goWrite(this.form)"/>
                     </div>
                 </form>
             </div>
