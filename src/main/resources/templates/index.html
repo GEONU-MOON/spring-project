@@ -15,10 +15,9 @@
         <div class="col align-items-center flex-col sign-up">
           <div class="form-wrapper align-items-center">
             <div class="form sign-up">
-              <form action="/register" th:object="${registerForm}" th:action method="post" >
+              <form action="/register" th:object="${registerForm}" th:action method="post" onsubmit="return validateForm()">
               <div class="input-group">
                 <i class="bx bx-user"></i>
-
                 <input type="text" placeholder="아이디" name="registerId" id="registerId" th:field="*{userid}"/>
               </div>
               <div class="input-group">
