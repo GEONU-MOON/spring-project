@@ -9,7 +9,7 @@ function checkKorEng(str) {
 }
 
 function checkPassword(str) {
-    const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{4,12}$/;
+    const pattern = /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[a-z\d!@#$%^&*]{4,12}$/;
     return pattern.test(str);
 }
 
@@ -52,7 +52,7 @@ function validateForm() {
 
     // 비밀번호 확인
     if (!checkPassword(pw.value)) {
-        alert("비밀번호는 영어 대소문자, 숫자, 특수문자를 섞어 4~12자리로 만드세요.");
+        alert("비밀번호는 영어, 숫자, 특수문자를 섞어 4~12자리로 만드세요.");
         pw.focus();
         return false;
     }
