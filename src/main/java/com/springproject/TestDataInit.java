@@ -18,7 +18,6 @@ public class TestDataInit {
     @Transactional
     public void init(){
 
-        /*
         Members member = new Members();
         member.setEmail("test@naver.com");
         member.setGithubLink("https://github.com/rilac/SpringProject");
@@ -27,6 +26,5 @@ public class TestDataInit {
         member.setName("TESTDATA");
 
         memberRepository.save(member);
-        */
     }
 }
