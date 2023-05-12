@@ -9,7 +9,7 @@ function checkKorEng(str) {
 }
 
 function checkPassword(str) {
-    const pattern = /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[a-z\d!@#$%^&*]{4,12}$/;
+    const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{4,12}$/;
     return pattern.test(str);
 }
 
