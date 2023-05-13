@@ -21,7 +21,7 @@ public class TestDataInit {
 
         Members member = new Members();
         member.setEmail("test@naver.com");
-        member.setGithubLink("https://github.com/rilac/SpringProject");
+        member.setGithubLink("https://github.com/rilac");
         member.setUserid("test");
         member.setPassword("test");
         member.setName("TESTDATA");
