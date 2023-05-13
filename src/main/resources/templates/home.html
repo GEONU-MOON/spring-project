@@ -87,7 +87,7 @@
                 class="btn btn-primary"
                 data-toggle="tooltip"
                 data-html="true"
-                th:title="|&lt;span style='display: block; margin-bottom: 5px;'&gt;&lt;i class='fab fa-github'&gt;&lt;/i&gt; ${#strings.substringBefore(#strings.replace(session.Member.githubLink, 'https://github.com/', ''), '/')} &lt;/span&gt;&lt;span style='display: block;'&gt;&lt;i class='fas fa-envelope'&gt;&lt;/i&gt; ${session.Member.email}&lt;/span&gt;|"
+                th:title="|&lt;span style='display: block; margin-bottom: 5px;'&gt;&lt;i class='fab fa-github'&gt;&lt;/i&gt; ${#strings.substringAfter(session.Member.githubLink, 'https://github.com/')} &lt;/span&gt;&lt;span style='display: block;'&gt;&lt;i class='fas fa-envelope'&gt;&lt;/i&gt; ${session.Member.email}&lt;/span&gt;|"
         >연락하기</a>
         <div class="my-2 my-md-3">
           <a
