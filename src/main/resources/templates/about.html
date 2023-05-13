@@ -86,7 +86,9 @@
   <body>
   <header class="header text-center" id="main-header" name="main-header">
     <h1 class="blog-name pt-lg-4 mb-0">
-      <a href="/home">ooo's Devlog</a>
+      <a href="/home">
+        <span th:text="${session.Member.name}"></span>'s Devlog
+      </a>
       <!--블로그 주인 이름 -->
     </h1>
 
@@ -162,37 +164,38 @@
     </nav>
   </header>
 
-    <div class="main-wrapper">
-      <div class="mypage">
-        <div class="grp">
-          <label for="name">이름:</label>
-          <input type="text" id="name" placeholder="이름"/><br/>
-        </div>
-
-        <div class="grp">
-          <label for="email">이메일:</label>
-          <input type="email" id="email" placeholder="이메일" /><br/>
-        </div>
-
-        <div class="grp">
-          <label for="password">기존 비밀번호:</label>
-          <input type="password" id="password" placeholder="기존 비밀번호"/><br/>
-        </div>
-        <div class="grp">
-          <label for="password">새 비밀번호:</label>
-          <input type="password" id="newpassword" placeholder="새 비밀번호" /><br/>
-        </div>
-
-        <div class="grp">
-          <label for="password">새 비밀번호 확인:</label>
-          <input type="password" id="newpasswordck" placeholder="새 비밀번호 확인" /><br/>
-        </div>
-
-        <div class="grp">
-          <label for="githublink">깃허브 링크:</label>
-          <input type="github" id="githublink" placeholder="깃허브 링크"/><br/>
-        </div>
+  <div class="main-wrapper">
+    <div class="mypage">
+      <div class="grp">
+        <label for="name">이름:</label>
+        <input type="text" id="name" th:value="${session.Member.name}" placeholder="이름"/><br/>
       </div>
+
+      <div class="grp">
+        <label for="email">이메일:</label>
+        <input type="email" id="email" th:value="${session.Member.email}" placeholder="이메일" /><br/>
+      </div>
+
+      <div class="grp">
+        <label for="password">기존 비밀번호:</label>
+        <input type="password" id="password" placeholder="기존 비밀번호"/><br/>
+      </div>
+      <div class="grp">
+        <label for="password">새 비밀번호:</label>
+        <input type="password" id="newpassword" placeholder="새 비밀번호" /><br/>
+      </div>
+
+      <div class="grp">
+        <label for="password">새 비밀번호 확인:</label>
+        <input type="password" id="newpasswordck" placeholder="새 비밀번호 확인" /><br/>
+      </div>
+
+      <div class="grp">
+        <label for="githublink">깃허브 링크:</label>
+        <input type="url" id="githublink" th:value="${session.Member.githubLink}" placeholder="깃허브 링크"/><br/>
+      </div>
+    </div>
+  </div>
 
       <div>
         <button type="submit" class="svbtn">저장</button>
