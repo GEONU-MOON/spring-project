@@ -17,14 +17,14 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardService boardService;
-    @GetMapping("boardWrite")
-    public String boardWrite(Model model){
+    @GetMapping("boardwrite")
+    public String boardwrite(Model model){
         model.addAttribute("boardForm", new BoardDTO());
 
-        return "boardWrite";
+        return "boardwrite";
     }
 
-    @PostMapping("boardWrite")
+    @PostMapping("boardwrite")
     public String boardregister(BoardDTO form, HttpSession session){
         Board board = new Board();
         board.setMember((Members) session.getAttribute("Member"));
