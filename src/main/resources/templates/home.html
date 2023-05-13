@@ -26,7 +26,7 @@
 <body>
 <header class="header text-center" id="main-header" name="main-header">
   <h1 class="blog-name pt-lg-4 mb-0">
-    <a href="/home" th:href="@{/home}">
+    <a href="/home">
       <span th:text="${session.Member.name}"></span>'s Devlog
     </a>
     <!--블로그 주인 이름 -->
@@ -225,7 +225,7 @@
         ></a>
         <a
                 class="nav-link-next nav-item nav-link rounded"
-                href="bloglist.html"
+                href="/bloglist"
         >다음 페이지<i class="arrow-next fas fa-long-arrow-alt-right"></i
         ></a>
       </nav>

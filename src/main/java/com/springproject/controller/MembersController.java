@@ -8,6 +8,7 @@ import com.springproject.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +36,7 @@ public class MembersController {
     }
 
     @PostMapping("/home")
-    public String Login(LoginDTO form, HttpServletRequest request, HttpServletResponse response) {
+    public String Login(LoginDTO form, Model model, HttpServletRequest request, HttpServletResponse response) {
         String inputID = form.getUserid();
         String inputPW = form.getPassword();
 
@@ -44,6 +45,8 @@ public class MembersController {
             HttpSession session = request.getSession();
             session.setAttribute("Member", result);
             session.setMaxInactiveInterval(60*10);
+
+
         }else{
             try {
                 response.setContentType("text/html; charset=utf-8");
