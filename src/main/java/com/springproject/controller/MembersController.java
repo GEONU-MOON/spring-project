@@ -9,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -62,7 +64,6 @@ public class MembersController {
             session.setAttribute("Member", result);
             session.setMaxInactiveInterval(60*10);
 
-
         }else{
             try {
                 response.setContentType("text/html; charset=utf-8");
@@ -72,6 +73,7 @@ public class MembersController {
                 w.println("</script>");
 
                 w.flush();
+                //실패시
                 return "redirect:/";
             }catch(Exception e){
                 e.printStackTrace();

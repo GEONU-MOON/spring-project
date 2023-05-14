@@ -31,19 +31,36 @@ public class HomeController {
     }
 
     @GetMapping("blogpost")
-    public String blogpost(){
-        return "blogpost";
+
+    public String blogpost(HttpSession session) {
+        Members member = (Members) session.getAttribute("Member");
+        if (member != null) {
+            return "blogpost";
+        } else {
+            return "redirect:/";
+        }
     }
 
 
     @GetMapping("about")
-    public String about(){
-        return "about";
+    public String about(HttpSession session) {
+        Members member = (Members) session.getAttribute("Member");
+        if (member != null) {
+            return "about";
+        } else {
+            return "redirect:/";
+        }
     }
 
     @GetMapping("bloglist")
-    public String bloglist(){ return "bloglist";}
-
+    public String bloglist(HttpSession session) {
+        Members member = (Members) session.getAttribute("Member");
+        if (member != null) {
+            return "bloglist";
+        } else {
+            return "redirect:/";
+        }
+    }
 
 
 
@@ -51,9 +68,13 @@ public class HomeController {
     @GetMapping("home")
     public String home(Model model, HttpSession session){
         Members member = (Members) session.getAttribute("Member");
-        List<Board> boardList = boardService.findList(member.getUserid());
-        model.addAttribute("boardList", boardList);
-        return "home";
+        if (member != null) {
+            List<Board> boardList = boardService.findList(member.getUserid());
+            model.addAttribute("boardList", boardList);
+            return "home";
+        } else {
+            return "redirect:/";
+        }
     }
 
 
