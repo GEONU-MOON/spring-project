@@ -31,36 +31,19 @@ public class HomeController {
     }
 
     @GetMapping("blogpost")
-
-    public String blogpost(HttpSession session) {
-        Members member = (Members) session.getAttribute("Member");
-        if (member != null) {
-            return "blogpost";
-        } else {
-            return "redirect:/";
-        }
+    public String blogpost(){
+        return "blogpost";
     }
 
 
     @GetMapping("about")
-    public String about(HttpSession session) {
-        Members member = (Members) session.getAttribute("Member");
-        if (member != null) {
-            return "about";
-        } else {
-            return "redirect:/";
-        }
+    public String about(){
+        return "about";
     }
 
     @GetMapping("bloglist")
-    public String bloglist(HttpSession session) {
-        Members member = (Members) session.getAttribute("Member");
-        if (member != null) {
-            return "bloglist";
-        } else {
-            return "redirect:/";
-        }
-    }
+    public String bloglist(){ return "bloglist";}
+
 
 
 
