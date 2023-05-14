@@ -22,6 +22,22 @@ public class MembersController {
 
     private final MemberService memberservice;
 
+    @PostMapping("/update")
+    public String updateMember(RegisterDTO form, HttpSession session) {
+        Members member = (Members) session.getAttribute("Member");
+        memberservice.updateMember(member, form);
+        session.setAttribute("Member", member);
+        return "redirect:/home";
+    }
+
+    @PostMapping("/delete")
+    public String deleteMember(HttpSession session) {
+        Members member = (Members) session.getAttribute("Member");
+        memberservice.deleteMember(member);
+        session.invalidate();
+        return "redirect:/";
+    }
+
     @PostMapping("/")
     public String register(RegisterDTO form){
         Members member = new Members();

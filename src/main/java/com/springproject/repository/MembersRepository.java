@@ -21,6 +21,15 @@ public class MembersRepository {
             em.persist(member);
         }
 
+    @Transactional
+    public void remove(Members member) {
+        em.remove(em.contains(member) ? member : em.merge(member));
+    }
+
+    @Transactional
+    public void update(Members member) {
+        em.merge(member);
+    }
 
     public Members findByID(String userid){
         return em.createQuery("select m from Members m where m.userid=:userid", Members.class).setParameter("userid", userid).getSingleResult();

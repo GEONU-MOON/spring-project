@@ -13,4 +13,7 @@ public class RegisterDTO {
     private String password;
 
     private String githubLink;
+
+    private String newpassword;
+    private String newpasswordck;
 }

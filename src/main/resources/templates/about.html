@@ -156,39 +156,41 @@
 
     <div class="main-wrapper">
       <div class="mypage">
-        <div class="grp">
-          <label for="name">이름:</label>
-          <input type="text" id="name" th:value="${session.Member.name}" placeholder="이름"/><br/>
-        </div>
+        <form method="post" action="/update">
+          <div class="grp">
+            <label for="name">이름:</label>
+            <input type="text" id="name" name="name" th:value="${session.Member.name}" placeholder="이름"/>
+          </div>
 
-        <div class="grp">
-          <label for="email">이메일:</label>
-          <input type="email" id="email" th:value="${session.Member.email}" placeholder="이메일" /><br/>
-        </div>
+          <div class="grp">
+            <label for="email">이메일:</label>
+            <input type="email" id="email" name="email" th:value="${session.Member.email}" placeholder="이메일" />
+          </div>
 
-        <div class="grp">
-          <label for="password">기존 비밀번호:</label>
-          <input type="password" id="password" placeholder="기존 비밀번호"/><br/>
-        </div>
-        <div class="grp">
-          <label for="password">새 비밀번호:</label>
-          <input type="password" id="newpassword" placeholder="새 비밀번호" /><br/>
-        </div>
+          <div class="grp">
+            <label for="password">기존 비밀번호:</label>
+            <input type="password" id="password" name="password" placeholder="기존 비밀번호"/><br/>
+          </div>
+          <div class="grp">
+            <label for="password">새 비밀번호:</label>
+            <input type="password" id="newpassword" name="newpassword" placeholder="새 비밀번호" /><br/>
+          </div>
 
-        <div class="grp">
-          <label for="password">새 비밀번호 확인:</label>
-          <input type="password" id="newpasswordck" placeholder="새 비밀번호 확인" /><br/>
-        </div>
+          <div class="grp">
+            <label for="password">새 비밀번호 확인:</label>
+            <input type="password" id="newpasswordck" name="newpasswordck" placeholder="새 비밀번호 확인" /><br/>
+          </div>
 
-        <div class="grp">
-          <label for="githublink">깃허브 링크:</label>
-          <input type="github" id="githublink" th:value="${session.Member.githubLink}" placeholder="깃허브 링크"/><br/>
-        </div>
-      </div>
+          <div class="grp">
+            <label for="githublink">깃허브 링크:</label>
+            <input type="text" id="githubLink" name="githubLink" th:value="${session.Member.githubLink}" placeholder="깃허브 링크"/>
+          </div>
 
-      <div>
-        <button type="submit" class="svbtn" id="savebtn">저장</button>
-        <button type="submit" class="delbtn" id="delet-btn">회원 탈퇴</button>
+          <button type="submit" class="svbtn" id="savebtn">저장</button>
+        </form>
+        <form method="post" action="/delete">
+          <button type="submit" class="delbtn" id="delet-btn">회원 탈퇴</button>
+        </form>
       </div>
 
       <footer class="footer text-center py-2 theme-bg-dark">

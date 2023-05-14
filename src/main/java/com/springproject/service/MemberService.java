@@ -2,6 +2,7 @@ package com.springproject.service;
 
 
 import com.springproject.DTO.LoginDTO;
+import com.springproject.DTO.RegisterDTO;
 import com.springproject.domain.Members;
 import com.springproject.repository.MembersRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,20 @@ import java.util.Objects;
 @Transactional(readOnly = true)
 public class MemberService {
     private final MembersRepository memberrepository;
+
+    @Transactional
+    public void updateMember(Members member, RegisterDTO form) {
+        member.setName(form.getName());
+        member.setEmail(form.getEmail());
+        member.setPassword(form.getNewpassword());
+        member.setGithubLink(form.getGithubLink());
+        memberrepository.update(member);
+    }
+
+    @Transactional
+    public void deleteMember(Members member) {
+        memberrepository.remove(member);
+    }
 
     @Transactional
     public void register(Members member){
