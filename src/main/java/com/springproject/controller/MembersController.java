@@ -60,22 +60,20 @@ public class MembersController {
     }
 
     @PostMapping("/home")
-    public String Login(LoginDTO form, Model model, HttpServletRequest request, HttpServletResponse response,
-                        @RequestParam(name = "userid")String userid) {
+    public String Login(LoginDTO form, Model model, HttpServletRequest request, HttpServletResponse response) {
         String inputID = form.getUserid();
         String inputPW = form.getPassword();
 
-        String homeurl = "" + userid;
         Members result = memberService.login(inputID, inputPW);
         if(result != null){
             HttpSession session = request.getSession();
             session.setAttribute("Member", result);
             session.setMaxInactiveInterval(60*10);
 
-            List<Board> boardList = boardService.findList(inputID);
-            model.addAttribute("boardlist", boardList);
-
+            List<Board> boardList = boardService.recentBoard(inputID);
+            model.addAttribute("recentBoard", boardList);
             System.out.println(boardList.isEmpty());
+
 
         }else{
             try {

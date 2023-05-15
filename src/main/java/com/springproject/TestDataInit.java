@@ -31,24 +31,19 @@ public class TestDataInit {
         memberRepository.save(member);
 
         Members savedmember = memberRepository.findByID("test");
-        Board board = new Board();
+
         EmbedMember embedMember = memberRepository.setBoardMember(savedmember.getUserid());
 
-        board.setTitle("테스트 데이터 제목");
-        board.setContent("테스트 데이터 컨텐트");
-        board.setMember(embedMember);
-        board.setThumbnail("assets/images/blog/blog-post-thumb-1.jpg");
-        board.setPostDate(LocalDate.now());
 
-        Board board2 = new Board();
-        board2.setTitle("테스트 데이터 제목2");
-        board2.setContent("테스트 데이터 컨텐트2");
-        board2.setMember(embedMember);
-        board2.setThumbnail("assets/images/blog/blog-post-thumb-5.jpg");
-        board2.setPostDate(LocalDate.now());
-
-        boardRepository.save(board);
-        boardRepository.save(board2);
+        for(int i=1; i<12; i++){
+            Board board = new Board();
+            board.setTitle("테스트 데이터 제목" + i);
+            board.setContent("테스트 데이터 내용" + i);
+            board.setMember(embedMember);
+            board.setThumbnail("assets/images/blog/blog-post-thumb-" + i + ".jpg");
+            board.setPostDate(LocalDate.now());
+            boardRepository.save(board);
+        }
     }
 
 }

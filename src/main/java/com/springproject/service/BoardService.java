@@ -24,4 +24,8 @@ public class BoardService {
     public EmbedMember setEmbedMember(String userid) {return membersRepository.setBoardMember(userid);}
 
     public void save(Board board){boardRepository.save(board);}
+
+    public List<Board> recentBoard(String userid){
+        return boardRepository.recentBoard(userid);
+    }
 }
