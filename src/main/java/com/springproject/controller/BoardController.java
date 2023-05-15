@@ -19,7 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardService boardService;
-    private final MembersRepository membersRepository;
     @GetMapping("boardwrite")
     public String boardwrite(Model model){
         model.addAttribute("boardForm", new BoardDTO());
@@ -48,7 +47,7 @@ public class BoardController {
         Members member = (Members) session.getAttribute("Member");
         List<Board> userBoards = boardService.findList(member.getUserid());
         model.addAttribute("userBoards", userBoards);
-        return "userboard";
+        return "bloglist";
     }
 
 }
