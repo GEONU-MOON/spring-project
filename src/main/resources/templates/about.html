@@ -49,6 +49,10 @@
         height: 150px;
       }
 
+      .github-link-grp {
+        margin-bottom: 30px;
+      }
+
       .svbtn, .delbtn{
         float: right;
         cursor: pointer;
@@ -181,7 +185,7 @@
             <input type="password" id="newpasswordck" name="newpasswordck" placeholder="새 비밀번호 확인" /><br/>
           </div>
 
-          <div class="grp">
+          <div class="grp github-link-grp">
             <label for="githublink">깃허브 링크:</label>
             <input type="text" id="githubLink" name="githubLink" th:value="${session.Member.githubLink}" placeholder="깃허브 링크"/>
           </div>
