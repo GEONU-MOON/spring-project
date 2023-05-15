@@ -28,7 +28,9 @@
   <body>
   <header class="header text-center" id="main-header" name="main-header">
     <h1 class="blog-name pt-lg-4 mb-0">
-      <a href="/home">ooo's Devlog</a>
+      <a href="/home">
+        <span th:text="${session.Member.name}"></span>'s Devlog
+      </a>
       <!--블로그 주인 이름 -->
     </h1>
 
@@ -54,7 +56,9 @@
           />
 
           <div class="bio mb-3">
-            여기에 간단히 자기소개를 해주세요.<br />
+            여기에 간단히 자기소개를 해주세요.<br /><a href="/about"
+          >회원정보 수정하기</a
+          >
           </div>
           <!--//bio-->
           <ul class="social-list list-inline py-3 mx-auto">
@@ -68,7 +72,7 @@
         </div>
         <!--//profile-section-->
         <ul class="navbar-nav flex-column text-left">
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="/home"
             ><i class="fas fa-home fa-fw mr-2"></i>Devlog 홈
               <span class="sr-only">(current)</span></a
@@ -79,62 +83,60 @@
             ><i class="fas fa-bookmark fa-fw mr-2"></i>Devlog 포스트</a
             >
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/about"
-            ><i class="fas fa-user fa-fw mr-2"></i>나에 대하여</a
-            >
-          </li>
         </ul>
         <div class="my-2 my-md-3">
           <a
                   class="btn btn-primary"
-                  href="https://themes.3rdwavemedia.com/"
-                  target="_blank"
-          >연락하기</a
-          >
-        </div>
-        <div class="my-2 my-md-3">
-          <a
-                  class="btn btn-primary"
-                  href="/boardWrite"
-          >작성하기</a
-          >
+                  data-toggle="tooltip"
+                  data-html="true"
+                  th:title="|&lt;span style='display: block; margin-bottom: 5px;'&gt;&lt;i class='fab fa-github'&gt;&lt;/i&gt; ${#strings.substringAfter(session.Member.githubLink, 'https://github.com/')} &lt;/span&gt;&lt;span style='display: block;'&gt;&lt;i class='fas fa-envelope'&gt;&lt;/i&gt; ${session.Member.email}&lt;/span&gt;|"
+          >연락하기</a>
+          <div class="my-2 my-md-3">
+            <a
+                    class="btn btn-primary"
+                    href="/boardwrite"
+            >작성하기</a
+            >
+          </div>
         </div>
       </div>
     </nav>
   </header>
 
-    <div class="main-wrapper">
-      <div class="mypage">
-        <form method="post" id="update-form" action="/update">
-          <div class="grp">
-            <label for="name">이름:</label>
-            <input type="text" id="name" name="name" th:value="${session.Member.name}" placeholder="이름"/>
-          </div>
+  <div class="main-wrapper">
+    <div class="mypage">
+      <form method="post" id="update-form" action="/update">
+        <div class="grp">
+          <label for="name">이름:</label>
+          <input type="text" id="name" name="name" th:value="${session.Member.name}" placeholder="이름"/>
+        </div>
 
-          <div class="grp">
-            <label for="email">이메일:</label>
-            <input type="email" id="email" name="email" th:value="${session.Member.email}" placeholder="이메일" />
-          </div>
+        <div class="grp">
+          <label for="email">이메일:</label>
+          <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  th:value="${session.Member.email}"
+                  placeholder="이메일"
+          />
+          <span id="email-error" class="error-message"></span>
+        </div>
 
-          <div class="grp">
-            <label for="password">기존 비밀번호:</label>
-            <input type="password" id="password" name="password" placeholder="기존 비밀번호"/><br/>
-          </div>
-          <div class="grp">
-            <label for="password">새 비밀번호:</label>
-            <input type="password" id="newpassword" name="newpassword" placeholder="새 비밀번호" /><br/>
-          </div>
+        <div class="grp">
+          <label for="newpassword">새 비밀번호:</label>
+          <input type="password" id="newpassword" name="newpassword" placeholder="새 비밀번호" /><br/>
+        </div>
 
-          <div class="grp">
-            <label for="password">새 비밀번호 확인:</label>
-            <input type="password" id="newpasswordck" name="newpasswordck" placeholder="새 비밀번호 확인" /><br/>
-          </div>
+        <div class="grp">
+          <label for="newpasswordck">새 비밀번호 확인:</label>
+          <input type="password" id="newpasswordck" name="newpasswordck" placeholder="새 비밀번호 확인" /><br/>
+        </div>
 
-          <div class="grp github-link-grp">
-            <label for="githublink">깃허브 링크:</label>
-            <input type="text" id="githubLink" name="githubLink" th:value="${session.Member.githubLink}" placeholder="깃허브 링크"/>
-          </div>
+        <div class="grp github-link-grp">
+          <label for="githubLink">깃허브 링크:</label>
+          <input type="text" id="githubLink" name="githubLink" th:value="${session.Member.githubLink}" placeholder="깃허브 링크"/>
+        </div>
 
           <button type="button" class="svbtn" id="update-btn">저장</button>
         </form>
@@ -143,16 +145,6 @@
         </form>
       </div>
 
-      <footer class="footer text-center py-2 theme-bg-dark">
-        <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
-        <small class="copyright"
-          >Designed with <i class="fas fa-heart" style="color: #fb866a"></i> by
-          <a href="http://themes.3rdwavemedia.com" target="_blank"
-            >Xiaoying Riley</a
-          >
-          for 세상의 모든 개발자들</small
-        >
-      </footer>
     </div>
     <!--//main-wrapper-->
 
@@ -208,5 +200,11 @@
   <script src="/assets/js/about.js"></script>
   <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
     <script src="assets/js/demo/style-switcher.js"></script>
+  <script>
+    // 툴팁 초기화
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
   </body>
 </html>
