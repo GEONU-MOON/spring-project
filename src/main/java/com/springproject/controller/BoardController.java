@@ -33,8 +33,8 @@ public class BoardController {
         board.setPostDate(LocalDate.now());
         board.setThumbnail(form.getThumbnail());
 
-
-        return null;
+        boardService.save(board);
+        return "home";
     }
 
     @GetMapping("boardupdate")

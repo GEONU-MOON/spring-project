@@ -58,10 +58,12 @@ public class MembersController {
     }
 
     @PostMapping("/home")
-    public String Login(LoginDTO form, Model model, HttpServletRequest request, HttpServletResponse response) {
+    public String Login(LoginDTO form, Model model, HttpServletRequest request, HttpServletResponse response,
+                        @RequestParam(name = "userid")String userid) {
         String inputID = form.getUserid();
         String inputPW = form.getPassword();
 
+        String homeurl = "" + userid;
         Members result = memberService.login(inputID, inputPW);
         if(result != null){
             HttpSession session = request.getSession();
@@ -70,6 +72,8 @@ public class MembersController {
 
             List<Board> boardList = boardService.findList(inputID);
             model.addAttribute("boardlist", boardList);
+
+            System.out.println(boardList.isEmpty());
 
         }else{
             try {
