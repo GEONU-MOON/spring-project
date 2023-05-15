@@ -60,5 +60,12 @@ public class HomeController {
         }
     }
 
+    @PostMapping
+    public String homeid(@RequestParam(name = "userid") String userid){
+
+        String homeUrl = "" + userid;
+        return "redirect:home?userid=" + homeUrl;
+    }
+
 
 }
