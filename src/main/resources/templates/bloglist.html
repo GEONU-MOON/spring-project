@@ -107,211 +107,32 @@
 <div class="main-wrapper">
 
 	<section class="blog-list px-3 py-5 p-md-5">
-		<div class="container">
-			<div class="item mb-5">
-				<div class="media">
-					<img
-							class="mr-3 img-fluid post-thumb d-none d-md-flex"
-							src="/assets/images/blog/blog-post-thumb-7.jpg"
-							alt="image"
-					>
-					<div class="media-body">
-						<h3 class="title mb-1">
-							<a href="/blogpost">
-								게시물 제목
-							</a>
-						</h3>
-						<div class="meta mb-1">
-								<span class="date">
-									3달 전 작성
-								</span>
-							<span class="comment">
-									<a href="#">4개의 댓글</a>
-								</span>
-						</div>
-						<div class="intro">
-							컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기
-							컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기...
-						</div>
-						<a class="more-link" href="/blogpost">
-							자세히 보기 &rarr;
-						</a>
+		<div class="item mb-5" th:each="board : ${userBoards}">
+			<div class="media">
+				<img class="mr-3 img-fluid post-thumb d-none d-md-flex" th:src="@{${board.thumbnail}}" alt="image" >
+				<div class="media-body">
+					<h3 class="title mb-1">
+						<a href="/blogpost" th:text="${board.title}">게시물 제목</a>
+					</h3>
+					<div class="meta mb-1">
+						<span class="date" th:text="${board.postDate}">3달 전 작성</span>
+						<!-- You would need to implement functionality for comments -->
+						<span class="comment">
+                    <a href="#">4개의 댓글</a>
+                </span>
 					</div>
-					<!--//media-body-->
-				</div>
-				<!--//media-->
-			</div>
-			<!--//item-->
-			<div class="item mb-5">
-				<div class="media">
-					<img
-							class="mr-3 img-fluid post-thumb d-none d-md-flex"
-							src="/assets/images/blog/blog-post-thumb-8.jpg"
-							alt="image"
-					>
-					<div class="media-body">
-						<h3 class="title mb-1">
-							<a href="/blogpost">
-								게시물 제목
-							</a>
-						</h3>
-						<div class="meta mb-1">
-								<span class="date">
-									4달 전 작성
-								</span>
-							<span class="comment">
-									<a href="#">2개의 댓글</a>
-								</span>
-						</div>
-						<div class="intro">
-							컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기
-							컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기...
-						</div>
-						<a class="more-link" href="/blogpost">
-							자세히 보기 &rarr;
-						</a>
+					<div class="intro" th:text="${board.content}">
+						컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기...
 					</div>
-					<!--//media-body-->
+					<a class="more-link" href="/blogpost">
+						자세히 보기 &rarr;
+					</a>
 				</div>
-				<!--//media-->
 			</div>
-			<!--//item-->
+		</div>
 
-			<div class="item mb-5">
-				<div class="media">
-					<img
-							class="mr-3 img-fluid post-thumb d-none d-md-flex"
-							src="/assets/images/blog/blog-post-thumb-9.jpg"
-							alt="image">
-					<div class="media-body">
-						<h3 class="title mb-1">
-							<a href="/blogpost">
-								게시물 제목
-							</a>
-						</h3>
-						<div class="meta mb-1">
-								<span class="date">
-									4달 전 작성
-								</span>
-							<span class="comment">
-									<a href="#">7개의 댓글</a>
-								</span>
-						</div>
-						<div class="intro">
-							컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기
-							컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기...
-						</div>
-						<a class="more-link" href="/blogpost">
-							자세히 보기 &rarr;
-						</a>
-					</div>
-					<!--//media-body-->
-				</div>
-				<!--//media-->
-			</div>
-			<!--//item-->
-			<div class="item mb-5">
-				<div class="media">
-					<img
-							class="mr-3 img-fluid post-thumb d-none d-md-flex"
-							src="/assets/images/blog/blog-post-thumb-10.jpg"
-							alt="image"
-					>
-					<div class="media-body">
-						<h3 class="title mb-1">
-							<a href="/blogpost">
-								게시물 제목
-							</a>
-						</h3>
-						<div class="meta mb-1">
-								<span class="date">
-									4달 전 작성
-								</span>
-							<span class="comment">
-									<a href="#">7개의 댓글</a>
-								</span>
-						</div>
-						<div class="intro">
-							컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기
-							컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기...
-						</div>
-						<a class="more-link" href="/blogpost">
-							자세히 보기 &rarr;
-						</a>
-					</div>
-					<!--//media-body-->
-				</div>
-				<!--//media-->
-			</div>
-			<!--//item-->
-			<div class="item mb-5">
-				<div class="media">
-					<img
-							class="mr-3 img-fluid post-thumb d-none d-md-flex"
-							src="/assets/images/blog/blog-post-thumb-11.jpg"
-							alt="image"
-					>
-					<div class="media-body">
-						<h3 class="title mb-1">
-							<a href="/blogpost">
-								게시물 제목
-							</a>
-						</h3>
-						<div class="meta mb-1">
-								<span class="date">
-									4달 전 작성
-								</span>
-							<span class="comment">
-									<a href="#">7개의 댓글</a>
-								</span>
-						</div>
-						<div class="intro">
-							컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기
-							컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기...
-						</div>
-						<a class="more-link" href="/blogpost">
-							자세히 보기 &rarr;
-						</a>
-					</div>
-					<!--//media-body-->
-				</div>
-				<!--//media-->
-			</div>
-			<!--//item-->
-			<div class="item">
-				<div class="media">
-					<img
-							class="mr-3 img-fluid post-thumb d-none d-md-flex"
-							src="/assets/images/blog/blog-post-thumb-12.jpg"
-							alt="image"
-					>
-					<div class="media-body">
-						<h3 class="title mb-1">
-							<a href="/blogpost">
-								게시물 제목
-							</a>
-						</h3>
-						<div class="meta mb-1">
-								<span class="date">
-									4달 전 작성
-								</span>
-							<span class="comment">
-									<a href="#">7개의 댓글</a>
-								</span>
-						</div>
-						<div class="intro">
-							컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기
-							컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기...
-						</div>
-						<a class="more-link" href="/blogpost">
-							자세히 보기 &rarr;
-						</a>
-					</div>
-					<!--//media-body-->
-				</div>
-				<!--//media-->
-			</div>
-			<!--//item-->
+		<!--//item-->
+
 			<nav class="blog-nav nav nav-justified my-5">
 				<a class="nav-link-prev nav-item nav-link rounded-left" href="/">
 					이전<i class="arrow-prev fas fa-long-arrow-alt-left"></i>
@@ -337,9 +158,6 @@
 
 </div>
 <!--//main-wrapper-->
-
-
-
 
 <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
 <div id="config-panel" class="config-panel d-none d-lg-block">
@@ -390,8 +208,6 @@
 </div>
 <!--//configure-panel-->
 
-
-
 <!-- Javascript -->
 <script src="/assets/plugins/jquery-3.3.1.min.js"></script>
 <script src="/assets/plugins/popper.min.js"></script>
@@ -400,7 +216,5 @@
 <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
 <script src="/assets/js/demo/style-switcher.js"></script>
 
-
 </body>
-</html> 
-
+</html>
