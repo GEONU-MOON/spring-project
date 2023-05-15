@@ -166,7 +166,9 @@
                     </form>
 
                     <div style="display: flex; justify-content: center;">
-                        <input class="button btnFade btnBlueGreen" id="subBtn" type="button" value="글 작성" style="float: right;  margin-top: 40px; border-top: 0px; border-left: 0px; border-bottom: 0px; border-right: 0px; border-radius: 4px; width: 100px; height: 40px;" onclick="goWrite(this.form)"/>
+                        <form id="myForm" method="post" action="/boardwrite">
+                            <input class="button btnFade btnBlueGreen" id="subBtn" type="button" value="글 작성" style="float: right; margin-top: 40px; border-top: 0px; border-left: 0px; border-bottom: 0px; border-right: 0px; border-radius: 4px; width: 100px; height: 40px;" onclick="goWrite()"/>
+                        </form>
                     </div>
                 </form>
             </div>
