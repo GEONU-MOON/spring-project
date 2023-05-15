@@ -3,7 +3,9 @@ package com.springproject.controller;
 
 import com.springproject.DTO.LoginDTO;
 import com.springproject.DTO.RegisterDTO;
+import com.springproject.domain.Board;
 import com.springproject.domain.Members;
+import com.springproject.service.BoardService;
 import com.springproject.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.server.Session;
@@ -17,17 +19,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class MembersController {
 
-    private final MemberService memberservice;
+    private final MemberService memberService;
+    private final BoardService boardService;
 
     @PostMapping("/update")
     public String updateMember(RegisterDTO form, HttpSession session) {
         Members member = (Members) session.getAttribute("Member");
-        memberservice.updateMember(member, form);
+        memberService.updateMember(member, form);
         session.setAttribute("Member", member);
         return "redirect:/home";
     }
@@ -35,7 +39,7 @@ public class MembersController {
     @PostMapping("/delete")
     public String deleteMember(HttpSession session) {
         Members member = (Members) session.getAttribute("Member");
-        memberservice.deleteMember(member);
+        memberService.deleteMember(member);
         session.invalidate();
         return "redirect:/";
     }
@@ -49,7 +53,7 @@ public class MembersController {
         member.setPassword(form.getPassword());
         member.setGithubLink(form.getGithubLink());
 
-        memberservice.register(member);
+        memberService.register(member);
         return "redirect:/";
     }
 
@@ -58,11 +62,14 @@ public class MembersController {
         String inputID = form.getUserid();
         String inputPW = form.getPassword();
 
-        Members result = memberservice.login(inputID, inputPW);
+        Members result = memberService.login(inputID, inputPW);
         if(result != null){
             HttpSession session = request.getSession();
             session.setAttribute("Member", result);
             session.setMaxInactiveInterval(60*10);
+
+            List<Board> boardList = boardService.findList(inputID);
+            model.addAttribute("boardlist", boardList);
 
         }else{
             try {

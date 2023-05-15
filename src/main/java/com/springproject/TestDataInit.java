@@ -1,6 +1,7 @@
 package com.springproject;
 
 import com.springproject.domain.Board;
+import com.springproject.domain.EmbedMember;
 import com.springproject.domain.Members;
 import com.springproject.repository.BoardRepository;
 import com.springproject.repository.MembersRepository;
@@ -27,25 +28,24 @@ public class TestDataInit {
         member.setName("TESTDATA");
 
         memberRepository.save(member);
+
+        Members savedmember = memberRepository.findByID("test");
+        Board board = new Board();
+        EmbedMember embedMember = memberRepository.setBoardMember(savedmember.getUserid());
+
+        board.setTitle("테스트 데이터 제목");
+        board.setContent("테스트 데이터 컨텐트");
+        board.setMember(embedMember);
+        board.setThumbnail("assets/images/blog/blog-post-thumb-1.jpg");
+
+        Board board2 = new Board();
+        board2.setTitle("테스트 데이터 제목2");
+        board2.setContent("테스트 데이터 컨텐트2");
+        board2.setMember(embedMember);
+        board2.setThumbnail("assets/images/blog/blog-post-thumb-5.jpg");
+
+        boardRepository.save(board);
+        boardRepository.save(board2);
     }
-//    @PostConstruct
-//    @Transactional
-//    public void init2(){
-//        Members member = memberRepository.findByID("test");
-//        Board board = new Board();
-//        board.setTitle("테스트 데이터 제목");
-//        board.setContent("테스트 데이터 컨텐트");
-//        board.setMember(member);
-//        board.setThumbnail("썸네일 경로1");
-//
-//        Board board2 = new Board();
-//        board.setTitle("테스트 데이터 제목2");
-//        board.setContent("테스트 데이터 컨텐트2");
-//        board.setMember(member);
-//        board.setThumbnail("썸네일 경로2");
-//
-//        boardRepository.save(board);
-//        boardRepository.save(board2);
-//    }
 
 }

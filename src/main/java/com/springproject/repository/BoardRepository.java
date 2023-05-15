@@ -26,7 +26,4 @@ public class BoardRepository {
         return em.createQuery("select b from Board b where b.member.userid=:userid", Board.class).setParameter("userid", userid).getResultList();
     }
 
-    public Members findByID(String userid){
-        return em.createQuery("select m from Members m where m.userid=:userid", Members.class).setParameter("userid", userid).getSingleResult();
-    }
 }

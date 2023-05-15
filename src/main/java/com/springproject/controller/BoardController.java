@@ -27,7 +27,7 @@ public class BoardController {
     @PostMapping("boardwrite")
     public String boardregister(BoardDTO form, HttpSession session){
         Board board = new Board();
-        board.setMember((Members) session.getAttribute("Member"));
+        board.setMember(boardService.setEmbedMember(((Members)session.getAttribute("Member")).getUserid()));
         board.setTitle(form.getTitle());
         board.setContent(form.getContent());
         board.setPostDate(LocalDate.now());

@@ -16,9 +16,8 @@ public class Board {
     @Column(name = "board_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "member_id", nullable = false)
-    private Members member;
+    @Embedded
+    private EmbedMember member;
 
     private String title;
 

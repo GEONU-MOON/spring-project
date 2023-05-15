@@ -28,8 +28,5 @@ public class Members {
     private String githubLink;
 
     @OneToMany(mappedBy = "member")
-    private List<Board> boards;
-
-    @OneToMany(mappedBy = "member")
     private List<Comments> comments;
 }

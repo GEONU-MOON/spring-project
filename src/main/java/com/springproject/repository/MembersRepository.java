@@ -1,5 +1,6 @@
 package com.springproject.repository;
 
+import com.springproject.domain.EmbedMember;
 import com.springproject.domain.Members;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,19 @@ public class MembersRepository {
 
     public Members findByID(String userid){
         return em.createQuery("select m from Members m where m.userid=:userid", Members.class).setParameter("userid", userid).getSingleResult();
+    }
+
+    public EmbedMember setBoardMember(String userid){
+        Members member = findByID(userid);
+
+        EmbedMember embedMember = new EmbedMember();
+        embedMember.setId(member.getId());
+        embedMember.setName(member.getName());
+        embedMember.setUserid(member.getUserid());
+        embedMember.setEmail(member.getEmail());
+        embedMember.setPassword(member.getPassword());
+        embedMember.setGithubLink(member.getGithubLink());
+
+        return embedMember;
     }
 }
