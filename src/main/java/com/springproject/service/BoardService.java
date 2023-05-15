@@ -23,4 +23,5 @@ public class BoardService {
 
     public EmbedMember setEmbedMember(String userid) {return membersRepository.setBoardMember(userid);}
 
+    public void save(Board board){boardRepository.save(board);}
 }
