@@ -106,7 +106,7 @@
 
     <div class="main-wrapper">
       <div class="mypage">
-        <form method="post" action="/update">
+        <form method="post" id="update-form" action="/update">
           <div class="grp">
             <label for="name">이름:</label>
             <input type="text" id="name" name="name" th:value="${session.Member.name}" placeholder="이름"/>
@@ -136,10 +136,10 @@
             <input type="text" id="githubLink" name="githubLink" th:value="${session.Member.githubLink}" placeholder="깃허브 링크"/>
           </div>
 
-          <button type="submit" class="svbtn" id="savebtn">저장</button>
+          <button type="button" class="svbtn" id="update-btn">저장</button>
         </form>
-        <form method="post" action="/delete">
-          <button type="submit" class="delbtn" id="delet-btn">회원 탈퇴</button>
+        <form method="post" id="delete-form" action="/delete">
+          <button type="button" class="delbtn" id="delete-btn">회원 탈퇴</button>
         </form>
       </div>
 
@@ -204,8 +204,9 @@
     <script src="assets/plugins/jquery-3.3.1.min.js"></script>
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/assets/js/about.js"></script>
+  <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
     <script src="assets/js/demo/style-switcher.js"></script>
   </body>
 </html>
