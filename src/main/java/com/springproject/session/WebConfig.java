@@ -18,6 +18,6 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginCheckInterceptor())
                 .order(1)
                 .addPathPatterns("/**") //모든 경로 전체 가능
-                .excludePathPatterns("/", "/home", "/index","/css/**","/resources/**", "/assets/**");
+                .excludePathPatterns("/", "/home", "/index","/css/**","/resources/**", "/assets/**", "/logout");
     }
 }

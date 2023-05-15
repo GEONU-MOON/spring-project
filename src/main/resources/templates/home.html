@@ -89,6 +89,7 @@
                 data-html="true"
                 th:title="|&lt;span style='display: block; margin-bottom: 5px;'&gt;&lt;i class='fab fa-github'&gt;&lt;/i&gt; ${#strings.substringAfter(session.Member.githubLink, 'https://github.com/')} &lt;/span&gt;&lt;span style='display: block;'&gt;&lt;i class='fas fa-envelope'&gt;&lt;/i&gt; ${session.Member.email}&lt;/span&gt;|"
         >연락하기</a>
+      </div>
         <div class="my-2 my-md-3">
           <a
                   class="btn btn-primary"
@@ -96,7 +97,12 @@
           >작성하기</a
           >
         </div>
-      </div>
+        <div class="my-2 my-md-3">
+          <a
+                  class="btn btn-primary"
+                  href="/logout.do"
+          >로그아웃</a>
+        </div>
     </div>
   </nav>
 </header>

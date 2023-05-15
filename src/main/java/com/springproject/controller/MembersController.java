@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
@@ -91,5 +93,14 @@ public class MembersController {
             }
         }
         return "home";
+    }
+
+    @RequestMapping(value="logout.do", method= RequestMethod.GET)
+    public String logoutMainGET(HttpServletRequest request) throws Exception{
+
+        HttpSession session = request.getSession();
+        session.invalidate();
+
+        return "redirect:/";
     }
 }
