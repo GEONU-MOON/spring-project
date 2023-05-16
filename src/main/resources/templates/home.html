@@ -139,7 +139,7 @@
         </a>
       </div>
 
-      <div th:each="board : ${boardList}" class="item mb-5">
+      <div th:each="board : ${recentBoard}" class="item mb-5">
         <div class="media">
           <img
                   class="mr-3 img-fluid post-thumb d-none d-md-flex"
@@ -151,7 +151,7 @@
               <a th:href="@{/blogpost/{id}(id=${board.id})}" th:text="${board.title}">게시물 제목 입력</a>
             </h3>
             <div class="meta mb-1">
-              <span class="date" th:text="${#dates.format(board.postDate, 'yyyy-MM-dd')}">게시일</span>
+<!--              <span class="date" th:text="${#dates.format(board.postDate, 'yyyy-MM-dd')}">게시일</span>-->
             </div>
             <div class="intro" th:text="${board.content}">컨텐츠 내용 간략하게</div>
           </div>

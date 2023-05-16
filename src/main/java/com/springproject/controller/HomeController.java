@@ -48,7 +48,7 @@ public class HomeController {
         Members member = (Members) session.getAttribute("Member");
         if (member != null) {
             List<Board> boardList = boardService.recentBoard(member.getUserid());
-            model.addAttribute("boardList", boardList);
+            model.addAttribute("recentBoard", boardList);
             return "home";
         } else {
             return "redirect:/";

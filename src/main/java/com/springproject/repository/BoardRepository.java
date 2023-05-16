@@ -23,7 +23,7 @@ public class BoardRepository {
 
 
     public List<Board> findListByID(String userid){
-        return em.createQuery("select b from Board b where b.member.userid=:userid", Board.class)
+        return em.createQuery("select b from Board b where b.member.userid=:userid order by b.id desc", Board.class)
                 .setParameter("userid", userid).getResultList();
     }
 
