@@ -151,7 +151,7 @@
               <a th:href="@{/blogpost/{id}(id=${board.id})}" th:text="${board.title}">게시물 제목 입력</a>
             </h3>
             <div class="meta mb-1">
-<!--              <span class="date" th:text="${#dates.format(board.postDate, 'yyyy-MM-dd')}">게시일</span>-->
+              <span class="date" th:text="${board.postDate.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd'))}">게시일</span>
             </div>
             <div class="intro" th:text="${board.content}">컨텐츠 내용 간략하게</div>
           </div>
@@ -170,7 +170,7 @@
         <a
                 class="nav-link-next nav-item nav-link rounded"
                 href="/userboard"
-        >다음 페이지<i class="arrow-next fas fa-long-arrow-alt-right"></i
+        >게시물 더보기<i class="arrow-next fas fa-long-arrow-alt-right"></i
         ></a>
       </nav>
     </div>
