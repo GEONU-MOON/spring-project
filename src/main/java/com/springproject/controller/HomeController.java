@@ -35,7 +35,6 @@ public class HomeController {
         return "blogpost";
     }
 
-
     @GetMapping("about")
     public String about(){
         return "about";
@@ -44,21 +43,16 @@ public class HomeController {
     @GetMapping("bloglist")
     public String bloglist(){ return "bloglist";}
 
-
-
-
-
     @GetMapping("home")
     public String home(Model model, HttpSession session){
         Members member = (Members) session.getAttribute("Member");
         if (member != null) {
-            List<Board> boardList = boardService.findList(member.getUserid());
+            List<Board> boardList = boardService.recentBoard(member.getUserid());
             model.addAttribute("boardList", boardList);
             return "home";
         } else {
             return "redirect:/";
         }
     }
-
 
 }
