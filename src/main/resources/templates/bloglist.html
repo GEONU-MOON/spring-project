@@ -16,6 +16,8 @@
 
 	<!-- Theme CSS -->
 	<link id="theme-style" rel="stylesheet" href="/assets/css/theme1.css">
+	<link rel="stylesheet" href="/assets/css/footer.css" />
+	<link rel="stylesheet" href="/assets/css/list.css" />
 
 </head>
 
@@ -107,29 +109,29 @@
 <div class="main-wrapper">
 
 	<section class="blog-list px-3 py-5 p-md-5">
-		<div class="item mb-5" th:each="board : ${userBoards}">
-			<div class="media">
-				<img class="mr-3 img-fluid post-thumb d-none d-md-flex" th:src="@{${board.thumbnail}}" alt="image" >
-				<div class="media-body">
-					<h3 class="title mb-1">
-						<a href="/blogpost" th:text="${board.title}">게시물 제목</a>
-					</h3>
-					<div class="meta mb-1">
-						<span class="date" th:text="${board.postDate}">3달 전 작성</span>
-						<!-- You would need to implement functionality for comments -->
-						<span class="comment">
-                    <a href="#">4개의 댓글</a>
-                </span>
+			<div class="item mb-5" th:each="board : ${userBoards}">
+				<div class="media">
+					<img class="mr-3 img-fluid post-thumb d-none d-md-flex" th:src="@{${board.thumbnail}}" alt="image" >
+					<div class="media-body">
+						<h3 class="title mb-1">
+							<a href="/blogpost" th:text="${board.title}">게시물 제목</a>
+						</h3>
+						<div class="meta mb-1">
+							<span class="date" th:text="${board.postDate}">3달 전 작성</span>
+							<!-- You would need to implement functionality for comments -->
+							<span class="comment">
+						<a href="#">4개의 댓글</a>
+					</span>
+						</div>
+						<div class="intro" th:text="${board.content}">
+							컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기...
+						</div>
+						<a class="more-link" href="/blogpost">
+							자세히 보기 &rarr;
+						</a>
 					</div>
-					<div class="intro" th:text="${board.content}">
-						컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기...
-					</div>
-					<a class="more-link" href="/blogpost">
-						자세히 보기 &rarr;
-					</a>
 				</div>
 			</div>
-		</div>
 
 		<!--//item-->
 
@@ -141,8 +143,6 @@
 					다음<i class="arrow-next fas fa-long-arrow-alt-right"></i>
 				</a>
 			</nav>
-
-		</div>
 	</section>
 
 	<footer class="footer text-center py-2 theme-bg-dark">
