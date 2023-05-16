@@ -61,8 +61,10 @@
         <!--//bio-->
         <ul class="social-list list-inline py-3 mx-auto">
           <li class="list-inline-item">
+          <li class="list-inline-item">
             <!--깃허브 링크-->
-            <a href="#"><i class="fab fa-github-alt fa-fw"></i></a>
+            <a th:href="@{${session.Member.githubLink}}"><i class="fab fa-github-alt fa-fw"></i></a>
+          </li>
           </li>
         </ul>
         <!--//social-list-->
@@ -90,19 +92,20 @@
                 th:title="|&lt;span style='display: block; margin-bottom: 5px;'&gt;&lt;i class='fab fa-github'&gt;&lt;/i&gt; ${#strings.substringAfter(session.Member.githubLink, 'https://github.com/')} &lt;/span&gt;&lt;span style='display: block;'&gt;&lt;i class='fas fa-envelope'&gt;&lt;/i&gt; ${session.Member.email}&lt;/span&gt;|"
         >연락하기</a>
       </div>
-        <div class="my-2 my-md-3">
-          <a
-                  class="btn btn-primary"
-                  href="/boardwrite"
-          >작성하기</a
-          >
-        </div>
-        <div class="my-2 my-md-3">
-          <a
-                  class="btn btn-primary"
-                  href="/logout.do"
-          >로그아웃</a>
-        </div>
+      <div class="my-2 my-md-3">
+        <a
+                class="btn btn-primary"
+                href="/boardwrite"
+        >작성하기</a
+        >
+      </div>
+      <div class="my-2 my-md-3">
+        <a
+                class="btn btn-primary"
+                href="/logout.do"
+                onclick="return confirmLogout()"
+        >로그아웃</a>
+      </div>
     </div>
   </nav>
 </header>
@@ -117,13 +120,13 @@
       </div>
       <form class="signup-form form-inline justify-content-center pt-3">
         <div class="form-group">
-          <label class="sr-only" for="semail">이메일 입력</label>
+          <label class="sr-only" for="otheruserid">아이디 입력</label>
           <input
-                  type="email"
-                  id="semail"
-                  name="semail1"
-                  class="form-control mr-md-1 semail"
-                  placeholder="이메일 입력"
+                  type="text"
+                  id="otheruserid"
+                  name="otheruserid1"
+                  class="form-control mr-md-1 otheruserid"
+                  placeholder="아이디 입력"
           />
         </div>
         <button type="submit" class="btn btn-primary">살펴보기</button>
@@ -246,6 +249,12 @@
   $(function () {
     $('[data-toggle="tooltip"]').tooltip();
   });
+</script>
+<script>
+  function confirmLogout() {
+    var result = confirm("정말 로그아웃하시겠습니까?");
+    return result;
+  }
 </script>
 </body>
 </html>
