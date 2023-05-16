@@ -23,8 +23,8 @@
 
 <header class="header text-center" id="main-header" name="main-header">
 	<h1 class="blog-name pt-lg-4 mb-0">
-		<a href="/home">
-			<span th:text="${session.Member.name}"></span>'s Devlog
+		<a href="/home" th:href="@{/otherhome}">
+			<span th:text="${otherMember.name}"></span>'s Devlog
 		</a>
 		<!--블로그 주인 이름 -->
 	</h1>
@@ -84,7 +84,7 @@
 						class="btn btn-primary"
 						data-toggle="tooltip"
 						data-html="true"
-						th:title="|&lt;span style='display: block; margin-bottom: 5px;'&gt;&lt;i class='fab fa-github'&gt;&lt;/i&gt; ${#strings.substringAfter(session.Member.githubLink, 'https://github.com/')} &lt;/span&gt;&lt;span style='display: block;'&gt;&lt;i class='fas fa-envelope'&gt;&lt;/i&gt; ${session.Member.email}&lt;/span&gt;|"
+						th:title="|&lt;span style='display: block; margin-bottom: 5px;'&gt;&lt;i class='fab fa-github'&gt;&lt;/i&gt; ${#strings.substringAfter(otherMember.githubLink, 'https://github.com/')} &lt;/span&gt;&lt;span style='display: block;'&gt;&lt;i class='fas fa-envelope'&gt;&lt;/i&gt; ${otherMember.email}&lt;/span&gt;|"
 				>연락하기</a>
 			</div>
 			<div class="my-2 my-md-3">
@@ -112,7 +112,7 @@
 				<img class="mr-3 img-fluid post-thumb d-none d-md-flex" th:src="@{${board.thumbnail}}" alt="image" >
 				<div class="media-body">
 					<h3 class="title mb-1">
-						<a href="/blogpost" th:text="${board.title}">게시물 제목</a>
+						<a th:href="@{/blogpost/{id}(id=${board.id})}" th:text="${board.title}">게시물 제목</a>
 					</h3>
 					<div class="meta mb-1">
 						<span class="date" th:text="${board.postDate}">3달 전 작성</span>
@@ -124,7 +124,7 @@
 					<div class="intro" th:text="${board.content}">
 						컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기...
 					</div>
-					<a class="more-link" href="/blogpost">
+					<a class="more-link" th:href="@{/blogpost/{id}(id=${board.id})}">
 						자세히 보기 &rarr;
 					</a>
 				</div>

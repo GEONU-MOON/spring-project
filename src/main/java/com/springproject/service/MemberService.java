@@ -47,4 +47,10 @@ public class MemberService {
             return requestMember;
         }
     }
+
+    public Members findByID(String id){
+        Members foundMember = memberrepository.findByID(id);
+
+        return foundMember;
+    }
 }

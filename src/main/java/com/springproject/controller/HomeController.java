@@ -56,7 +56,6 @@ public class HomeController {
 
             List<Board> boardList = boardService.recentBoard(inputID);
             model.addAttribute("recentBoard", boardList);
-            System.out.println(boardList.isEmpty());
 
 
         }else{

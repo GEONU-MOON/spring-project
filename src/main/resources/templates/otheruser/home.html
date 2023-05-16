@@ -21,13 +21,15 @@
   <!-- Theme CSS -->
   <link id="theme-style" rel="stylesheet" href="assets/css/theme1.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/footer.css" />
+  <link rel="stylesheet" href="/assets/css/home.css" />
 </head>
 
 <body>
 <header class="header text-center" id="main-header" name="main-header">
   <h1 class="blog-name pt-lg-4 mb-0">
     <a href="/home">
-      <span th:text="${session.Member.name}"></span>'s Devlog
+      <span th:text="${otherMember.name}"></span>'s Devlog
     </a>
     <!--블로그 주인 이름 -->
   </h1>
@@ -49,7 +51,7 @@
       <div class="profile-section pt-3 pt-lg-0">
         <img
                 class="profile-image mb-3 rounded-circle mx-auto"
-                src="assets/images/profile.png"
+                src="assets/images/profile.png" th:src="${otherMember.image}"
                 alt="image"
         />
 
@@ -61,8 +63,10 @@
         <!--//bio-->
         <ul class="social-list list-inline py-3 mx-auto">
           <li class="list-inline-item">
+          <li class="list-inline-item">
             <!--깃허브 링크-->
-            <a href="#"><i class="fab fa-github-alt fa-fw"></i></a>
+            <a th:href="@{${otherMember.githubLink}}"><i class="fab fa-github-alt fa-fw"></i></a>
+          </li>
           </li>
         </ul>
         <!--//social-list-->
@@ -87,22 +91,23 @@
                 class="btn btn-primary"
                 data-toggle="tooltip"
                 data-html="true"
-                th:title="|&lt;span style='display: block; margin-bottom: 5px;'&gt;&lt;i class='fab fa-github'&gt;&lt;/i&gt; ${#strings.substringAfter(session.Member.githubLink, 'https://github.com/')} &lt;/span&gt;&lt;span style='display: block;'&gt;&lt;i class='fas fa-envelope'&gt;&lt;/i&gt; ${session.Member.email}&lt;/span&gt;|"
+                th:title="|&lt;span style='display: block; margin-bottom: 5px;'&gt;&lt;i class='fab fa-github'&gt;&lt;/i&gt; ${#strings.substringAfter(otherMember.githubLink, 'https://github.com/')} &lt;/span&gt;&lt;span style='display: block;'&gt;&lt;i class='fas fa-envelope'&gt;&lt;/i&gt; ${otherMember.email}&lt;/span&gt;|"
         >연락하기</a>
       </div>
-        <div class="my-2 my-md-3">
-          <a
-                  class="btn btn-primary"
-                  href="/boardwrite"
-          >작성하기</a
-          >
-        </div>
-        <div class="my-2 my-md-3">
-          <a
-                  class="btn btn-primary"
-                  href="/logout.do"
-          >로그아웃</a>
-        </div>
+      <div class="my-2 my-md-3">
+        <a
+                class="btn btn-primary"
+                href="/boardwrite"
+        >작성하기</a
+        >
+      </div>
+      <div class="my-2 my-md-3">
+        <a
+                class="btn btn-primary"
+                href="/logout.do"
+                onclick="return confirmLogout()"
+        >로그아웃</a>
+      </div>
     </div>
   </nav>
 </header>
@@ -115,15 +120,15 @@
         제 블로그에 오신 것을 환영합니다. 구독하고 최신 블로그 게시물을
         받아보세요!
       </div>
-      <form class="signup-form form-inline justify-content-center pt-3">
+      <form class="signup-form form-inline justify-content-center pt-3" action="/otherhome" method="GET">
         <div class="form-group">
-          <label class="sr-only" for="semail">이메일 입력</label>
+          <label class="sr-only" for="otheruserid">아이디 입력</label>
           <input
-                  type="email"
-                  id="semail"
-                  name="semail1"
-                  class="form-control mr-md-1 semail"
-                  placeholder="이메일 입력"
+                  type="text"
+                  id="otheruserid"
+                  name="otheruserid"
+                  class="form-control mr-md-1 otheruserid"
+                  placeholder="아이디 입력"
           />
         </div>
         <button type="submit" class="btn btn-primary">살펴보기</button>
@@ -148,7 +153,8 @@
           />
           <div class="media-body">
             <h3 class="title mb-1">
-              <a th:href="@{/blogpost/{id}(id=${board.id})}" th:text="${board.title}">게시물 제목</a>
+              <a th:href="@{/blogpost/{id}(id=${board.id})}" th:text="${board.title}"
+              <input type="hidden" name="otherMember" th:value="${otherMember}">게시물 제목</a>
             </h3>
             <div class="meta mb-1">
               <span class="date" th:text="${board.postDate.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd'))}">게시일</span>
@@ -169,8 +175,8 @@
         ></a>
         <a
                 class="nav-link-next nav-item nav-link rounded"
-                href="/userboard"
-        >게시물 더보기<i class="arrow-next fas fa-long-arrow-alt-right"></i
+                href="/otheruserboard"
+        <input type="hidden" name="otherMember" th:value="${otherMember}"> 게시물 더보기<i class="arrow-next fas fa-long-arrow-alt-right"></i
         ></a>
       </nav>
     </div>
@@ -246,6 +252,12 @@
   $(function () {
     $('[data-toggle="tooltip"]').tooltip();
   });
+</script>
+<script>
+  function confirmLogout() {
+    var result = confirm("정말 로그아웃하시겠습니까?");
+    return result;
+  }
 </script>
 </body>
 </html>

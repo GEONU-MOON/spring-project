@@ -30,6 +30,8 @@ public class Members {
 
     private String image;
 
+    private String introduce;
+
     @OneToMany(mappedBy = "member")
     private List<Comments> comments;
 }
