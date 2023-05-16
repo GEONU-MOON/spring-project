@@ -184,8 +184,8 @@
 				</div>
 
 			    <nav class="blog-nav nav nav-justified my-5">
-				  <a class="nav-link-prev nav-item nav-link rounded-left" href="/">이전 게시글<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-				  <a class="nav-link-next nav-item nav-link rounded-right" href="/bloglist">다음 게시글<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+				  <a class="nav-link-prev nav-item nav-link rounded-left" th:if="${board.id > 1}" th:href="@{/blogpost/{id}(id=${board.id - 1})}">이전 게시글<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+				  <a class="nav-link-next nav-item nav-link rounded-right" th:href="@{/blogpost/{id}(id=${board.id + 1})}">다음 게시글<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
 				</nav>
 
 				<div class="comment-form">
@@ -215,10 +215,12 @@
 					</div>
 
 					<h2 style="margin-top: 10px;">Comment</h2>
-					<form>
+					<form method="post" action="/reply/write">
 						<label for="commentcontent"></label>
-						<textarea id="commentcontent" name="commentcontent" rows="4" placeholder="댓글을 입력해 주세요." required></textarea>
 
+						<label>댓글 작성자</label> <input type="text" name="writer">
+						<textarea id="commentcontent" name="commentcontent" rows="4" placeholder="댓글을 입력해 주세요." required></textarea>
+						<input type="hidden" name="bno" value="${view.bno"}>
 						<input type="submit" value="댓글 작성" style="border-top-width: 0px; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px;">
 					</form>
 				</div>

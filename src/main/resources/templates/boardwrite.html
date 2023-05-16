@@ -44,23 +44,6 @@
             });
         });
     </script>
-    <script>
-        function goWrite(frm) {
-            var title = frm.title.value;
-            var content = frm.content.value;
-
-            if (title.trim() == ''){
-                alert("제목을 입력해주세요");
-                return false;
-            }
-            if (content.trim() == ''){
-                alert("내용을 입력해주세요");
-                return false;
-            }
-            frm.submit();
-        }
-    </script>
-
     <style>
         a.button {
             display: block;
@@ -172,21 +155,15 @@
                 <form method="post" action="/boardwrite">
     <!--                <input type="text" name="writer" style="width: 20%;" placeholder="작성자"/><br>-->
                     <label style="font-size: x-large;">Title</label>
-                    <input type="text" name="title" style="width: 80%; margin-left: 20px;"  placeholder="제목을 입력해 주세요." required/>
+                    <input type="text" id="title" name="title" style="width: 80%; margin-left: 20px;"  placeholder="제목을 입력해 주세요." required/>
                     <hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid rgb(0,0,0,0.1)"/>
 
                     <textarea id="summernote" name="content" required></textarea>
-
+                    <input class="button btnFade btnBlueGreen" id="subBtn" type="button" value="글 작성" style="float: right;  margin-top: 40px; border-top: 0px; border-left: 0px; border-bottom: 0px; border-right: 0px; border-radius: 4px; width: 100px; height: 40px;" onclick="goWrite(this.form)" />
                     <br>
-
                     <form action="" method="post" enctype="multipart/form-data" name="">
                         <input type="file" name="FileName">
                     </form>
-
-                    <div style="display: flex; justify-content: center;">
-                        <input class="button btnFade btnBlueGreen" th:href="@{/boardwrite}" id="subBtn" type="button" value="글 작성" style="float: right;  margin-top: 40px; border-top: 0px; border-left: 0px; border-bottom: 0px; border-right: 0px; border-radius: 4px; width: 100px; height: 40px;"/>
-                    </div>
-
                 </form>
             </div>
 
@@ -231,6 +208,22 @@
         <!--//panel-inner-->
     </div>
 
+    <script>
+        function goWrite(frm) {
+            let title = frm.title.value;
+            let content = frm.content.value;
+
+            if (title.trim() == ''){
+                alert("제목을 입력해주세요");
+                return false;
+            }
+            if (content.trim() == ''){
+                alert("내용을 입력해주세요");
+                return false;
+            }
+            frm.submit();
+        }
+    </script>
 </body>
 
 </html>
