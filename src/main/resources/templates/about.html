@@ -22,6 +22,7 @@
   <!-- Theme CSS -->
   <link id="theme-style" rel="stylesheet" href="assets/css/theme1.css" />
   <link rel="stylesheet" href="/assets/css/about.css" />
+  <link rel="stylesheet" href="/assets/css/profile.css" />
 
 </head>
 
@@ -112,6 +113,20 @@
 <div class="main-wrapper">
   <div class="mypage">
     <form method="post" id="update-form" action="/update">
+
+      <div>
+        <img class="preview" id="preview" src="assets/images/default-profile.png" alt="프로필 사진 미리보기" style="width: 200px; height: 200px;">
+      </div>
+
+      <br>
+
+      <form>
+        <div class="filebox">
+          <label for="profile-pic">파일찾기</label>
+          <input type="file" class="profile" id="profile-pic" name="profile-pic" accept="images/*">
+        </div>
+      </form>
+
       <div class="grp">
         <label for="name">이름:</label>
         <input type="text" id="name" name="name" th:value="${session.Member.name}" placeholder="이름"/>
@@ -210,5 +225,22 @@
     $('[data-toggle="tooltip"]').tooltip();
   });
 </script>
+
+<script>
+  document.getElementById("profile-pic").onchange = function(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+      var output = document.getElementById("preview");
+      output.src = reader.result;
+    };
+    if (event.target.files[0]) {
+      reader.readAsDataURL(event.target.files[0]);
+    } else {
+      document.getElementById("preview").src = "assets/images/default-profile.png";
+    }
+  };
+</script>
+
+
 </body>
 </html>
