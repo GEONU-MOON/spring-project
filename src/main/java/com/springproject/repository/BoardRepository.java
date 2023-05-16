@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -21,6 +22,9 @@ public class BoardRepository {
         em.persist(board);
     }
 
+    public Optional<Board> findById(Long id){
+        return Optional.ofNullable(em.find(Board.class, id));
+    }
 
     public List<Board> findListByID(String userid){
         return em.createQuery("select b from Board b where b.member.userid=:userid order by b.id desc", Board.class)

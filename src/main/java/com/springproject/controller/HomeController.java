@@ -9,10 +9,7 @@ import com.springproject.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -55,4 +52,13 @@ public class HomeController {
         }
     }
 
+    @GetMapping("blogpost/{id}")
+    public String blogpost(@PathVariable Long id, Model model){
+        Board board = boardService.findBoardById(id);
+        if (board == null) {
+            return "redirect:/";
+        }
+        model.addAttribute("board", board);
+        return "blogpost";
+    }
 }

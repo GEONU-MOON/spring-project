@@ -21,6 +21,10 @@ public class BoardService {
         return boardRepository.findListByID(userid);
     }
 
+    public Board findBoardById(Long id) {
+        return boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid board Id:" + id));
+    }
+
     public EmbedMember setEmbedMember(String userid) {return membersRepository.setBoardMember(userid);}
 
     public void save(Board board){boardRepository.save(board);}

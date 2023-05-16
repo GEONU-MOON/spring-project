@@ -148,12 +148,12 @@
           />
           <div class="media-body">
             <h3 class="title mb-1">
-              <a th:href="@{/blogpost/{id}(id=${board.id})}" th:text="${board.title}">게시물 제목 입력</a>
+              <a th:href="@{/blogpost/{id}(id=${board.id})}" th:text="${board.title}">게시물 제목</a>
             </h3>
             <div class="meta mb-1">
               <span class="date" th:text="${board.postDate.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd'))}">게시일</span>
             </div>
-            <div class="intro" th:text="${board.content}">컨텐츠 내용 간략하게</div>
+            <div class="intro" th:text="${board.content}">컨텐츠 내용</div>
           </div>
           <!--//media-body-->
         </div>

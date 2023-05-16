@@ -162,24 +162,26 @@
 	    <article class="blog-post px-3 py-5 p-md-5">
 		    <div class="container">
 			    <header class="blog-post-header">
-				    <h2 class="title mb-2" name="postname" id="postname">모든 개발자가 블로그를 가져야 하는 이유</h2>
-				    <div class="meta mb-3"><span class="date" name="postdate" id="postdate">3개월 전 발행</span><span class="time">5분 읽기</span><span class="comment"><a href="#">댓글 4개</a></span></div>
+					<h2 class="title mb-2" th:text="${board.title}">게시물 제목</h2>
+					<div class="meta mb-3">
+						<span class="date" th:text="${board.postDate.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd'))}">3개월 전 발행</span>
+					</div>
 					<div class="my-2 my-md-3" style="text-align: right;">
 						<a class="btn btn-primary" href="/boardupdate">수정하기</a>
 					</div>
 			    </header>
 
-			    <div class="blog-post-body" >
-				    <figure class="blog-banner">
-				        <a href="https://made4dev.com"><img class="img-fluid" src="/assets/images/blog/blog-post-banner.jpg" alt="image"></a>
-				        <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a></figcaption>
-				    </figure>
+				<div class="blog-post-body">
+					<figure class="blog-banner">
+							<img class="img-fluid" th:src="@{${board.thumbnail}}" alt="image">
+						<figcaption class="mt-2 text-center image-caption">
+							Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a>
+						</figcaption>
+					</figure>
 					<div name="postcontent" id="postcontent">
-						<p> 내용 포르투갈어로 대충   </p>
+						<p th:text="${board.content}">내용</p>
 					</div>
-
-
-			    </div>
+				</div>
 
 			    <nav class="blog-nav nav nav-justified my-5">
 				  <a class="nav-link-prev nav-item nav-link rounded-left" href="/">이전 게시글<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
@@ -214,53 +216,12 @@
 
 					<h2 style="margin-top: 10px;">Comment</h2>
 					<form>
-<!--						<label for="commentname">이름:</label>-->
-<!--						<input type="text" id="commentname" name="commentname" placeholder="이름을 입력해 주세요." required>-->
-
-<!--						<label for="commentemail">이메일:</label>-->
-<!--						<input type="text" id="commentemail" name="commentemail" placeholder="이메일을 입력해 주세요." required>-->
-
 						<label for="commentcontent"></label>
 						<textarea id="commentcontent" name="commentcontent" rows="4" placeholder="댓글을 입력해 주세요." required></textarea>
 
 						<input type="submit" value="댓글 작성" style="border-top-width: 0px; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px;">
 					</form>
 				</div>
-
-<!--				<div class="blog-comments-section">-->
-<!--					<div id="disqus_thread"></div>-->
-<!--					<script>-->
-<!--						/**-->
-<!--						 *  권장 구성 변수: 편집 및 주석-->
-<!--						 *  동적 값을 삽입하기 위한 아래 섹션-->
-<!--						 *  플랫폼 또는 CMS.-->
-<!--						 *-->
-<!--						 *  이러한 변수를 정의하는 것이 중요한 이유를 알아보십시오:-->
-<!--						 *  https://disqus.com/admin/universalcode/#configuration-variables-->
-<!--						 */-->
-<!--						/*-->
-<!--                        var disqus_config = function () {-->
-<!--                        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable-->
-<!--                        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable-->
-<!--                        };-->
-<!--                        */-->
-<!--						/*-->
-<!--						* 댓글 시스템을 설정하기위한 disqus_config 함수. 웹사이트에 댓글기능을 추가하는 서비스-->
-<!--						*/-->
-<!--						(function() { // DON'T EDIT BELOW THIS LINE-->
-<!--							var d = document, s = d.createElement('script');-->
-<!--							s.src = 'https://my-site-gvcahrtak4.disqus.com/embed.js';-->
-<!--							s.setAttribute('data-timestamp', +new Date());-->
-<!--							(d.head || d.body).appendChild(s);-->
-<!--						})();-->
-<!--						/*-->
-<!--						이 코드는 Disqus 댓글 시스템을 웹페이지에 삽입하기 위한 스크립트 코드를 통해 Disqus 스크립트 파일이 동적으로 생성되고 웹페이지에 추가-->
-
-<!--						코드는 즉시 실행 함수로 둘러싸여 있고, 코드 블록 내부에서 Disqus 스크립트를 동적으로 생성하고 페이지에 추가하는 과정-->
-<!--						 */-->
-<!--					</script>-->
-<!--					<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
-<!--				</div>&lt;!&ndash;//blog-comments-section&ndash;&gt;-->
 
 		    </div><!--//container-->
 	    </article>
