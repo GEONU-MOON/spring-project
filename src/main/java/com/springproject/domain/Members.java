@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.util.List;
 
 
@@ -26,6 +27,8 @@ public class Members {
     private String password;
 
     private String githubLink;
+
+    private String image;
 
     @OneToMany(mappedBy = "member")
     private List<Comments> comments;

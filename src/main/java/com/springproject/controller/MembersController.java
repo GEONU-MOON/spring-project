@@ -12,10 +12,7 @@ import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ClassUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,22 +27,6 @@ public class MembersController {
     private final MemberService memberService;
     private final BoardService boardService;
 
-    @PostMapping("/update")
-    public String updateMember(RegisterDTO form, HttpSession session) {
-        Members member = (Members) session.getAttribute("Member");
-        memberService.updateMember(member, form);
-        session.setAttribute("Member", member);
-        return "redirect:/home";
-    }
-
-    @PostMapping("/delete")
-    public String deleteMember(HttpSession session) {
-        Members member = (Members) session.getAttribute("Member");
-        memberService.deleteMember(member);
-        session.invalidate();
-        return "redirect:/";
-    }
-
     @PostMapping("/")
     public String register(RegisterDTO form){
         Members member = new Members();
@@ -59,46 +40,24 @@ public class MembersController {
         return "redirect:/";
     }
 
-    @PostMapping("/home")
-    public String Login(LoginDTO form, Model model, HttpServletRequest request, HttpServletResponse response) {
-        String inputID = form.getUserid();
-        String inputPW = form.getPassword();
-
-        Members result = memberService.login(inputID, inputPW);
-        if(result != null){
-            HttpSession session = request.getSession();
-            session.setAttribute("Member", result);
-            session.setMaxInactiveInterval(60*10);
-
-            List<Board> boardList = boardService.recentBoard(inputID);
-            model.addAttribute("recentBoard", boardList);
-            System.out.println(boardList.isEmpty());
-
-
-        }else{
-            try {
-                response.setContentType("text/html; charset=utf-8");
-                PrintWriter w = response.getWriter();
-                w.println("<script language='javascript'>");
-                w.println("alert('로그인에 실패하였습니다. 다시 시도해주세요'); location.href='/';");
-                w.println("</script>");
-
-                w.flush();
-                //실패시
-                return "redirect:/";
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-        }
-        return "home";
+    @GetMapping("about")
+    public String about(){
+        return "about";
     }
 
-    @RequestMapping(value="logout.do", method= RequestMethod.GET)
-    public String logoutMainGET(HttpServletRequest request) throws Exception{
+    @PostMapping("/update")
+    public String updateMember(RegisterDTO form, HttpSession session) {
+        Members member = (Members) session.getAttribute("Member");
+        memberService.updateMember(member, form);
+        session.setAttribute("Member", member);
+        return "redirect:/home";
+    }
 
-        HttpSession session = request.getSession();
+    @PostMapping("/delete")
+    public String deleteMember(HttpSession session) {
+        Members member = (Members) session.getAttribute("Member");
+        memberService.deleteMember(member);
         session.invalidate();
-
         return "redirect:/";
     }
 }
