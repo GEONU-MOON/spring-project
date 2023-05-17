@@ -34,7 +34,8 @@ public class OthersController {
     }
 
     @GetMapping("otheruserboard")
-    public String userBoard(Model model, @RequestParam("otherMember")Members otherMember){
+    public String userBoard(Model model, @RequestParam("otherMember")String otherId){
+        Members otherMember = memberService.findByID(otherId);
         List<Board> userBoards = boardService.findList(otherMember.getUserid());
         model.addAttribute("userBoards", userBoards);
         model.addAttribute("otherMember", otherMember);
@@ -42,8 +43,9 @@ public class OthersController {
     }
 
     @GetMapping("otherblogpost/{id}")
-    public String blogpost(@PathVariable Long id, Model model, @RequestParam("otherMember")Members otherMember){
+    public String blogpost(@PathVariable Long id, Model model, @RequestParam("otherMember")String otherId){
         Board board = boardService.findBoardById(id);
+        Members otherMember = memberService.findByID(otherId);
         if (board == null) {
             return "redirect:/";
         }

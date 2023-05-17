@@ -46,7 +46,7 @@
 			<div class="profile-section pt-3 pt-lg-0">
 				<img
 						class="profile-image mb-3 rounded-circle mx-auto"
-						src="assets/images/profile.png"
+						src="assets/images/profile.png" th:src="${otherMember.image}"
 						alt="image"
 				/>
 
@@ -112,7 +112,7 @@
 				<img class="mr-3 img-fluid post-thumb d-none d-md-flex" th:src="@{${board.thumbnail}}" alt="image" >
 				<div class="media-body">
 					<h3 class="title mb-1">
-						<a th:href="@{/blogpost/{id}(id=${board.id})}" th:text="${board.title}">게시물 제목</a>
+						<a th:href="@{/otherblogpost/{id}(id=${board.id}, otherMember=${otherMember.getUserid()})}" th:text="${board.title}">게시물 제목</a>
 					</h3>
 					<div class="meta mb-1">
 						<span class="date" th:text="${board.postDate}">3달 전 작성</span>
@@ -141,8 +141,6 @@
 					다음<i class="arrow-next fas fa-long-arrow-alt-right"></i>
 				</a>
 			</nav>
-
-		</div>
 	</section>
 
 	<footer class="footer text-center py-2 theme-bg-dark">

@@ -28,7 +28,7 @@
 <body>
 <header class="header text-center" id="main-header" name="main-header">
   <h1 class="blog-name pt-lg-4 mb-0">
-    <a href="/home">
+    <a href="/home" th:href="@{/otherhome(otheruserid=${otherMember.userid})}">
       <span th:text="${otherMember.name}"></span>'s Devlog
     </a>
     <!--블로그 주인 이름 -->
@@ -135,8 +135,7 @@
           />
           <div class="media-body">
             <h3 class="title mb-1">
-              <a th:href="@{/blogpost/{id}(id=${board.id})}" th:text="${board.title}"
-              <input type="hidden" name="otherMember" th:value="${otherMember}">게시물 제목</a>
+              <a th:href="@{/otherblogpost/{id}(id=${board.id}, otherMember=${otherMember.getUserid()})}" th:text="${board.title}">게시물 제목</a>
             </h3>
             <div class="meta mb-1">
               <span class="date" th:text="${board.postDate.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd'))}">게시일</span>
@@ -157,9 +156,9 @@
         ></a>
         <a
                 class="nav-link-next nav-item nav-link rounded"
-                href="/otheruserboard"
-        <input type="hidden" name="otherMember" th:value="${otherMember}"> 게시물 더보기<i class="arrow-next fas fa-long-arrow-alt-right"></i
-        ></a>
+                th:href="@{/otheruserboard/(otherMember=${otherMember.userid})}">게시물 더보기
+        <i class="arrow-next fas fa-long-arrow-alt-right"></i>
+        </a>
       </nav>
     </div>
   </section>
