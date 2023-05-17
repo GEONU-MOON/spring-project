@@ -22,7 +22,10 @@ public class MemberService {
     public void updateMember(Members member, UpdateDTO form) {
         member.setName(form.getName());
         member.setEmail(form.getEmail());
-        member.setPassword(form.getPassword());
+        String newPassword = form.getPassword();
+        if (newPassword != null && !newPassword.isEmpty()) {
+            member.setPassword(newPassword);
+        }
         member.setGithubLink(form.getGithublink());
         memberrepository.update(member);
     }

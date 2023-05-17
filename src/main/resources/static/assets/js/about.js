@@ -38,20 +38,19 @@ function validateInput() {
         return false;
     }
 
-    if (!newPassword || !newPasswordCk) {
-        alert("모든 입력란을 채워주세요.");
-        return false;
+    if (newPassword || newPasswordCk) {
+        if (!newPasswordPattern.test(newPassword)) {
+            alert("새 비밀번호는 영어, 숫자, 특수문자를 섞어 4~12자리로 만들어야 합니다.");
+            return false;
+        }
+
+        if (newPassword !== newPasswordCk) {
+            alert("새 비밀번호와 새 비밀번호 확인이 일치하지 않습니다.");
+            return false;
+        }
     }
 
-    if (!newPasswordPattern.test(newPassword)) {
-        alert("새 비밀번호는 영어, 숫자, 특수문자를 섞어 4~12자리로 만들어야 합니다.");
-        return false;
-    }
 
-    if (newPassword !== newPasswordCk) {
-        alert("새 비밀번호와 새 비밀번호 확인이 일치하지 않습니다.");
-        return false;
-    }
 
     return true;
 }
