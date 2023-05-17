@@ -51,9 +51,7 @@ public class MembersController {
     @PostMapping("/update")
     public String updateMember(UpdateDTO form, HttpSession session) {
         Members member = (Members) session.getAttribute("Member");
-        System.out.println(form.getName());
-        System.out.println(form.getProfileimage());
-        //memberService.updateMember(member, form);
+        memberService.updateMember(member, form);
         session.setAttribute("Member", member);
         return "redirect:/home";
     }

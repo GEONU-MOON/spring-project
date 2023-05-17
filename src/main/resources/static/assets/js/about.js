@@ -22,8 +22,8 @@ function checkPassword(action) {
 function validateInput() {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
-    const newPassword = document.getElementById("newpassword").value;
-    const newPasswordCk = document.getElementById("newpasswordck").value;
+    const newPassword = document.getElementById("password").value;
+    const newPasswordCk = document.getElementById("password2").value;
 
     const namePattern = /^[가-힣a-zA-Z]+$/;
     const newPasswordPattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{4,12}$/;
@@ -61,13 +61,15 @@ function validateEmail(email) {
     return emailPattern.test(email);
 }
 
-document.getElementById("update-btn").addEventListener("click", function () {
+document.getElementById("update-btn").addEventListener("click", function (event) {
+    event.preventDefault();
     if (validateInput()) {
         checkPassword("update");
     }
 });
 
-document.getElementById("delete-btn").addEventListener("click", function () {
+document.getElementById("delete-btn").addEventListener("click", function (event) {
+    event.preventDefault();
     checkPassword("delete");
 });
 

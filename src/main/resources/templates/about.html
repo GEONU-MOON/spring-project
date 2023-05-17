@@ -112,20 +112,17 @@
 
 <div class="main-wrapper">
   <div class="mypage">
-    <form method="post" id="update-form" action="/update">
-
+    <form method="post" id="update-form" action="/update" enctype="multipart/form-data">
       <div>
         <img class="preview" id="preview" src="assets/images/default-profile.png" alt="프로필 사진 미리보기" style="width: 200px; height: 200px;">
       </div>
 
       <br>
 
-      <form>
-        <div class="filebox">
-          <label for="profile-pic">파일찾기</label>
-          <input type="file" class="profile" id="profile-pic" name="profile-pic" accept="images/*">
-        </div>
-      </form>
+      <div class="filebox">
+        <!--<label for="profile-pic">파일찾기</label>
+        <input type="file" class="profile" id="profile-pic" name="profileimage" accept="images/*"> -->
+      </div>
 
       <div class="grp">
         <label for="name">이름:</label>
@@ -145,28 +142,31 @@
       </div>
 
       <div class="grp">
-        <label for="newpassword">새 비밀번호:</label>
-        <input type="password" id="newpassword" name="newpassword" placeholder="새 비밀번호" /><br/>
+        <label for="password">새 비밀번호:</label>
+        <input type="password" id="password" name="password" placeholder="새 비밀번호" /><br/>
       </div>
 
       <div class="grp">
-        <label for="newpasswordck">새 비밀번호 확인:</label>
-        <input type="password" id="newpasswordck" name="newpasswordck" placeholder="새 비밀번호 확인" /><br/>
+        <label for="password2">새 비밀번호 확인:</label>
+        <input type="password" id="password2" name="password2" placeholder="새 비밀번호 확인" /><br/>
       </div>
 
       <div class="grp github-link-grp">
-        <label for="githubLink">깃허브 링크:</label>
-        <input type="text" id="githubLink" name="githubLink" th:value="${session.Member.githubLink}" placeholder="깃허브 링크"/>
+        <label for="githublink">깃허브 링크:</label>
+        <input type="text" id="githublink" name="githublink" th:value="${session.Member.githubLink}" placeholder="깃허브 링크"/>
       </div>
 
-      <button type="button" class="svbtn" id="update-btn">저장</button>
+      <button type="submit" class="svbtn" id="update-btn">저장</button>
     </form>
+
     <form method="post" id="delete-form" action="/delete">
       <button type="button" class="delbtn" id="delete-btn">회원 탈퇴</button>
     </form>
+
   </div>
 
 </div>
+
 <!--//main-wrapper-->
 
 <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
