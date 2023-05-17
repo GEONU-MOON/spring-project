@@ -120,8 +120,8 @@
       <br>
 
       <div class="filebox">
-        <!--<label for="profile-pic">사진 변경</label>
-        <input type="file" class="profile" id="profile-pic" name="profileimage" accept="images/*"> -->
+        <label for="profileimage">사진 변경</label>
+        <input type="file" class="profile" id="profileimage" name="profileimage" accept="images/*">
       </div>
 
       <div class="grp">
@@ -227,7 +227,7 @@
 </script>
 
 <script>
-  document.getElementById("profile-pic").onchange = function(event) {
+  document.getElementById("profileimage").onchange = function(event) {
     var reader = new FileReader();
     reader.onload = function() {
       var output = document.getElementById("preview");

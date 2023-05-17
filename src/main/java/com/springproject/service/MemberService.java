@@ -9,7 +9,12 @@ import com.springproject.repository.MembersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 @Service
@@ -17,6 +22,26 @@ import java.util.Objects;
 @Transactional(readOnly = true)
 public class MemberService {
     private final MembersRepository memberrepository;
+
+    public String saveProfileImage(MultipartFile profileImage) {
+        try {
+            // 절대 경로 가능
+            String imageFolder = "C:/팀프로젝트/spring pj/src/main/resources/static/assets/images";
+
+            String originalFilename = profileImage.getOriginalFilename();
+            String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
+            String uniqueFilename = System.currentTimeMillis() + fileExtension;
+
+            Path targetPath = Paths.get(imageFolder, uniqueFilename);
+            File targetFile = targetPath.toFile();
+            profileImage.transferTo(targetFile);
+
+            return targetPath.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     @Transactional
     public void updateMember(Members member, UpdateDTO form) {
@@ -27,8 +52,16 @@ public class MemberService {
             member.setPassword(newPassword);
         }
         member.setGithubLink(form.getGithublink());
+
+        MultipartFile profileImage = form.getProfileimage();
+        if (profileImage != null && !profileImage.isEmpty()) {
+            String imagePath = saveProfileImage(profileImage);
+            member.setImage(imagePath);
+        }
+
         memberrepository.update(member);
     }
+
 
     @Transactional
     public void deleteMember(Members member) {
