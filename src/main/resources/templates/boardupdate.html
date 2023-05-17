@@ -20,7 +20,7 @@
     ></script>
 
     <!-- Theme CSS -->
-    <link id="theme-style" rel="stylesheet" href="assets/css/theme1.css" />
+    <link id="theme-style" rel="stylesheet" href="/assets/css/theme1.css" />
 
     <!-- include libraries(jQuery, bootstrap) -->
 <!--    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">-->
@@ -84,7 +84,7 @@
                 <div class="profile-section pt-3 pt-lg-0">
                     <img
                             class="profile-image mb-3 rounded-circle mx-auto"
-                            src="assets/images/profile.png"
+                            src="/assets/images/profile.png"
                             alt="image"
                     />
 
@@ -142,17 +142,17 @@
 <!--        <div  class="container" style="border: solid;padding-top: 20px; border-radius: 20px;">-->
 
             <div style="width: 60%; margin: auto;">
-                <form method="post" action="/boardwrite">
+                <form method="post" action="/boardupdate">
     <!--                <input type="text" name="writer" style="width: 20%;" placeholder="작성자"/><br>-->
                     <label style="font-size: x-large;">Title</label>
-                    <input type="text" name="title" style="width: 80%; margin-left: 20px;" placeholder="제목을 입력해 주세요." required/>
+                    <input type="text" name="title" style="width: 80%; margin-left: 20px;" placeholder="제목을 입력해 주세요." th:value="${board.title}" required />
                     <hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid rgb(0,0,0,0.1)"/>
 
-                    <textarea id="" name="content" style="width: 95%;margin-left: 13px;height: 228px;margin-bottom: 13px;" required></textarea>
+                    <textarea id="" name="content" style="width: 95%;margin-left: 13px;height: 228px;margin-bottom: 13px;" th:field="*{board.content}" required></textarea>
                     <input class="button btnFade btnBlueGreen" id="subBtn" type="submit" value="글 수정" style="float: right;  margin-top: 40px; border-top: 0px; border-left: 0px; border-bottom: 0px; border-right: 0px; border-radius: 4px; width: 100px; height: 40px;"/>
                     <br>
                     <form action="" method="post" enctype="multipart/form-data" name="">
-                        <input type="file" name="FileName">
+                        <input type="file" name="thumbnail" style="width: 80%; margin-left: 20px;" placeholder="기존 파일 경로" th:value="${board.thumbnail}" readonly />
                     </form>
                 </form>
             </div>

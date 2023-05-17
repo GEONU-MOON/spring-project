@@ -165,7 +165,7 @@
 						<span class="date" th:text="${board.postDate.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd'))}">3개월 전 발행</span>
 					</div>
 					<div class="my-2 my-md-3" style="text-align: right;">
-						<a class="btn btn-primary" href="/boardupdate">수정하기</a>
+						<a class="btn btn-primary" th:href="@{/boardupdate/{id}(id=${board.id})}">수정하기</a>
 					</div>
 			    </header>
 

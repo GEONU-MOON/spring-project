@@ -40,8 +40,18 @@ public class BoardController {
         return "home";
     }
 
-    @GetMapping("boardupdate")
-    public String boardupdate() {return "boardupdate";}
+//    @GetMapping("boardupdate")
+//    public String boardupdate() {return "boardupdate";}
+
+    @GetMapping("boardupdate/{id}")
+    public String boardupdate(@PathVariable Long id, Model model) {
+        Board board = boardService.findBoardById(id);
+        if (board == null) {
+            return "redirect:/";
+        }
+        model.addAttribute("board", board);
+        return "boardupdate";
+    }
 
     @GetMapping("userboard")
     public String userBoard(HttpSession session, Model model){
