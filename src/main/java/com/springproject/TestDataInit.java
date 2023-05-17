@@ -37,11 +37,11 @@ public class TestDataInit {
         moon.setPassword("test");
         moon.setEmail("moondy2209@naver.com");
         moon.setGithubLink("https://github.com/GEONU-MOON");
-        moon.setImage("assets/images/mu175.jpg");
+        moon.setImage("assets/images/mu275.jpeg");
         moon.setIntroduce("문건우입니다.");
 
         Members yeon = new Members();
-        yeon.setImage("assets/image/rabbit.jpg");
+        yeon.setImage("assets/images/lotterabbit.jpeg");
         yeon.setName("임대연");
         yeon.setUserid("test3");
         yeon.setPassword("test");
