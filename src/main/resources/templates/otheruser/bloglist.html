@@ -23,7 +23,7 @@
 
 <header class="header text-center" id="main-header" name="main-header">
 	<h1 class="blog-name pt-lg-4 mb-0">
-		<a href="/home" th:href="@{/otherhome}">
+		<a href="/home" th:href="@{/otherhome(otheruserid=${otherMember.userid})}">
 			<span th:text="${otherMember.name}"></span>'s Devlog
 		</a>
 		<!--블로그 주인 이름 -->
@@ -49,17 +49,13 @@
 						src="assets/images/profile.png" th:src="${otherMember.image}"
 						alt="image"
 				/>
-
-				<div class="bio mb-3">
-					여기에 간단히 자기소개를 해주세요.<br /><a href="/about"
-				>나에 대해 더 알아보기</a
-				>
-				</div>
 				<!--//bio-->
 				<ul class="social-list list-inline py-3 mx-auto">
 					<li class="list-inline-item">
+					<li class="list-inline-item">
 						<!--깃허브 링크-->
-						<a href="#"><i class="fab fa-github-alt fa-fw"></i></a>
+						<a th:href="@{${otherMember.githubLink}}"><i class="fab fa-github-alt fa-fw"></i></a>
+					</li>
 					</li>
 				</ul>
 				<!--//social-list-->
@@ -67,15 +63,10 @@
 			</div>
 			<!--//profile-section-->
 			<ul class="navbar-nav flex-column text-left">
-				<li class="nav-item">
-					<a class="nav-link" href="/home"
-					><i class="fas fa-home fa-fw mr-2"></i>Devlog 홈
-						<span class="sr-only">(current)</span></a
-					>
-				</li>
 				<li class="nav-item active">
-					<a class="nav-link " href="/userboard"
-					><i class="fas fa-bookmark fa-fw mr-2"></i>Devlog 포스트</a
+					<a class="nav-link" href="/home"
+					><i class="fas fa-home fa-fw mr-2"></i>내 블로그로 돌아가기
+						<span class="sr-only">(current)</span></a
 					>
 				</li>
 			</ul>
@@ -90,14 +81,8 @@
 			<div class="my-2 my-md-3">
 				<a
 						class="btn btn-primary"
-						href="/boardwrite"
-				>작성하기</a
-				>
-			</div>
-			<div class="my-2 my-md-3">
-				<a
-						class="btn btn-primary"
 						href="/logout.do"
+						onclick="return confirmLogout()"
 				>로그아웃</a>
 			</div>
 		</div>
