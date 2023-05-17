@@ -171,7 +171,7 @@
 
 				<div class="blog-post-body">
 					<div class="blog-banner">
-						<img class="img-fluid" th:src="@{'/' + ${board.thumbnail}}" alt="image">
+						<img class="img-fluid" th:src="@{${board.thumbnail}}" alt="image">
 					</div>
 					<div name="postcontent" id="postcontent">
 						<p th:text="${board.content}">내용</p>
