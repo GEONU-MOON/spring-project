@@ -20,7 +20,6 @@
     
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="/assets/css/theme1.css">
-
 	<style>
 		.comment-form {
 			max-width: 765px;
@@ -67,7 +66,6 @@
 			background-color: #45a049;
 		}
 	</style>
-    
 
 </head> 
 
@@ -98,7 +96,7 @@
 				<div class="profile-section pt-3 pt-lg-0">
 					<img
 							class="profile-image mb-3 rounded-circle mx-auto"
-							src="assets/images/profile.png"
+							src="/assets/images/profile.png"
 							alt="image"
 					/>
 
@@ -172,12 +170,9 @@
 			    </header>
 
 				<div class="blog-post-body">
-					<figure class="blog-banner">
-							<img class="img-fluid" th:src="@{${board.thumbnail}}" alt="image">
-						<figcaption class="mt-2 text-center image-caption">
-							Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a>
-						</figcaption>
-					</figure>
+					<div class="blog-banner">
+						<img class="img-fluid" th:src="@{'/' + ${board.thumbnail}}" alt="image">
+					</div>
 					<div name="postcontent" id="postcontent">
 						<p th:text="${board.content}">내용</p>
 					</div>
@@ -250,7 +245,6 @@
 		</footer>
 
     </div><!--//main-wrapper-->
-    
 
     <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->  
     <div id="config-panel" class="config-panel d-none d-lg-block">
@@ -270,8 +264,6 @@
             <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
         </div><!--//panel-inner-->
     </div><!--//configure-panel-->
-
-    
        
     <!-- Javascript -->          
     <script src="/assets/plugins/jquery-3.3.1.min.js"></script>
@@ -286,14 +278,12 @@
     
     <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
     <script src="/assets/js/demo/style-switcher.js"></script>
-
 	<script>
 		// 툴팁 초기화
 		$(function () {
 			$('[data-toggle="tooltip"]').tooltip();
 		});
 	</script>
-
 </body>
 </html> 
 
