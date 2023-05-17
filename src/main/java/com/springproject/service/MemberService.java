@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -25,8 +26,9 @@ public class MemberService {
 
     public String saveProfileImage(MultipartFile profileImage) {
         try {
-            // 절대 경로 가능
-            String imageFolder = "C:/팀프로젝트/spring pj/src/main/resources/static/assets/images";
+            // 맥북용
+            String imageFolder = "/Users/moongeonu/SpringProject/src/main/resources/static/assets/images";
+            // 윈도우용 String imageFolder = "C:/SpringProject/src/main/resources/static/assets/images";
 
             String originalFilename = profileImage.getOriginalFilename();
             String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
@@ -44,7 +46,7 @@ public class MemberService {
     }
 
     @Transactional
-    public void updateMember(Members member, UpdateDTO form) {
+    public void updateMember(Members member, UpdateDTO form, HttpSession session) {
         member.setName(form.getName());
         member.setEmail(form.getEmail());
         String newPassword = form.getPassword();
@@ -57,6 +59,11 @@ public class MemberService {
         if (profileImage != null && !profileImage.isEmpty()) {
             String imagePath = saveProfileImage(profileImage);
             member.setImage(imagePath);
+
+            // 세션에 저장된 멤버의 이미지 정보를 갱신
+            Members sessionMember = (Members) session.getAttribute("Member");
+            sessionMember.setImage(imagePath);
+            session.setAttribute("Member", sessionMember);
         }
 
         memberrepository.update(member);

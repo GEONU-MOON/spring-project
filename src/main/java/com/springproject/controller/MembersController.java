@@ -51,8 +51,7 @@ public class MembersController {
     @PostMapping("/update")
     public String updateMember(UpdateDTO form, HttpSession session) {
         Members member = (Members) session.getAttribute("Member");
-        memberService.updateMember(member, form);
-        session.setAttribute("Member", member);
+        memberService.updateMember(member, form, session);
         return "redirect:/home";
     }
 
