@@ -26,9 +26,9 @@ public class MemberService {
 
     public String saveProfileImage(MultipartFile profileImage) {
         try {
-            // 맥북용
-            String imageFolder = "/Users/moongeonu/SpringProject/src/main/resources/static/assets/images";
-            // 윈도우용 String imageFolder = "C:/SpringProject/src/main/resources/static/assets/images";
+            // 문건우용   String imageFolder = "/Users/moongeonu/SpringProject/src/main/resources/static/assets/images";
+            // 윈도우용
+            String imageFolder = "C:/SpringProject/src/main/resources/static/assets/images";
 
             String originalFilename = profileImage.getOriginalFilename();
             String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
@@ -38,12 +38,13 @@ public class MemberService {
             File targetFile = targetPath.toFile();
             profileImage.transferTo(targetFile);
 
-            return targetPath.toString();
+            return "/assets/images/" + uniqueFilename;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
+
 
     @Transactional
     public void updateMember(Members member, UpdateDTO form, HttpSession session) {
@@ -59,8 +60,6 @@ public class MemberService {
         if (profileImage != null && !profileImage.isEmpty()) {
             String imagePath = saveProfileImage(profileImage);
             member.setImage(imagePath);
-
-            // 세션에 저장된 멤버의 이미지 정보를 갱신
             Members sessionMember = (Members) session.getAttribute("Member");
             sessionMember.setImage(imagePath);
             session.setAttribute("Member", sessionMember);
