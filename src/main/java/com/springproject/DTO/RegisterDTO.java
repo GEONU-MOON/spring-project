@@ -16,4 +16,5 @@ public class RegisterDTO {
 
     private String newpassword;
     private String newpasswordck;
+
 }

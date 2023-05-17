@@ -3,6 +3,7 @@ package com.springproject.controller;
 
 import com.springproject.DTO.LoginDTO;
 import com.springproject.DTO.RegisterDTO;
+import com.springproject.DTO.UpdateDTO;
 import com.springproject.domain.Board;
 import com.springproject.domain.Members;
 import com.springproject.service.BoardService;
@@ -41,14 +42,18 @@ public class MembersController {
     }
 
     @GetMapping("about")
-    public String about(){
+    public String about(Model model){
+        model.addAttribute("UpdateDTO", new UpdateDTO());
+
         return "about";
     }
 
     @PostMapping("/update")
-    public String updateMember(RegisterDTO form, HttpSession session) {
+    public String updateMember(UpdateDTO form, HttpSession session) {
         Members member = (Members) session.getAttribute("Member");
-        memberService.updateMember(member, form);
+        System.out.println(form.getName());
+        System.out.println(form.getProfileimage());
+        //memberService.updateMember(member, form);
         session.setAttribute("Member", member);
         return "redirect:/home";
     }
