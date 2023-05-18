@@ -43,5 +43,14 @@ public class BoardService {
         Pageable pageable = PageRequest.of(currentPage - 1, pageSize, sort);
         return boardRepository.findPagedUserBoards(userid, pageable);
     }
+
+    public Long findPrevBoardId(String userid, Long currentId) {
+        return boardRepository.findPrevBoardId(userid, currentId);
+    }
+
+    public Long findNextBoardId(String userid, Long currentId) {
+        return boardRepository.findNextBoardId(userid, currentId);
+    }
+
 }
 

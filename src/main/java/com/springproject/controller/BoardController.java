@@ -41,9 +41,6 @@ public class BoardController {
         return "home";
     }
 
-//    @GetMapping("boardupdate")
-//    public String boardupdate() {return "boardupdate";}
-
     @GetMapping("boardupdate/{id}")
     public String boardupdate(@PathVariable Long id, Model model) {
         Board board = boardService.findBoardById(id);
@@ -57,14 +54,24 @@ public class BoardController {
 
 
     @GetMapping("blogpost/{id}")
-    public String blogpost(@PathVariable Long id, Model model){
+    public String blogpost(@PathVariable Long id, Model model, HttpSession session){
         Board board = boardService.findBoardById(id);
         if (board == null) {
             return "redirect:/";
         }
+
+        String userid = ((Members)session.getAttribute("Member")).getUserid();
+
+        Long prevBoardId = boardService.findPrevBoardId(userid, id);
+        Long nextBoardId = boardService.findNextBoardId(userid, id);
+
         model.addAttribute("board", board);
+        model.addAttribute("prevBoardId", prevBoardId);
+        model.addAttribute("nextBoardId", nextBoardId);
         model.addAttribute("commentDTO", new CommentDTO());
+
         return "blogpost";
     }
+
 
 }

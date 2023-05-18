@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -71,5 +72,30 @@ public class BoardRepository {
 
         return new PageImpl<>(boards, pageable, count);
     }
+
+    public Long findPrevBoardId(String userid, Long currentId) {
+        try {
+            return em.createQuery("select b.id from Board b where b.member.userid=:userid and b.id < :currentId order by b.id desc", Long.class)
+                    .setParameter("userid", userid)
+                    .setParameter("currentId", currentId)
+                    .setMaxResults(1)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public Long findNextBoardId(String userid, Long currentId) {
+        try {
+            return em.createQuery("select b.id from Board b where b.member.userid=:userid and b.id > :currentId order by b.id asc", Long.class)
+                    .setParameter("userid", userid)
+                    .setParameter("currentId", currentId)
+                    .setMaxResults(1)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
 }
 

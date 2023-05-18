@@ -20,52 +20,7 @@
     
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="/assets/css/theme1.css">
-	<style>
-		.comment-form {
-			max-width: 765px;
-			margin: 0 auto;
-			padding: 20px;
-			background-color: #f5f5f5;
-			border: 1px solid #ccc;
-			border-radius: 5px;
-		}
-
-		.comment-form h2 {
-			margin: 0 0 10px;
-			font-size: 18px;
-		}
-
-		.comment-form form {
-			display: flex;
-			flex-direction: column;
-		}
-
-		.comment-form label {
-			font-weight: bold;
-			margin-bottom: 5px;
-		}
-
-		.comment-form textarea,
-		.comment-form input[type="submit"] {
-			padding: 10px;
-			margin-bottom: 10px;
-			border-radius: 3px;
-		}
-
-		.comment-form textarea {
-			height: 100px;
-		}
-
-		.comment-form input[type="submit"] {
-			background-color: #5FCB71;
-			color: white;
-			cursor: pointer;
-		}
-
-		.comment-form input[type="submit"]:hover {
-			background-color: #45a049;
-		}
-	</style>
+	<link id="blogpost" rel="stylesheet" href="/assets/css/blogpost.css">
 
 </head> 
 
@@ -178,9 +133,9 @@
 					</div>
 				</div>
 
-			    <nav class="blog-nav nav nav-justified my-5">
-				  <a class="nav-link-prev nav-item nav-link rounded-left" th:if="${board.id > 1}" th:href="@{/blogpost/{id}(id=${board.id - 1})}">이전 게시글<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-				  <a class="nav-link-next nav-item nav-link rounded-right" th:href="@{/blogpost/{id}(id=${board.id + 1})}">다음 게시글<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+				<nav class="blog-nav nav nav-justified my-5">
+					<a class="nav-link-prev nav-item nav-link rounded-left" th:if="${prevBoardId != null}" th:href="@{/blogpost/{id}(id=${prevBoardId})}">이전 게시글<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+					<a class="nav-link-next nav-item nav-link rounded-right" th:if="${nextBoardId != null}" th:href="@{/blogpost/{id}(id=${nextBoardId})}">다음 게시글<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
 				</nav>
 
 				<div class="comment-form">
