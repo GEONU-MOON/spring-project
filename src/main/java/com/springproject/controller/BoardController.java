@@ -53,13 +53,7 @@ public class BoardController {
         return "boardupdate";
     }
 
-    @GetMapping("userboard")
-    public String userBoard(HttpSession session, Model model){
-        Members member = (Members) session.getAttribute("Member");
-        List<Board> userBoards = boardService.findList(member.getUserid());
-        model.addAttribute("userBoards", userBoards);
-        return "bloglist";
-    }
+
 
     @GetMapping("blogpost/{id}")
     public String blogpost(@PathVariable Long id, Model model){
