@@ -1,7 +1,10 @@
 package com.springproject.DTO;
 
+import com.springproject.domain.EmbedMember;
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.Embedded;
 import java.time.LocalDate;
 
 @Getter @Setter
@@ -13,4 +16,6 @@ public class BoardDTO {
     private LocalDate postDate;
 
     private String thumbnail;
+
+    private EmbedMember member;
 }
