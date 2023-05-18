@@ -31,16 +31,29 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("home")
-    public String home(Model model, HttpSession session){
-        Members member = (Members) session.getAttribute("Member");
-        if (member != null) {
-            List<Board> boardList = boardService.recentBoard(member.getUserid());
-            model.addAttribute("recentBoard", boardList);
-            return "home";
-        } else {
-            return "redirect:/";
+    @GetMapping("/otherhome")
+    public String otherhome(@RequestParam("otheruserid") String userid, Model model) {
+        Members otherMember = memberService.findByID(userid);
+        if (otherMember == null) {
+            // 예외 처리 또는 오류 처리를 수행하거나 적절한 방법으로 처리해야 합니다.
+            return "error";
         }
+        List<Board> boardList = boardService.recentBoard(otherMember.getUserid(), 3);
+
+        model.addAttribute("recentBoard", boardList);
+        model.addAttribute("otherMember", otherMember);
+        return "otheruser/home";
+    }
+
+    @GetMapping("/home")
+    public String home(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Members member = (Members) session.getAttribute("Member");
+        if(member != null) {
+            List<Board> boardList = boardService.recentBoard(member.getUserid(), 3);
+            model.addAttribute("recentBoard", boardList);
+        }
+        return "home";
     }
 
     @PostMapping("/home")
@@ -54,27 +67,16 @@ public class HomeController {
             session.setAttribute("Member", result);
             session.setMaxInactiveInterval(60*10);
 
-            List<Board> boardList = boardService.recentBoard(inputID);
+            List<Board> boardList = boardService.recentBoard(inputID, 3);
+
             model.addAttribute("recentBoard", boardList);
 
-
-        }else{
-            try {
-                response.setContentType("text/html; charset=utf-8");
-                PrintWriter w = response.getWriter();
-                w.println("<script language='javascript'>");
-                w.println("alert('로그인에 실패하였습니다. 다시 시도해주세요'); location.href='/';");
-                w.println("</script>");
-
-                w.flush();
-                //실패시
-                return "redirect:/";
-            }catch(Exception e){
-                e.printStackTrace();
-            }
+            return "home";
+        } else {
+            return "redirect:/";
         }
-        return "home";
     }
+
 
     @RequestMapping(value="logout.do", method= RequestMethod.GET)
     public String logoutMainGET(HttpServletRequest request) throws Exception{
@@ -84,17 +86,4 @@ public class HomeController {
 
         return "redirect:/";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

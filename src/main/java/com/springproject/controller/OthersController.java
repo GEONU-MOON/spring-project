@@ -23,21 +23,32 @@ public class OthersController {
 
     private final MemberService memberService;
     private final BoardService boardService;
-    @GetMapping("/otherhome")
-    public String otherhome(@RequestParam("otheruserid")String userid, Model model) {
+    @GetMapping("/otheruserhome")
+    public String otherhome(@RequestParam("otheruserid") String userid, Model model) {
         Members otherMember = memberService.findByID(userid);
-        List<Board> boardList = boardService.recentBoard(otherMember.getUserid());
+        if (otherMember == null) {
+            // 예외 처리 또는 오류 처리를 수행하거나 적절한 방법으로 처리해야 합니다.
+            return "error";
+        }
+        List<Board> boardList = boardService.recentBoard(otherMember.getUserid(), 3);
 
         model.addAttribute("recentBoard", boardList);
         model.addAttribute("otherMember", otherMember);
         return "otheruser/home";
     }
 
+
+
     @GetMapping("otheruserboard")
-    public String userBoard(Model model, @RequestParam("otherMember")String otherId){
+    public String userBoard(Model model, @RequestParam("otherMember") String otherId) {
         Members otherMember = memberService.findByID(otherId);
-        List<Board> userBoards = boardService.findList(otherMember.getUserid());
-        model.addAttribute("userBoards", userBoards);
+        if (otherMember == null) {
+            // 예외 처리 또는 오류 처리를 수행하거나 적절한 방법으로 처리해야 합니다.
+            return "error";
+        }
+        List<Board> boardList = boardService.recentBoard(otherMember.getUserid(), 3);
+
+        model.addAttribute("userBoards", boardList);
         model.addAttribute("otherMember", otherMember);
         return "otheruser/bloglist";
     }
