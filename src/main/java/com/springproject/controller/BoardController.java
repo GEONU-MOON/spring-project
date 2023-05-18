@@ -1,6 +1,7 @@
 package com.springproject.controller;
 
 import com.springproject.DTO.BoardDTO;
+import com.springproject.DTO.CommentDTO;
 import com.springproject.domain.Board;
 import com.springproject.domain.Members;
 import com.springproject.repository.MembersRepository;
@@ -62,6 +63,7 @@ public class BoardController {
             return "redirect:/";
         }
         model.addAttribute("board", board);
+        model.addAttribute("commentDTO", new CommentDTO());
         return "blogpost";
     }
 
