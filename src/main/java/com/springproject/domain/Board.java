@@ -16,6 +16,7 @@ public class Board {
     @Column(name = "board_id")
     private Long id;
 
+    @Embedded
     private EmbedMember member;
 
     private String title;
