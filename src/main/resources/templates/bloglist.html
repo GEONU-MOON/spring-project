@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Bootstrap 4 Blog Template For Developers</title>
-
+	<title>Devlog_home</title>
 	<!-- Meta -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Blog Template">
-	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">
-	<link rel="shortcut icon" href="../../../../../Users/LDY/Desktop/DevBlog-Theme-master/favicon.ico">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Blog Template" />
+	<meta name="author" content="Xiaoying Riley at 3rd Wave Media" />
+	<link rel="shortcut icon" href="favicon.ico" />
 
 	<!-- FontAwesome JS-->
-	<script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+	<script
+			defer
+			src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
+			integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7"
+			crossorigin="anonymous"
+	></script>
 
 	<!-- Theme CSS -->
-	<link id="theme-style" rel="stylesheet" href="/assets/css/theme1.css">
+	<link id="theme-style" rel="stylesheet" href="assets/css/theme1.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<link rel="stylesheet" href="/assets/css/footer.css" />
-	<link rel="stylesheet" href="/assets/css/list.css" />
-
+	<link rel="stylesheet" href="/assets/css/home.css" />
 </head>
 
 <body>
-
 <header class="header text-center" id="main-header" name="main-header">
 	<h1 class="blog-name pt-lg-4 mb-0">
 		<a href="/home">
@@ -52,16 +55,19 @@
 						alt="image"
 				/>
 
+
 				<div class="bio mb-3">
 					여기에 간단히 자기소개를 해주세요.<br /><a href="/about"
-				>나에 대해 더 알아보기</a
+				>회원정보 수정하기</a
 				>
 				</div>
 				<!--//bio-->
 				<ul class="social-list list-inline py-3 mx-auto">
 					<li class="list-inline-item">
+					<li class="list-inline-item">
 						<!--깃허브 링크-->
-						<a href="#"><i class="fab fa-github-alt fa-fw"></i></a>
+						<a th:href="@{${session.Member.githubLink}}"><i class="fab fa-github-alt fa-fw"></i></a>
+					</li>
 					</li>
 				</ul>
 				<!--//social-list-->
@@ -69,14 +75,14 @@
 			</div>
 			<!--//profile-section-->
 			<ul class="navbar-nav flex-column text-left">
-				<li class="nav-item">
+				<li class="nav-item active">
 					<a class="nav-link" href="/home"
 					><i class="fas fa-home fa-fw mr-2"></i>Devlog 홈
 						<span class="sr-only">(current)</span></a
 					>
 				</li>
-				<li class="nav-item active">
-					<a class="nav-link " href="/bloglist"
+				<li class="nav-item">
+					<a class="nav-link" href="/bloglist"
 					><i class="fas fa-bookmark fa-fw mr-2"></i>Devlog 포스트</a
 					>
 				</li>
@@ -100,6 +106,7 @@
 				<a
 						class="btn btn-primary"
 						href="/logout.do"
+						onclick="return confirmLogout()"
 				>로그아웃</a>
 			</div>
 		</div>
@@ -117,19 +124,17 @@
 				<img class="mr-3 img-fluid post-thumb d-none d-md-flex" th:src="@{${board.thumbnail}}" alt="image" >
 				<div class="media-body">
 					<h3 class="title mb-1">
-						<a href="/blogpost" th:text="${board.title}">게시물 제목</a>
+						<a th:href="@{/blogpost/{id}(id=${board.id})}" th:text="${board.title}">게시물 제목</a>
 					</h3>
 					<div class="meta mb-1">
-						<span class="date" th:text="${board.postDate}">작성일</span>
+						<span class="date" th:text="${board.postDate.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd'))}">게시일</span>
 						<!-- You would need to implement functionality for comments -->
 						<span class="comment">
 						<a href="#">댓글 수</a>
 					</span>
 					</div>
-					<div class="intro" th:text="${board.content}">
-						컨텐츠 내용 미리보기...
-					</div>
-					<a class="more-link" href="/blogpost">
+					<div class="intro" th:text="${board.content}">컨텐츠 내용</div>
+					<a class="more-link" th:href="@{/blogpost/{id}(id=${board.id})}">
 						자세히 보기 &rarr;
 					</a>
 				</div>
@@ -228,6 +233,17 @@
 
 <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
 <script src="/assets/js/demo/style-switcher.js"></script>
-
+<script>
+	// 툴팁 초기화
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+</script>
+<script>
+	function confirmLogout() {
+		var result = confirm("정말 로그아웃하시겠습니까?");
+		return result;
+	}
+</script>
 </body>
 </html>

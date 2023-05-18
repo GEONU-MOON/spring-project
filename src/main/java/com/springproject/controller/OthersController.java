@@ -19,7 +19,6 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class OthersController {
-    // 다른 사람 블로그 들어가기 메서드 구현 대기중
 
     private final MemberService memberService;
     private final BoardService boardService;
@@ -27,7 +26,6 @@ public class OthersController {
     public String otherhome(@RequestParam("otheruserid") String userid, Model model) {
         Members otherMember = memberService.findByID(userid);
         if (otherMember == null) {
-            // 예외 처리 또는 오류 처리를 수행하거나 적절한 방법으로 처리해야 합니다.
             return "error";
         }
         List<Board> boardList = boardService.recentBoard(otherMember.getUserid(), 3);
@@ -43,7 +41,6 @@ public class OthersController {
     public String userBoard(Model model, @RequestParam("otherMember") String otherId) {
         Members otherMember = memberService.findByID(otherId);
         if (otherMember == null) {
-            // 예외 처리 또는 오류 처리를 수행하거나 적절한 방법으로 처리해야 합니다.
             return "error";
         }
         List<Board> boardList = boardService.recentBoard(otherMember.getUserid(), 3);

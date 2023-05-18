@@ -35,7 +35,6 @@ public class HomeController {
     public String otherhome(@RequestParam("otheruserid") String userid, Model model) {
         Members otherMember = memberService.findByID(userid);
         if (otherMember == null) {
-            // 예외 처리 또는 오류 처리를 수행하거나 적절한 방법으로 처리해야 합니다.
             return "error";
         }
         List<Board> boardList = boardService.recentBoard(otherMember.getUserid(), 3);
