@@ -22,6 +22,7 @@ public class OthersController {
 
     private final MemberService memberService;
     private final BoardService boardService;
+
     @GetMapping("/otheruserhome")
     public String otherhome(@RequestParam("otheruserid") String userid, Model model) {
         Members otherMember = memberService.findByID(userid);
@@ -34,7 +35,6 @@ public class OthersController {
         model.addAttribute("otherMember", otherMember);
         return "otheruser/home";
     }
-
 
 
     @GetMapping("otheruserboard")
@@ -51,14 +51,20 @@ public class OthersController {
     }
 
     @GetMapping("otherblogpost/{id}")
-    public String blogpost(@PathVariable Long id, Model model, @RequestParam("otherMember")String otherId){
+    public String blogpost(@PathVariable Long id, Model model, @RequestParam("otherMember") String otherId) {
         Board board = boardService.findBoardById(id);
         Members otherMember = memberService.findByID(otherId);
         if (board == null) {
             return "redirect:/";
         }
+        Board prevBoard = boardService.findPrevBoard(otherMember.getUserid(), id);
+        Board nextBoard = boardService.findNextBoard(otherMember.getUserid(), id);
+
         model.addAttribute("board", board);
+        model.addAttribute("prevBoard", prevBoard);
+        model.addAttribute("nextBoard", nextBoard);
         model.addAttribute("otherMember", otherMember);
         return "otheruser/blogpost";
     }
+
 }

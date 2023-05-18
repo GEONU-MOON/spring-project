@@ -52,5 +52,15 @@ public class BoardService {
         return boardRepository.findNextBoardId(userid, currentId);
     }
 
+    public Board findPrevBoard(String userid, Long currentId) {
+        Long prevBoardId = findPrevBoardId(userid, currentId);
+        return prevBoardId != null ? findBoardById(prevBoardId) : null;
+    }
+
+    public Board findNextBoard(String userid, Long currentId) {
+        Long nextBoardId = findNextBoardId(userid, currentId);
+        return nextBoardId != null ? findBoardById(nextBoardId) : null;
+    }
+
 }
 
