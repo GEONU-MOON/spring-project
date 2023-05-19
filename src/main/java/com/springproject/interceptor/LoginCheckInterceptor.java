@@ -7,12 +7,12 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 @Slf4j
 public class LoginCheckInterceptor implements HandlerInterceptor {
 
-    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         String requestURI = request.getRequestURI();
@@ -20,16 +20,23 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 
         HttpSession session = request.getSession();
 
-        if(session == null || session.getAttribute(SessionConst.LOGIN_MEMBER) == null ) {
+        if (session == null || session.getAttribute(SessionConst.LOGIN_MEMBER) == null) {
             System.out.println("[미인증 사용자 요청]");
-            //로그인으로  redirect
+
             try {
                 response.setContentType("text/html; charset=utf-8");
                 PrintWriter w = response.getWriter();
+
+                String message = "";
+                if (request.getParameter("userid") != null) {
+                    message = "아이디와 비밀번호가 틀렸습니다.";
+                } else {
+                    message = "로그인을 먼저 진행해주세요.";
+                }
+
                 w.println("<script language='javascript'>");
-                w.println("alert('로그인을 먼저 진행해주세요.'); location.href='/';");
+                w.println("alert('" + message + "'); location.href='/';");
                 w.println("</script>");
-                //  location.href='/?redirectURI='+requestURI;
 
                 w.flush();
 
@@ -39,7 +46,5 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
             }
         }
         return true;
-
     }
-
 }

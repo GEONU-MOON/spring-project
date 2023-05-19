@@ -85,7 +85,7 @@ public class MemberService {
         if(requestMember == null){
             return null;
         }else if(!requestMember.getPassword().equals(pw)){
-            return null;
+            throw new IllegalArgumentException("비밀번호가 틀렸습니다.");
         }else{
             return requestMember;
         }
