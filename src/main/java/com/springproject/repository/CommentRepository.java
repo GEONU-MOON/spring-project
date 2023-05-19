@@ -24,6 +24,11 @@ public class CommentRepository {
                 .getResultList();
     }
 
+    @Transactional
+    public void deleteById(Long commentId) {
+        Comments comment = em.find(Comments.class, commentId);
+        em.remove(comment);
+    }
 
 
 }

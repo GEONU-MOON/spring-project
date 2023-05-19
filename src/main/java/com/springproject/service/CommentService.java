@@ -46,5 +46,9 @@ public class CommentService {
         return commentDTOs;
     }
 
+    @Transactional
+    public void deleteComment(Long commentId) {
+        commentRepository.deleteById(commentId);
+    }
 
 }

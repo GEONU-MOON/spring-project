@@ -11,10 +11,7 @@ import com.springproject.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
@@ -59,6 +56,12 @@ public class CommentController {
 
     public List<Comments> getCommentsByBoardId(Long boardId) {
         return commentRepository.findByBoardId(boardId);
+    }
+
+    @GetMapping("/reply/delete/{commentId}")
+    public String deleteReply(@PathVariable Long commentId,  @RequestParam Long boardId) {
+        commentService.deleteComment(commentId);
+        return "redirect:/blogpost" + boardId;
     }
 
 }
