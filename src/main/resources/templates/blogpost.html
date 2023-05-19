@@ -148,19 +148,14 @@
 								<th>작성일자</th>
 								<th></th>
 							</tr>
-								<tr>
-									<td>작성자</td>
-									<td>내용</td>
-									<td>작성시간임</td>
-									<td style="
-    padding-top: 0px;
-    padding-left: 0px;
-    padding-bottom: 0px;
-    padding-right: 0px;
-">
-										<a class="btn btn-primary" href="">삭제</a>
-									</td>
-								</tr>
+							<tr th:each="comment : ${comments}">
+								<td th:text="${comment.member.name}">작성자</td>
+								<td th:text="${comment.content}">내용</td>
+								<td th:text="${comment.postDate}">작성시간임</td>
+								<td style="padding: 0;">
+									<a class="btn btn-primary" href="">삭제</a>
+								</td>
+							</tr>
 						</table>
 					</div>
 
@@ -168,7 +163,8 @@
 					<form method="post" action="/reply/write">
 						<label for="content"></label>
 						<label>댓글 작성자</label>
-						<input type="text" name="memberId" th:value="${session.Member.name}" readonly>
+						<input type="text" th:value="${session.Member.name}" readonly>
+						<input type="hidden" name="memberId" th:value="${session.Member.id}" readonly>
 						<textarea id="content" name="content" rows="4" placeholder="댓글을 입력해 주세요." required></textarea>
 						<input type="hidden" name="boardId" th:value="${board.id}">
 						<input type="submit" value="댓글 작성" style="border-top-width: 0px; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px;">
@@ -176,7 +172,8 @@
 
 				</div>
 
-		    </div><!--//container-->
+
+			</div><!--//container-->
 	    </article>
 
 	    <section class="promo-section theme-bg-light py-5 text-center">

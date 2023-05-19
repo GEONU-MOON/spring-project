@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.Optional;
 
 
 @Repository
@@ -48,5 +49,9 @@ public class MembersRepository {
         embedMember.setGithubLink(member.getGithubLink());
 
         return embedMember;
+    }
+
+    public Optional<Members> findById(Long id) {
+        return Optional.ofNullable(em.find(Members.class, id));
     }
 }

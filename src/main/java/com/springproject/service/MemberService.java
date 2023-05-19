@@ -96,4 +96,8 @@ public class MemberService {
 
         return foundMember;
     }
+
+    public Members findMemberById(Long memberId) {
+        return memberrepository.findById(memberId).orElse(null);
+    }
 }
