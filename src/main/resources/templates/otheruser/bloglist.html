@@ -118,14 +118,13 @@
 
 		<!--//item-->
 
-			<nav class="blog-nav nav nav-justified my-5">
-				<a class="nav-link-prev nav-item nav-link rounded-left" href="/">
-					이전<i class="arrow-prev fas fa-long-arrow-alt-left"></i>
-				</a>
-				<a class="nav-link-next nav-item nav-link rounded-right" href="/bloglist">
-					다음<i class="arrow-next fas fa-long-arrow-alt-right"></i>
-				</a>
-			</nav>
+		<div class="blog-nav nav nav-justified my-5">
+			<ul class="pagination">
+				<li class="page-item" th:each="pageNumber : ${#numbers.sequence(0, userBoards.totalPages - 1)}">
+					<a class="page-link" th:href="@{/otheruserboard(otherMember=${otherMember.getUserid()}, page=${pageNumber})}" th:text="${pageNumber + 1}"></a>
+				</li>
+			</ul>
+		</div>
 	</section>
 
 	<footer class="footer text-center py-2 theme-bg-dark">
@@ -198,6 +197,17 @@
 
 <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
 <script src="/assets/js/demo/style-switcher.js"></script>
-
+<script>
+	// 툴팁 초기화
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+</script>
+<script>
+	function confirmLogout() {
+		var result = confirm("정말 로그아웃하시겠습니까?");
+		return result;
+	}
+</script>
 </body>
 </html>

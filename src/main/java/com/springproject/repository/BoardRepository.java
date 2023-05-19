@@ -97,5 +97,32 @@ public class BoardRepository {
         }
     }
 
+    public Page<Board> findBoardsByUserid(String userid, Pageable pageable) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Board> query = cb.createQuery(Board.class);
+        Root<Board> root = query.from(Board.class);
+
+        // Query for retrieving the boards
+        query.select(root)
+                .where(cb.equal(root.get("member").get("userid"), userid))
+                .orderBy(cb.desc(root.get("id")));
+
+        TypedQuery<Board> typedQuery = em.createQuery(query);
+        typedQuery.setFirstResult((int) pageable.getOffset());
+        typedQuery.setMaxResults(pageable.getPageSize());
+
+        List<Board> boards = typedQuery.getResultList();
+
+        // Query for counting total number of boards for the user
+        CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
+        Root<Board> countRoot = countQuery.from(Board.class);
+        countQuery.select(cb.count(countRoot))
+                .where(cb.equal(countRoot.get("member").get("userid"), userid));
+
+        Long count = em.createQuery(countQuery).getSingleResult();
+
+        return new PageImpl<>(boards, pageable, count);
+    }
+
 }
 

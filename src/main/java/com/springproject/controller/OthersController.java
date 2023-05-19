@@ -6,6 +6,9 @@ import com.springproject.repository.MembersRepository;
 import com.springproject.service.BoardService;
 import com.springproject.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,16 +39,21 @@ public class OthersController {
         return "otheruser/home";
     }
 
-
     @GetMapping("otheruserboard")
-    public String userBoard(Model model, @RequestParam("otherMember") String otherId) {
+    public String userBoard(Model model,
+                            @RequestParam("otherMember") String otherId,
+                            @RequestParam(value = "page", defaultValue = "0") int page,
+                            @RequestParam(value = "size", defaultValue = "4") int size) {
+
         Members otherMember = memberService.findByID(otherId);
         if (otherMember == null) {
             return "error";
         }
-        List<Board> boardList = boardService.recentBoard(otherMember.getUserid(), 3);
 
-        model.addAttribute("userBoards", boardList);
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Board> boardPage = boardService.findBoardsByUserid(otherId, pageable);
+
+        model.addAttribute("userBoards", boardPage);
         model.addAttribute("otherMember", otherMember);
         return "otheruser/bloglist";
     }

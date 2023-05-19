@@ -62,5 +62,9 @@ public class BoardService {
         return nextBoardId != null ? findBoardById(nextBoardId) : null;
     }
 
+    public Page<Board> findBoardsByUserid(String userid, Pageable pageable) {
+        return boardRepository.findBoardsByUserid(userid, pageable);
+    }
+
 }
 
