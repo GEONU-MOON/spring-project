@@ -29,7 +29,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 
                 String message = "";
                 if (request.getParameter("userid") != null) {
-                    message = "아이디또는 비밀번호가 틀렸습니다.";
+                    message = "아이디 또는 비밀번호가 틀렸습니다.";
                 } else {
                     message = "로그인을 먼저 진행해주세요.";
                 }
