@@ -3,9 +3,11 @@ package com.springproject.controller;
 import com.springproject.DTO.BoardDTO;
 import com.springproject.DTO.CommentDTO;
 import com.springproject.domain.Board;
+import com.springproject.domain.Comments;
 import com.springproject.domain.Members;
 import com.springproject.repository.MembersRepository;
 import com.springproject.service.BoardService;
+import com.springproject.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardService boardService;
+    private final CommentService commentService;
     @GetMapping("boardwrite")
     public String boardwrite(Model model){
         model.addAttribute("boardForm", new BoardDTO());
@@ -65,10 +68,13 @@ public class BoardController {
         Long prevBoardId = boardService.findPrevBoardId(userid, id);
         Long nextBoardId = boardService.findNextBoardId(userid, id);
 
+        List<CommentDTO> comments = commentService.getCommentsByBoardId(id);
+
         model.addAttribute("board", board);
         model.addAttribute("prevBoardId", prevBoardId);
         model.addAttribute("nextBoardId", nextBoardId);
         model.addAttribute("commentDTO", new CommentDTO());
+        model.addAttribute("comments", comments);
 
         return "blogpost";
     }

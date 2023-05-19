@@ -149,9 +149,9 @@
 								<th></th>
 							</tr>
 							<tr th:each="comment : ${comments}">
-								<td th:text="${comment.member.name}">작성자</td>
-								<td th:text="${comment.content}">내용</td>
-								<td th:text="${comment.postDate}">작성시간임</td>
+								<td th:text="${comment.memberIdId}"></td>
+								<td th:text="${comment.content}"></td>
+								<td th:text="${comment.postDate}"></td>
 								<td style="padding: 0;">
 									<a class="btn btn-primary" href="">삭제</a>
 								</td>
