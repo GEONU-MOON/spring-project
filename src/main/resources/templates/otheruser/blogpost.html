@@ -141,8 +141,6 @@
 					</a>
 				</nav>
 
-
-
 				<div class="comment-form">
 					<div style="border: 1px solid;border-radius: 6px;color: lightgray;">
 						<table class="table table-borderless">
@@ -157,7 +155,7 @@
 								<td th:text="${comment.content}">내용</td>
 								<td th:text="${comment.postDate.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd'))}">작성시간임</td>
 								<td style="padding-top: 0px; padding-left: 0px; padding-bottom: 0px; padding-right: 0px;">
-									<a class="btn btn-primary" th:href="@{/comments/delete/{id}(id=${comment.id})}">삭제</a>
+									<a th:if="${session.Member.id == comment.member.id}" class="btn btn-primary" th:href="@{/comments/delete/{id}(id=${comment.id})}">삭제</a>
 								</td>
 							</tr>
 						</table>
@@ -200,7 +198,6 @@
 		</footer>
 
     </div><!--//main-wrapper-->
-    
 
     <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->  
     <div id="config-panel" class="config-panel d-none d-lg-block">
@@ -221,8 +218,6 @@
         </div><!--//panel-inner-->
     </div><!--//configure-panel-->
 
-    
-       
     <!-- Javascript -->          
     <script src="/assets/plugins/jquery-3.3.1.min.js"></script>
     <script src="/assets/plugins/popper.min.js"></script>
@@ -236,14 +231,12 @@
     
     <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
     <script src="/assets/js/demo/style-switcher.js"></script>
-
 	<script>
 		// 툴팁 초기화
 		$(function () {
 			$('[data-toggle="tooltip"]').tooltip();
 		});
 	</script>
-
 </body>
 </html> 
 

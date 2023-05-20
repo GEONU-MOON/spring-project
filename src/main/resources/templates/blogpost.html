@@ -153,13 +153,14 @@
 								<td th:text="${comment.content}"></td>
 								<td th:text="${comment.postDate}"></td>
 								<td style="padding: 0;">
-									<form th:action="@{/reply/delete/{commentId}(commentId=${comment.id})}" method="post">
+									<form th:if="${session.Member.id == comment.member.id}" th:action="@{/reply/delete/{commentId}(commentId=${comment.id})}" method="post">
 										<button class="btn btn-primary" type="submit">삭제</button>
 									</form>
 								</td>
 							</tr>
 						</table>
 					</div>
+
 
 					<h2 style="margin-top: 10px;">Comment</h2>
 					<form method="post" action="/reply/write">
