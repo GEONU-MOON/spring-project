@@ -144,7 +144,6 @@
 
 
 				<div class="comment-form">
-
 					<div style="border: 1px solid;border-radius: 6px;color: lightgray;">
 						<table class="table table-borderless">
 							<tr>
@@ -153,29 +152,25 @@
 								<th>작성일자</th>
 								<th></th>
 							</tr>
-								<tr>
-									<td>작성자</td>
-									<td>내용</td>
-									<td>작성시간임</td>
-									<td style="
-    padding-top: 0px;
-    padding-left: 0px;
-    padding-bottom: 0px;
-    padding-right: 0px;
-">
-										<a class="btn btn-primary" href="">삭제</a>
-									</td>
-								</tr>
+							<tr th:each="comment : ${comments}">
+								<td th:text="${comment.member.name}">작성자</td>
+								<td th:text="${comment.content}">내용</td>
+								<td th:text="${comment.postDate.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd'))}">작성시간임</td>
+								<td style="padding-top: 0px; padding-left: 0px; padding-bottom: 0px; padding-right: 0px;">
+									<a class="btn btn-primary" th:href="@{/comments/delete/{id}(id=${comment.id})}">삭제</a>
+								</td>
+							</tr>
 						</table>
 					</div>
 
 					<h2 style="margin-top: 10px;">Comment</h2>
 					<form method="post" action="/reply/write">
-						<label for="commentcontent"></label>
-
-						<label>댓글 작성자</label> <input type="text" name="writer">
-						<textarea id="commentcontent" name="commentcontent" rows="4" placeholder="댓글을 입력해 주세요." required></textarea>
-						<input type="hidden" name="bno" value="${view.bno"}>
+						<label for="content"></label>
+						<label>댓글 작성자</label>
+						<input type="text" th:value="${session.Member.name}" readonly>
+						<input type="hidden" name="memberId" th:value="${session.Member.id}" readonly>
+						<textarea id="content" name="content" rows="4" placeholder="댓글을 입력해 주세요." required></textarea>
+						<input type="hidden" name="boardId" th:value="${board.id}">
 						<input type="submit" value="댓글 작성" style="border-top-width: 0px; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px;">
 					</form>
 				</div>

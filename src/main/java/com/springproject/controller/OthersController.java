@@ -1,9 +1,11 @@
 package com.springproject.controller;
 
 import com.springproject.domain.Board;
+import com.springproject.domain.Comments;
 import com.springproject.domain.Members;
 import com.springproject.repository.MembersRepository;
 import com.springproject.service.BoardService;
+import com.springproject.service.CommentService;
 import com.springproject.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,6 +27,7 @@ public class OthersController {
 
     private final MemberService memberService;
     private final BoardService boardService;
+    private final CommentService commentService;
 
     @GetMapping("/otheruserhome")
     public String otherhome(@RequestParam("otheruserid") String userid, Model model) {
@@ -68,10 +71,13 @@ public class OthersController {
         Board prevBoard = boardService.findPrevBoard(otherMember.getUserid(), id);
         Board nextBoard = boardService.findNextBoard(otherMember.getUserid(), id);
 
+        List<Comments> comments = commentService.getCommentsByBoardId(id);
+
         model.addAttribute("board", board);
         model.addAttribute("prevBoard", prevBoard);
         model.addAttribute("nextBoard", nextBoard);
         model.addAttribute("otherMember", otherMember);
+        model.addAttribute("comments", comments);
         return "otheruser/blogpost";
     }
 
