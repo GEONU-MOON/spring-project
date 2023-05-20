@@ -40,4 +40,8 @@ public class CommentService {
         commentRepository.deleteById(commentId);
     }
 
+    public Long findBoardIdByCommentId(Long commentId) {
+        return commentRepository.findBoardIdByCommentId(commentId);
+    }
+
 }

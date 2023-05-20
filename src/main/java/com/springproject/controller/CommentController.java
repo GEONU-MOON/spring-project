@@ -63,8 +63,9 @@ public class CommentController {
 
     @PostMapping("/reply/delete/{commentId}")
     public String deleteReply(@PathVariable("commentId") Long commentId) {
+        Long boardId = commentService.findBoardIdByCommentId(commentId);
         commentService.deleteComment(commentId);
-        return "redirect:/bloglist";
+        return "redirect:/blogpost/" + boardId;
     }
 }
 

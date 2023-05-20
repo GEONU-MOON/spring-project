@@ -30,8 +30,10 @@ public class CommentRepository {
                 .getResultList();
     }
 
-    public Long findByCommentId(Long CommentId) {
-        return (Long)em.createQuery("select c.board from Comments c where c.id = :CommentId").getSingleResult();
+    public Long findBoardIdByCommentId(Long commentId) {
+        return em.createQuery("select c.board.id from Comments c where c.id = :commentId", Long.class)
+                .setParameter("commentId", commentId)
+                .getSingleResult();
     }
 }
 
