@@ -149,11 +149,13 @@
 								<th></th>
 							</tr>
 							<tr th:each="comment : ${comments}">
-								<td th:text="${comment.memberId}"></td>
+								<td th:text="${session.Member.name}"></td>
 								<td th:text="${comment.content}"></td>
 								<td th:text="${comment.postDate}"></td>
 								<td style="padding: 0;">
-									<a class="btn btn-primary" href="">삭제</a>
+									<form th:action="@{/reply/delete/{commentId}(commentId=${comment.id})}" method="post">
+										<button class="btn btn-primary" type="submit">삭제</button>
+									</form>
 								</td>
 							</tr>
 						</table>
@@ -236,6 +238,31 @@
 		$(function () {
 			$('[data-toggle="tooltip"]').tooltip();
 		});
+	</script>
+	<script>
+		function deleteComment(event) {
+			event.preventDefault(); // 링크 클릭 시 기본 동작인 페이지 이동을 막습니다.
+
+			if (confirm("댓글을 삭제하시겠습니까?")) {
+				let url = event.target.getAttribute("href");
+
+				// AJAX를 사용하여 서버로 댓글 삭제 요청을 보냅니다.
+				let xhr = new XMLHttpRequest();
+				xhr.open("DELETE", url, true);
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState === XMLHttpRequest.DONE) {
+						if (xhr.status === 200) {
+							// 삭제가 성공적으로 처리되면 해당 댓글을 삭제합니다.
+							let commentRow = event.target.closest("tr");
+							commentRow.remove();
+						} else {
+							// 삭제 요청이 실패한 경우에 대한 처리를 여기에 작성합니다.
+						}
+					}
+				};
+				xhr.send();
+			}
+		}
 	</script>
 </body>
 </html> 

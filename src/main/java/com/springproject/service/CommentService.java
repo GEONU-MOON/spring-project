@@ -30,20 +30,9 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
-    public List<CommentDTO> getCommentsByBoardId(Long boardId) {
+    public List<Comments> getCommentsByBoardId(Long boardId) {
         List<Comments> comments = commentRepository.findByBoardId(boardId);
-        List<CommentDTO> commentDTOs = new ArrayList<>();
-
-        for (Comments comment : comments) {
-            CommentDTO commentDTO = new CommentDTO();
-            commentDTO.setBoardId(comment.getBoard().getId());
-            commentDTO.setMemberId(comment.getMember().getId());
-            commentDTO.setContent(comment.getContent());
-            commentDTO.setPostDate(comment.getPostDate());
-            commentDTOs.add(commentDTO);
-        }
-
-        return commentDTOs;
+        return comments;
     }
 
     @Transactional

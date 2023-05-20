@@ -68,7 +68,7 @@ public class BoardController {
         Long prevBoardId = boardService.findPrevBoardId(userid, id);
         Long nextBoardId = boardService.findNextBoardId(userid, id);
 
-        List<CommentDTO> comments = commentService.getCommentsByBoardId(id);
+        List<Comments> comments = commentService.getCommentsByBoardId(id);
 
         model.addAttribute("board", board);
         model.addAttribute("prevBoardId", prevBoardId);
