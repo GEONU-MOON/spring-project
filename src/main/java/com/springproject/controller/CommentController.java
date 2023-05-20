@@ -61,11 +61,10 @@ public class CommentController {
         return commentRepository.findByBoardId(boardId);
     }
 
-    @PostMapping("/reply/delete")
-    public String deleteReply(@PathVariable Long commentId) {
-//        commentService.deleteComment(commentId);
-        return "redirect:/blogpost/{boardId}";
+    @PostMapping("/reply/delete/{commentId}")
+    public String deleteReply(@PathVariable("commentId") Long commentId) {
+        commentService.deleteComment(commentId);
+        return "redirect:/bloglist";
     }
-
 }
 

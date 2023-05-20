@@ -19,17 +19,19 @@ public class CommentRepository {
         em.persist(comment);
     }
 
-    @Transactional
     public void deleteById(Long commentId) {
-       Query query = em.createQuery("delete from Comments c Where c.id = :commentId");
-       query.executeUpdate();
-       em.getTransaction().commit();
+        Comments comment = em.find(Comments.class, commentId);
+        em.remove(comment);
     }
 
     public List<Comments> findByBoardId(Long boardId) {
         return em.createQuery("SELECT c FROM Comments c WHERE c.board.id = :boardId", Comments.class)
                 .setParameter("boardId", boardId)
                 .getResultList();
+    }
+
+    public Long findByCommentId(Long CommentId) {
+        return (Long)em.createQuery("select c.board from Comments c where c.id = :CommentId").getSingleResult();
     }
 }
 
