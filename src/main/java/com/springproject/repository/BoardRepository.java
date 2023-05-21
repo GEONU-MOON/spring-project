@@ -102,7 +102,6 @@ public class BoardRepository {
         CriteriaQuery<Board> query = cb.createQuery(Board.class);
         Root<Board> root = query.from(Board.class);
 
-        // Query for retrieving the boards
         query.select(root)
                 .where(cb.equal(root.get("member").get("userid"), userid))
                 .orderBy(cb.desc(root.get("id")));
@@ -113,7 +112,6 @@ public class BoardRepository {
 
         List<Board> boards = typedQuery.getResultList();
 
-        // Query for counting total number of boards for the user
         CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
         Root<Board> countRoot = countQuery.from(Board.class);
         countQuery.select(cb.count(countRoot))

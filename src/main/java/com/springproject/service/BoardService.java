@@ -21,17 +21,13 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final MembersRepository membersRepository;
 
-    public List<Board> findList(String userid, int currentPage, int pageSize){
-        int offset = (currentPage - 1) * pageSize;
-        return boardRepository.findListByID(userid, offset, pageSize);
-    }
-
     public Board findBoardById(Long id) {
         return boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid board Id:" + id));
     }
 
     public EmbedMember setEmbedMember(String userid) {return membersRepository.setBoardMember(userid);}
 
+    @Transactional
     public void save(Board board){boardRepository.save(board);}
 
     public List<Board> recentBoard(String userid, int limit){

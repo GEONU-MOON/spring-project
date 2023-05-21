@@ -11,11 +11,18 @@ import com.springproject.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -32,17 +39,31 @@ public class BoardController {
     }
 
     @PostMapping("boardwrite")
-    public String boardregister(BoardDTO form, HttpSession session){
+    public String boardregister(@ModelAttribute BoardDTO form, HttpSession session) throws IOException {
         Board board = new Board();
         board.setMember(boardService.setEmbedMember(((Members)session.getAttribute("Member")).getUserid()));
         board.setTitle(form.getTitle());
         board.setContent(form.getContent());
         board.setPostDate(LocalDate.now());
-        board.setThumbnail(form.getThumbnail());
 
+        MultipartFile thumbnailFile = form.getThumbnail();
+        if (thumbnailFile != null && !thumbnailFile.isEmpty()) {
+            String thumbnailName = StringUtils.cleanPath(thumbnailFile.getOriginalFilename());
+
+            // 문건우용 String directory = "/Users/moongeonu/SpringProject/src/main/resources/static/assets/images/blog";
+            String directory = "C:/SpringProject/src/main/resources/static/assets/images/blog";
+            try {
+                Files.copy(thumbnailFile.getInputStream(), Paths.get(directory, thumbnailName), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                throw new IOException("Could not save thumbnail: " + thumbnailName);
+            }
+            board.setThumbnail("/assets/images/blog/" + thumbnailName);
+        }
         boardService.save(board);
-        return "home";
+        return "redirect:/home";
     }
+
+
 
     @GetMapping("boardupdate/{id}")
     public String boardupdate(@PathVariable Long id, Model model) {

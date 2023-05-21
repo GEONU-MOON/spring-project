@@ -3,6 +3,7 @@ package com.springproject.DTO;
 import com.springproject.domain.EmbedMember;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Embedded;
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ public class BoardDTO {
 
     private LocalDate postDate;
 
-    private String thumbnail;
+    private MultipartFile thumbnail;
 
     private EmbedMember member;
 }
