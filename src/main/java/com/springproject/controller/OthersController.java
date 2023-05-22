@@ -1,5 +1,6 @@
 package com.springproject.controller;
 
+import com.springproject.DTO.CommentDTO;
 import com.springproject.domain.Board;
 import com.springproject.domain.Comments;
 import com.springproject.domain.Members;
@@ -78,6 +79,7 @@ public class OthersController {
         model.addAttribute("nextBoard", nextBoard);
         model.addAttribute("otherMember", otherMember);
         model.addAttribute("comments", comments);
+        model.addAttribute("commentDTO", new CommentDTO());
         return "otheruser/blogpost";
     }
 

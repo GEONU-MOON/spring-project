@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -39,6 +40,16 @@ public class BoardRepository {
                 .setFirstResult(offset)
                 .setMaxResults(limit)
                 .getResultList();
+    }
+
+    public void update(Board board){
+        Long id = board.getId();
+        String newTitle = board.getTitle();
+        String newContent = board.getContent();
+        String newThumbnail = board.getThumbnail();
+        em.createQuery("update Board b set b.title=:newTitle where b.id = :id").setParameter("newTitle", newTitle).setParameter("id", id).executeUpdate();
+        em.createQuery("update Board b set b.content =:newContent where b.id = :id").setParameter("newContent", newContent).setParameter("id", id).executeUpdate();
+        em.createQuery("update Board b set b.thumbnail =:newThumbnail where b.id = :id").setParameter("newThumbnail", newThumbnail).setParameter("id", id).executeUpdate();
     }
 
     public List<Board> recentBoard(String userid, int limit) {

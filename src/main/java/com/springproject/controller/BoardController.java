@@ -12,10 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
@@ -73,6 +70,33 @@ public class BoardController {
         }
         model.addAttribute("board", board);
         return "boardupdate";
+    }
+
+    @PostMapping("boardupdate/{id}")
+    public String UpdateAction(@PathVariable Long id, @RequestParam("title")String title, @RequestParam("content")String content,
+                               @RequestParam("thumbnail")MultipartFile thumbnail) throws IOException {
+        Board board = boardService.findBoardById(id);
+        board.setTitle(title);
+        board.setContent(content);
+
+        MultipartFile thumbnailFile = thumbnail;
+        if (thumbnailFile != null && !thumbnailFile.isEmpty()) {
+            String thumbnailName = StringUtils.cleanPath(thumbnailFile.getOriginalFilename());
+
+            // 문건우용 String directory = "/Users/moongeonu/SpringProject/src/main/resources/static/assets/images/updateblog";
+            String directory = "C:/SpringProject/src/main/resources/static/assets/images/blog/updateblog";
+            try {
+                Files.copy(thumbnailFile.getInputStream(), Paths.get(directory, thumbnailName), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                throw new IOException("Could not save thumbnail: " + thumbnailName);
+            }
+            board.setThumbnail("/assets/images/blog/updateblog/" + thumbnailName);
+        }
+
+        boardService.update(board);
+
+
+        return "redirect:/bloglist";
     }
 
 

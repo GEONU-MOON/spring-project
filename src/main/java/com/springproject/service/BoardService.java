@@ -62,5 +62,8 @@ public class BoardService {
         return boardRepository.findBoardsByUserid(userid, pageable);
     }
 
+    public void update(Board board) {
+        boardRepository.update(board);
+    }
 }
 

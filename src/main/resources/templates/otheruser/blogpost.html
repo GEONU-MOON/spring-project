@@ -110,9 +110,7 @@
 					<div class="meta mb-3">
 						<span class="date" th:text="${board.postDate.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd'))}">3개월 전 발행</span>
 					</div>
-					<div class="my-2 my-md-3" style="text-align: right;">
-						<a class="btn btn-primary" href="/boardupdate">수정하기</a>
-					</div>
+
 			    </header>
 
 				<div class="blog-post-body">
@@ -165,7 +163,7 @@
 					</div>
 
 					<h2 style="margin-top: 10px;">Comment</h2>
-					<form method="post" action="/reply/write">
+					<form method="post" th:action="@{/reply/otherswrite(otherMember=${otherMember.userid})}">
 						<label for="content"></label>
 						<label>댓글 작성자</label>
 						<input type="text" th:value="${session.Member.name}" readonly>
