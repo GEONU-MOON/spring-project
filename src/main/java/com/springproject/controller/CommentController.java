@@ -24,7 +24,6 @@ public class CommentController {
     private final CommentService commentService;
     private final BoardService boardService;
     private final MemberService memberService;
-    private final CommentRepository commentRepository;
 
     @PostMapping("/reply/write")
     public String writeReply(@ModelAttribute CommentDTO commentDTO) {
@@ -48,10 +47,6 @@ public class CommentController {
         return "redirect:/otherblogpost/" + commentDTO.getBoardId() +"?otherMember="+userid;
     }
 
-    public List<Comments> getCommentsByBoardId(Long boardId) {
-        return commentRepository.findByBoardId(boardId);
-    }
-
     @PostMapping("/reply/delete/{commentId}")
     public String deleteReply(@PathVariable("commentId") Long commentId) {
         Long boardId = commentService.findBoardIdByCommentId(commentId);
@@ -59,12 +54,7 @@ public class CommentController {
         return "redirect:/blogpost/" + boardId;
     }
 
-    @PostMapping("/reply/othersdelete/{commentId}")
-    public String deleteReply2(@ModelAttribute CommentDTO commentDTO, @PathVariable("commentId") Long commentId, @RequestParam("otherMember")String userid) {
-        Long boardId = commentService.findBoardIdByCommentId(commentId);
-        commentService.deleteComment(commentId);
-        return "redirect:/otherblogpost/" + commentDTO.getBoardId() +"?otherMember="+userid;
-    }
+
 
 }
 
