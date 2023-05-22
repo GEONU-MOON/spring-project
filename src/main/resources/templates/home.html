@@ -54,13 +54,8 @@
                 th:src="${session.Member.image != null ? session.Member.image : 'assets/images/default-profile.png'}"
                 alt="image"
         />
-
-
-        <div class="bio mb-3">
-          여기에 간단히 자기소개를 해주세요.<br /><a href="/about"
-        >회원정보 수정하기</a
-        >
-        </div>
+        <div class="bio mb-3" th:text="${session.Member.introduce}"></div>
+        <div><a href="/about" style="color: white; text-decoration: underline;">회원정보 수정하기</a></div>
         <!--//bio-->
         <ul class="social-list list-inline py-3 mx-auto">
           <li class="list-inline-item">

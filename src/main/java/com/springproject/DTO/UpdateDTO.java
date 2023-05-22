@@ -12,5 +12,6 @@ public class UpdateDTO {
     private String password;
     private String password2;
     private String githublink;
+    private String introduce;
     private String email;
 }

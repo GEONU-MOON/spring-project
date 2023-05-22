@@ -50,6 +50,8 @@ public class MemberService {
     public void updateMember(Members member, UpdateDTO form, HttpSession session) {
         member.setName(form.getName());
         member.setEmail(form.getEmail());
+        member.setIntroduce(form.getIntroduce());
+
         String newPassword = form.getPassword();
         if (newPassword != null && !newPassword.isEmpty()) {
             member.setPassword(newPassword);
@@ -67,6 +69,7 @@ public class MemberService {
 
         memberrepository.update(member);
     }
+
 
 
     @Transactional
