@@ -109,7 +109,7 @@
 					<div class="intro" th:text="${board.content}">
 						컨텐츠 내용 미리보기 컨텐츠 내용 미리보기 컨텐츠 내용 미리보기...
 					</div>
-					<a class="more-link" th:href="@{/blogpost/{id}(id=${board.id})}">
+					<a class="more-link" th:href="@{/otherblogpost/{id}(id=${board.id}, otherMember=${otherMember.getUserid()})}">
 						자세히 보기 &rarr;
 					</a>
 				</div>
