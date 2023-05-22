@@ -85,4 +85,16 @@ public class HomeController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/otheruser")
+    public String searchMembersByUserID(@RequestParam("userid") String userid, Model model) {
+        try {
+            Members members = memberService.findMembersByuserId(userid);
+            model.addAttribute("members", members);
+            return "otheruse";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "redirect:/";
+        }
+    }
 }

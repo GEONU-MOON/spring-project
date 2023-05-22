@@ -54,4 +54,8 @@ public class MembersRepository {
     public Optional<Members> findById(Long id) {
         return Optional.ofNullable(em.find(Members.class, id));
     }
+
+    public Members findByUserID(String userid) {
+        return em.createQuery("select m from Members m where m.userid = :userid", Members.class).getSingleResult();
+    }
 }

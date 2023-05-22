@@ -103,4 +103,13 @@ public class MemberService {
     public Members findMemberById(Long memberId) {
         return memberrepository.findById(memberId).orElse(null);
     }
+
+    public Members findMembersByuserId(String userid) {
+        Members members = memberrepository.findByUserID(userid);
+        if (members == null) {
+            throw new IllegalArgumentException("해당 아이디는 존재하지 않습니다.");
+        }
+        return members;
+    }
+
 }
