@@ -48,23 +48,6 @@ public class CommentController {
         return "redirect:/otherblogpost/" + commentDTO.getBoardId() +"?otherMember="+userid;
     }
 
-//    @GetMapping("/comments/{id}")
-//    public String getComments(@ModelAttribute CommentDTO commentDTO ,@PathVariable Long id, Model model) {
-//        Board board = boardService.findBoardById(commentDTO.getBoardId());
-//        Members member = memberService.findMemberById(commentDTO.getMemberId());
-//        if (board == null || member == null) {
-//            return "redirect:/";
-//        }
-//
-//        List<Comments> comments = commentService.getCommentsByBoardId(id);
-//
-//        model.addAttribute("board", board);
-//        model.addAttribute("comments", comments);
-//        model.addAttribute("commentDTO", new CommentDTO());
-//
-//        return "blogpost";
-//    }
-
     public List<Comments> getCommentsByBoardId(Long boardId) {
         return commentRepository.findByBoardId(boardId);
     }
@@ -75,5 +58,13 @@ public class CommentController {
         commentService.deleteComment(commentId);
         return "redirect:/blogpost/" + boardId;
     }
+
+    @PostMapping("/reply/othersdelete/{commentId}")
+    public String deleteReply2(@ModelAttribute CommentDTO commentDTO, @PathVariable("commentId") Long commentId, @RequestParam("otherMember")String userid) {
+        Long boardId = commentService.findBoardIdByCommentId(commentId);
+        commentService.deleteComment(commentId);
+        return "redirect:/otherblogpost/" + commentDTO.getBoardId() +"?otherMember="+userid;
+    }
+
 }
 
