@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -104,12 +105,10 @@ public class MemberService {
         return memberrepository.findById(memberId).orElse(null);
     }
 
-    public Members findMembersByuserId(String userid) {
-        Members members = memberrepository.findByUserID(userid);
-        if (members == null) {
-            throw new IllegalArgumentException("해당 아이디는 존재하지 않습니다.");
-        }
-        return members;
+    public boolean findMembersByuserId(String userid) {
+        List<Members> members = memberrepository.findByUserID(userid);
+
+        return members.isEmpty();
     }
 
 }

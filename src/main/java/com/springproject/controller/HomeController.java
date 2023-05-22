@@ -32,23 +32,38 @@ public class HomeController {
     }
 
     @GetMapping("/otherhome")
-    public String otherhome(@RequestParam("otheruserid") String userid, Model model) {
-        Members otherMember = memberService.findByID(userid);
-        if (otherMember == null) {
-            return "error";
-        }
-        List<Board> boardList = boardService.recentBoard(otherMember.getUserid(), 3);
+    public String otherhome(@RequestParam("otheruserid") String userid, Model model, HttpServletResponse response) {
+        boolean exist = memberService.findMembersByuserId(userid);
+        if (exist) {
+            try {
+                response.setContentType("text/html; charset=utf-8");
+                PrintWriter w = response.getWriter();
+                String message = "존재하지 않는 유저아이디입니다.";
 
-        model.addAttribute("recentBoard", boardList);
-        model.addAttribute("otherMember", otherMember);
-        return "otheruser/home";
+                w.println("<script language='javascript'>");
+                w.println("alert('" + message + "'); location.href='/home';");
+                w.println("</script>");
+
+                w.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Members otherMember = memberService.findByID(userid);
+            List<Board> boardList = boardService.recentBoard(otherMember.getUserid(), 3);
+
+            model.addAttribute("recentBoard", boardList);
+            model.addAttribute("otherMember", otherMember);
+            return "otheruser/home";
+        }
+        return "redirect:/home";
     }
 
     @GetMapping("/home")
     public String home(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Members member = (Members) session.getAttribute("Member");
-        if(member != null) {
+        if (member != null) {
             List<Board> boardList = boardService.recentBoard(member.getUserid(), 3);
             model.addAttribute("recentBoard", boardList);
         }
@@ -61,10 +76,10 @@ public class HomeController {
         String inputPW = form.getPassword();
 
         Members result = memberService.login(inputID, inputPW);
-        if(result != null){
+        if (result != null) {
             HttpSession session = request.getSession();
             session.setAttribute("Member", result);
-            session.setMaxInactiveInterval(60*10);
+            session.setMaxInactiveInterval(60 * 10);
 
             List<Board> boardList = boardService.recentBoard(inputID, 3);
 
@@ -77,8 +92,8 @@ public class HomeController {
     }
 
 
-    @RequestMapping(value="logout.do", method= RequestMethod.GET)
-    public String logoutMainGET(HttpServletRequest request) throws Exception{
+    @RequestMapping(value = "logout.do", method = RequestMethod.GET)
+    public String logoutMainGET(HttpServletRequest request) throws Exception {
 
         HttpSession session = request.getSession();
         session.invalidate();
@@ -86,15 +101,4 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @GetMapping("/otheruser")
-    public String searchMembersByUserID(@RequestParam("userid") String userid, Model model) {
-        try {
-            Members members = memberService.findMembersByuserId(userid);
-            model.addAttribute("members", members);
-            return "otheruse";
-        } catch (IllegalArgumentException e) {
-            model.addAttribute("errorMessage", e.getMessage());
-            return "redirect:/";
-        }
-    }
 }

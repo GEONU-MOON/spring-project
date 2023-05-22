@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -55,7 +56,7 @@ public class MembersRepository {
         return Optional.ofNullable(em.find(Members.class, id));
     }
 
-    public Members findByUserID(String userid) {
-        return em.createQuery("select m from Members m where m.userid = :userid", Members.class).getSingleResult();
+    public List<Members> findByUserID(String userid) {
+        return em.createQuery("select m from Members m where m.userid = :userid", Members.class).setParameter("userid", userid).getResultList();
     }
 }
