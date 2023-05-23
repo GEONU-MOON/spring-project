@@ -29,15 +29,49 @@ public class MembersController {
     private final BoardService boardService;
 
     @PostMapping("/")
-    public String register(RegisterDTO form){
-        Members member = new Members();
-        member.setUserid(form.getUserid());
-        member.setName(form.getName());
-        member.setEmail(form.getEmail());
-        member.setPassword(form.getPassword());
-        member.setGithubLink(form.getGithubLink());
+    public String register(RegisterDTO form, String userid , HttpServletResponse response){
+        boolean exist = memberService.findMembersByuserId(userid);
+        if (!exist) {
+            try {
+                response.setContentType("text/html; charset=utf-8");
+                PrintWriter w = response.getWriter();
+                String message = "존재하는 유저아이디입니다.";
 
-        memberService.register(member);
+                w.println("<script language='javascript'>");
+                w.println("alert('" + message + "'); location.href='/';");
+                w.println("</script>");
+
+                w.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+
+            Members member = new Members();
+            member.setUserid(form.getUserid());
+            member.setName(form.getName());
+            member.setEmail(form.getEmail());
+            member.setPassword(form.getPassword());
+            member.setGithubLink(form.getGithubLink());
+
+            memberService.register(member);
+
+            try {
+                response.setContentType("text/html; charset=utf-8");
+                PrintWriter w = response.getWriter();
+                String message = "회원가입이 완료되었습니다.";
+
+                w.println("<script language='javascript'>");
+                w.println("alert('" + message + "'); location.href='/';");
+                w.println("</script>");
+
+                w.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return "redirect:/";
+        }
         return "redirect:/";
     }
 
