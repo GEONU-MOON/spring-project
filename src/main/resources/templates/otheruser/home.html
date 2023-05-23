@@ -29,7 +29,7 @@
 <header class="header text-center" id="main-header" name="main-header">
   <h1 class="blog-name pt-lg-4 mb-0">
     <a href="/home" th:href="@{/otherhome(otheruserid=${otherMember.userid})}">
-      <span th:text="${otherMember.name}"></span>'s Devlog
+      <span th:text="${otherMember.name}"></span>'s Digital Hub
     </a>
     <!--블로그 주인 이름 -->
   </h1>
@@ -104,10 +104,9 @@
 <div class="main-wrapper">
   <section class="cta-section theme-bg-light py-5">
     <div class="container text-center">
-      <h2 class="heading">Devlog - 개발자들을 위한 개발 일기장</h2>
+      <h2 class="heading">Digital Hub - 아이디 검색으로 다른 블로그도 살펴보세요!</h2>
       <div class="intro">
-        제 블로그에 오신 것을 환영합니다. 구독하고 최신 블로그 게시물을
-        받아보세요!
+        제 블로그에 오신 것을 환영합니다. 다른 블로그도 검색해서 확인해보세요!
       </div>
       <form class="signup-form form-inline justify-content-center pt-3" action="/otherhome" method="GET">
         <div class="form-group">
