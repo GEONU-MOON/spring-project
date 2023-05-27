@@ -44,4 +44,8 @@ public class CommentService {
         return commentRepository.findBoardIdByCommentId(commentId);
     }
 
+    @Transactional
+    public void deleteAllCommentsByBoardId(Long boardId){
+        commentRepository.deleteAllByBoardId(boardId);
+    }
 }

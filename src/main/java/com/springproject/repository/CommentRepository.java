@@ -35,5 +35,12 @@ public class CommentRepository {
                 .setParameter("commentId", commentId)
                 .getSingleResult();
     }
+
+    @Transactional
+    public void deleteAllByBoardId(Long boardId) {
+        em.createQuery("delete from Comments c where c.board.id = :boardId")
+                .setParameter("boardId", boardId)
+                .executeUpdate();
+    }
 }
 

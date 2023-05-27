@@ -20,6 +20,7 @@ import java.util.List;
 public class BoardService {
     private final BoardRepository boardRepository;
     private final MembersRepository membersRepository;
+    private final CommentService commentService;
 
     public Board findBoardById(Long id) {
         return boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid board Id:" + id));
@@ -68,6 +69,7 @@ public class BoardService {
 
     @Transactional
     public void delete(Long id){
+        commentService.deleteAllCommentsByBoardId(id);
         boardRepository.delete(id);
     }
 
