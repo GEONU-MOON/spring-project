@@ -65,5 +65,11 @@ public class BoardService {
     public void update(Board board) {
         boardRepository.update(board);
     }
+
+    @Transactional
+    public void delete(Long id){
+        boardRepository.delete(id);
+    }
+
 }
 

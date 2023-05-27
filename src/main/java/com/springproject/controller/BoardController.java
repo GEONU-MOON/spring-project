@@ -47,8 +47,9 @@ public class BoardController {
         if (thumbnailFile != null && !thumbnailFile.isEmpty()) {
             String thumbnailName = StringUtils.cleanPath(thumbnailFile.getOriginalFilename());
 
-            // 문건우용 String directory = "/Users/moongeonu/SpringProject/src/main/resources/static/assets/images/blog";
-            String directory = "C:/SpringProject/src/main/resources/static/assets/images/blog";
+            // 문건우용
+            String directory = "/Users/moongeonu/SpringProject/src/main/resources/static/assets/images/blog";
+            // String directory = "C:/SpringProject/src/main/resources/static/assets/images/blog";
             try {
                 Files.copy(thumbnailFile.getInputStream(), Paths.get(directory, thumbnailName), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
@@ -83,8 +84,9 @@ public class BoardController {
         if (thumbnailFile != null && !thumbnailFile.isEmpty()) {
             String thumbnailName = StringUtils.cleanPath(thumbnailFile.getOriginalFilename());
 
-            // 문건우용 String directory = "/Users/moongeonu/SpringProject/src/main/resources/static/assets/images/updateblog";
-            String directory = "C:/SpringProject/src/main/resources/static/assets/images/blog/updateblog";
+            // 문건우용
+            String directory = "/Users/moongeonu/SpringProject/src/main/resources/static/assets/images/blog/updateblog";
+            // String directory = "C:/SpringProject/src/main/resources/static/assets/images/blog/updateblog";
             try {
                 Files.copy(thumbnailFile.getInputStream(), Paths.get(directory, thumbnailName), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
@@ -124,5 +126,10 @@ public class BoardController {
         return "blogpost";
     }
 
+    @PostMapping("boarddelete/{id}")
+    public String deleteBoard(@PathVariable Long id) {
+        boardService.delete(id);
+        return "redirect:/home";
+    }
 
 }

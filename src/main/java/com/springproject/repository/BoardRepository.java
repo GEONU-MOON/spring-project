@@ -133,5 +133,13 @@ public class BoardRepository {
         return new PageImpl<>(boards, pageable, count);
     }
 
+    @Transactional
+    public void delete(Long id){
+        Board board = em.find(Board.class, id);
+        if (board != null) {
+            em.remove(board);
+        }
+    }
+
 }
 

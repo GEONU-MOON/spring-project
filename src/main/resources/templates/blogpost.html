@@ -118,8 +118,12 @@
 					</div>
 					<div class="my-2 my-md-3" style="text-align: right;">
 						<a class="btn btn-primary" th:href="@{/boardupdate/{id}(id=${board.id})}">수정하기</a>
+						<form style="display:inline;" th:action="@{/boarddelete/{id}(id=${board.id})}" method="post" onsubmit="return confirm('정말 게시물을 삭제하시겠습니까?');">
+							<button class="btn btn-danger" type="submit">삭제하기</button>
+						</form>
 					</div>
-			    </header>
+
+				</header>
 
 				<div class="blog-post-body">
 					<div class="blog-banner">

@@ -27,9 +27,9 @@ public class MemberService {
 
     public String saveProfileImage(MultipartFile profileImage) {
         try {
-            // 문건우용   String imageFolder = "/Users/moongeonu/SpringProject/src/main/resources/static/assets/images";
-            // 윈도우용
-            String imageFolder = "C:/SpringProject/src/main/resources/static/assets/images";
+            // 문건우용
+            String imageFolder = "/Users/moongeonu/SpringProject/src/main/resources/static/assets/images";
+            // 윈도우용   String imageFolder = "C:/SpringProject/src/main/resources/static/assets/images";
 
             String originalFilename = profileImage.getOriginalFilename();
             String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
